@@ -1,0 +1,50 @@
+/*
+    New Admonitions
+    https://jupyterbook.org/advanced/html.html#an-example-custom-admonitions
+*/
+
+
+div.key-fact {
+    border-left-color: var(--pst-color-secondary);
+}
+div.key-fact .admonition-title {
+    background-color: var(--pst-color-secondary-bg);
+}
+div.key-fact .admonition-title:after {
+    color: var(--pst-color-secondary);
+    content: "\f084";
+}
+
+
+div.extra-credit {
+    border-left-color: var(--pst-color-success);
+}
+div.extra-credit .admonition-title {
+    background-color: var(--pst-color-success-bg);
+}
+div.extra-credit .admonition-title:after {
+    color: var(--pst-color-success);
+    content: "\f19d";
+}
+
+div.exercise {
+    border-left-color: var(--pst-color-success);
+}
+div.exercise .admonition-title {
+    background-color: var(--pst-color-success-bg);
+}
+div.exercise .admonition-title:after {
+    color: var(--pst-color-success);
+    content: "\f303";
+}
+
+div.solution {
+    border-left-color: var(--pst-color-danger);
+}
+div.solution .admonition-title {
+    background-color: var(--pst-color-danger-bg);
+}
+div.solution .admonition-title:after {
+    color: var(--pst-color-danger);
+    content: "\f530";
+}
