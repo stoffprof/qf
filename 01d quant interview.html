@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Notation &#8212; Quant Finance in Python</title>
+    <title>Quant interview problem &#8212; Quant Finance in Python</title>
   
   
   
@@ -69,12 +69,12 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"tex": {"macros": {"cov": "\\operatorname{Cov}", "var": "\\operatorname{Var}", "N": "\\mathcal{N}", "E": "\\mathbb{E}", "P": "\\mathbb{P}", "R": "\\mathbb{R}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'notation';</script>
-    <link rel="canonical" href="https://stoffprof.github.io/qf/notation.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = '01d quant interview';</script>
+    <link rel="canonical" href="https://stoffprof.github.io/qf/01d quant interview.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Additional sources" href="sources.html" />
-    <link rel="prev" title="Quant interview problem" href="01d%20quant%20interview.html" />
+    <link rel="next" title="Notation" href="notation.html" />
+    <link rel="prev" title="A model of prices" href="01c%20prices.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,14 +185,14 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="01a%20math.html">Math background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01c%20prices.html">A model of prices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="01d%20quant%20interview.html">Quant interview problem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quant interview problem</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Notation</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sources.html">Additional sources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
 </ul>
@@ -249,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/notation.md" target="_blank"
+      <li><a href="_sources/01d quant interview.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -259,7 +259,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -331,7 +331,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notation</h1>
+    <h1>Quant interview problem</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -345,62 +345,103 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notation">
-<h1>Notation<a class="headerlink" href="#notation" title="Permalink to this heading">#</a></h1>
-<p>Conventions used throughout the book include:</p>
-<ul class="simple">
-<li><p>Boldface is used to denote vectors and matrices, the former in lowercase and the latter in uppercase. So <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> is a matrix and <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is a (column) vector.</p></li>
-<li><p><span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> are generally variables, while <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are functions. <span class="math notranslate nohighlight">\(X\)</span> is typically a random variable. Other Latin and Greek letters are usually parameters or constants.</p></li>
-</ul>
-<p>Additional symbols include:</p>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Symbol</strong></p></th>
-<th class="head"><p><strong>Meaning</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(:=\)</span></p></td>
-<td><p>Is defined as</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\{1, 2, \ldots, n \}\)</span></p></td>
-<td><p>The set of integers from 1 to <span class="math notranslate nohighlight">\(n\)</span>. In general <span class="math notranslate nohighlight">\(\{\cdots\}\)</span> denotes a set.</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(x\in\mathcal{X}\)</span></p></td>
-<td><p><span class="math notranslate nohighlight">\(x\)</span> is a member of the set <span class="math notranslate nohighlight">\(\mathcal{X}\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\displaystyle \sum_{i=1}^n x_i\)</span></p></td>
-<td><p>Sum of <span class="math notranslate nohighlight">\(x_1 + \ldots + x_n\)</span>. Also written as <span class="math notranslate nohighlight">\(\sum_{i=1}^n x_i\)</span>. Alternatively, can write the summation of all elements in a set <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> as <span class="math notranslate nohighlight">\(\displaystyle \sum_{x\in \mathcal{X}} x\)</span> or <span class="math notranslate nohighlight">\(\sum_{x\in \mathcal{X}} x\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\R\)</span></p></td>
-<td><p>The real numbers</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\R^+\)</span></p></td>
-<td><p>The positive real numbers, <span class="math notranslate nohighlight">\(\{x\in \R: x&gt;0\}\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\forall i\)</span></p></td>
-<td><p>For all <span class="math notranslate nohighlight">\(i\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\mathbf{x}'\)</span></p></td>
-<td><p>The transpose of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. Also applies to matrices.</p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(f(x) : \R \rightarrow [0,1]\)</span></p></td>
-<td><p>The function <span class="math notranslate nohighlight">\(f\)</span> maps from the real numbers to the closed interval 0 to 1</p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(f'(x)\)</span> or <span class="math notranslate nohighlight">\(\frac{df}{dx}\)</span></p></td>
-<td><p>The derivative of <span class="math notranslate nohighlight">\(f\)</span> with respect to <span class="math notranslate nohighlight">\(x\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\P\)</span></p></td>
-<td><p>Probability measure. Maps from the space of outcomes <span class="math notranslate nohighlight">\(\Omega\)</span> to a probability in <span class="math notranslate nohighlight">\([0,1]\)</span></p></td>
-</tr>
-<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\E(X)\)</span></p></td>
-<td><p>Expectation of random variable <span class="math notranslate nohighlight">\(X\)</span></p></td>
-</tr>
-<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(\N(\mu,\sigma^2)\)</span></p></td>
-<td><p>Normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span></p></td>
-</tr>
-</tbody>
-</table>
+  <section class="tex2jax_ignore mathjax_ignore" id="quant-interview-problem">
+<h1>Quant interview problem<a class="headerlink" href="#quant-interview-problem" title="Permalink to this heading">#</a></h1>
+<p>The following is a sample problem from a quant interview presented in <span id="id1">Isichenko [<a class="reference internal" href="bibliography.html#id9" title="M. Isichenko. Quantitative Portfolio Management: The Art and Science of Statistical Arbitrage. Wiley, 2021. ISBN 9781119821328. URL: https://books.google.com/books?id=s8E5EAAAQBAJ.">2021</a>]</span> (see page 62).</p>
+<p>Try to keep your thinking <em>flexible</em> while attempting to solve the equation. The solution does not require anything more than what you learned about the quadratic equation in high school.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Solve for x:</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{a-\sqrt{a+x}}=x.\]</div>
+</div>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>Begin by getting rid of the square-roots:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{gather*}
+a-\sqrt{a+x} = x^{2} \\
+a - x^2 = \sqrt{a+x} \\
+a^2 - 2ax^2 + x^4 = a + x.
+\end{gather*}\]</div>
+<p>At this point it may not be so obvious how to proceed. But if we try to think flexibly, we might notice that if we treat <span class="math notranslate nohighlight">\(a\)</span> as the variable and <span class="math notranslate nohighlight">\(x\)</span> as the parameter (rather than the more natural other way around), we can reorganize the equation as</p>
+<div class="math notranslate nohighlight">
+\[a^2 - \left(1 + 2 x^2\right) a + (x^4 - x) = 0\]</div>
+<p>so it fits the standard form of a quadratic equation in <span class="math notranslate nohighlight">\(a\)</span></p>
+<div class="math notranslate nohighlight">
+\[\alpha a^2 + \beta a + \gamma=0,\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\alpha=1, \quad \beta=-\left(1 + 2 x^{2}\right), \quad \gamma=x^{4}-x.\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(a\)</span> with the roots of a quadratic equation,</p>
+<div class="math notranslate nohighlight">
+\[a=\frac{\left(1 + 2 x^{2}\right) \pm \sqrt{\left(1 + 2 x^{2}\right)^{2}-4\left(x^{4}-x\right)}}{2}\]</div>
+<p>The part under the square-root is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\left(1 + 2 x^{2}\right)^{2}-4\left(x^{4}-x\right) &amp;= 1 + 4x^2 + 4x^4 - 4x^4 + 4x \\
+&amp;= (2x+1)^2
+\end{align*}\]</div>
+<p>Therefore,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+a = \frac{2x^2 + 1 \pm (2x+1)}{2} = 
+\left\{\begin{matrix}
+x^{2}+x+1 \\
+x^{2}-x
+\end{matrix}\right.,
+\end{equation*}\]</div>
+<p>so either</p>
+<div class="math notranslate nohighlight">
+\[x^{2}+x+1-a=0\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight">
+\[x^{2}-x-a=0.\]</div>
+<p>The solutions to these two equations are, respectively,</p>
+<div class="math notranslate nohighlight">
+\[x = \frac{-1 \pm \sqrt{1-4(1-a)}}{2} = \frac{-1 \pm \sqrt{4a-3}}{2}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[x=\frac{1 \pm \sqrt{1+4a}}{2}.\]</div>
+<p>For real solutions, <span class="math notranslate nohighlight">\(x\)</span> must be non-negative, so the first equation implies</p>
+<div class="math notranslate nohighlight">
+\[x = \frac{\sqrt{4a-3} - 1}{2}, \quad a\geq 1.\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(a=0\)</span>, <span class="math notranslate nohighlight">\(x=0\)</span> is also a solution. <span class="math notranslate nohighlight">\(\blacksquare\)</span></p>
+<p>As a quick verification, choose <span class="math notranslate nohighlight">\(a=7\)</span>. Then</p>
+<div class="math notranslate nohighlight">
+\[x = \frac{\sqrt{4a-3} - 1}{2} = 2\]</div>
+<p>and it is easy to verify that</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{7 - \sqrt{7 + 2}} = 2.\]</div>
+</div>
+<p>Sympy can also solve problems like this:</p>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy.solvers</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span><span class="p">,</span> <span class="n">sqrt</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="n">solve</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">x</span><span class="p">))</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1/2 - sqrt(4*a + 1)/2,
+ -sqrt(4*a - 3)/2 - 1/2,
+ sqrt(4*a - 3)/2 - 1/2,
+ sqrt(4*a + 1)/2 + 1/2]
+</pre></div>
+</div>
+</div>
+</details>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -434,20 +475,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="01d%20quant%20interview.html"
+       href="01c%20prices.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Quant interview problem</p>
+        <p class="prev-next-title">A model of prices</p>
       </div>
     </a>
     <a class="right-next"
-       href="sources.html"
+       href="notation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Additional sources</p>
+        <p class="prev-next-title">Notation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
