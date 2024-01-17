@@ -73,7 +73,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="canonical" href="https://stoffprof.github.io/qf/02b Probability theory.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Pseudorandom number generation" href="02d%20Pseudorandom%20number%20generation.html" />
+    <link rel="next" title="Notation" href="notation.html" />
     <link rel="prev" title="Prediction: First look" href="02a%20MSE.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -202,13 +202,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l2"><a class="reference internal" href="02d%20Pseudorandom%20number%20generation.html">Pseudorandom number generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02c%20Distributions.html">Probability distributions</a></li>
-
-<li class="toctree-l2"><a class="reference internal" href="02e%20Covariance.html">Covariance</a></li>
-
-
-<li class="toctree-l2"><a class="reference internal" href="02f%20Estimation.html">Parameter estimation</a></li>
 </ul>
 </li>
 </ul>
@@ -476,11 +469,11 @@ X(\omega) = \left\{\begin{matrix}
 &amp;= 3\times\frac{1}{4} \\
 &amp;= 0.75.
 \end{align*}\]</div>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Suppose you roll a single six-sided die. Define the random variable <span class="math notranslate nohighlight">\(X\)</span> to be the number shown on the die. What is the sample space? What are the probabilities associated with each possible value of the <span class="math notranslate nohighlight">\(X\)</span>?</p>
 </div>
-<div class="admonition-extra-credit dropdown admonition">
+<div class="extra-credit dropdown admonition">
 <p class="admonition-title">Extra credit</p>
 <p>Modern probability theory, introduced in the 1930s by Andrey Kolmogorov, is formally defined using a <em>probability space</em> <span class="math notranslate nohighlight">\((\Omega, \mathcal{F}, \P)\)</span>, where <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> is the set of all possible events is (called the <em>event space</em> or the “<span class="math notranslate nohighlight">\(\sigma\)</span>-algebra”). In the two-flip example, this is</p>
 <div class="math notranslate nohighlight">
@@ -495,11 +488,11 @@ X(\omega) = \left\{\begin{matrix}
 <div class="math notranslate nohighlight">
 \[f(k; n,p) := \P(X=k) = {\binom {n}{k}}p^{k}(1-p)^{n-k}, \quad k=0,1,2,\ldots,n.\]</div>
 <p>A random variable with this PMF has a <em>Binomial distribution</em>, which we write as <span class="math notranslate nohighlight">\(X \sim B(n,p)\)</span>.</p>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Show that when <span class="math notranslate nohighlight">\(n=1\)</span> this PMF reduces to probability function for a Bernoulli trial.</p>
 </div>
-<div class="admonition-solution dropdown admonition">
+<div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>We have</p>
 <div class="math notranslate nohighlight">
@@ -585,7 +578,7 @@ X = \left\{\begin{matrix}
 &amp;= 1.5
 \end{align*}\]</div>
 <p>As this example makes clear, the expected value of <span class="math notranslate nohighlight">\(X\)</span> need not be a value from any outcome in its sample space.</p>
-<div class="admonition-key-fact admonition">
+<div class="key-fact admonition">
 <p class="admonition-title">Key fact</p>
 <p>The expecation of a random variable is the average of the <em>population</em>. For a random process like rolling a die, this is the average we would get if we could repeat the process infinitely many times.</p>
 </div>
@@ -619,11 +612,11 @@ X = \left\{\begin{matrix}
 </div>
 </div>
 </div>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Find the expected value and variance of a Bernoulli random variable.</p>
 </div>
-<div class="admonition-solution dropdown admonition">
+<div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>Using the defition of expectation and variance,</p>
 <div class="amsmath math notranslate nohighlight">
@@ -657,11 +650,11 @@ X = \left\{\begin{matrix}
 <div class="math notranslate nohighlight">
 \[\E(a) = \sum_{\omega\in\Omega} \P(\omega)\, a = a  \sum_{\omega\in\Omega} \P(\omega) = a.\]</div>
 <p>This holds for any nonrandom — also called <em>nonstochastic</em> — variable. In other words, if <span class="math notranslate nohighlight">\(a\)</span> doesn’t depend on the outcome <span class="math notranslate nohighlight">\(\omega\)</span> then its value isn’t random, and its expectation is just <span class="math notranslate nohighlight">\(a\)</span>.</p>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Find the variance of a constant <span class="math notranslate nohighlight">\(a\)</span>.</p>
 </div>
-<div class="admonition-solution dropdown admonition">
+<div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>Applying the definition of variance,</p>
 <div class="amsmath math notranslate nohighlight">
@@ -690,14 +683,14 @@ X = \left\{\begin{matrix}
 <p>Also note that if both <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are random variables, then</p>
 <div class="math notranslate nohighlight">
 \[\E(X+Y) = \E(X) + \E(Y).\]</div>
-<div class="admonition-key-fact admonition">
+<div class="key-fact admonition">
 <p class="admonition-title">Key fact</p>
 <p>We can use these facts to <em>shift</em> and <em>rescale</em> a random variable. Specifically, if <span class="math notranslate nohighlight">\(\E(X)=0\)</span> and <span class="math notranslate nohighlight">\(\var(X)=1\)</span> and we let</p>
 <div class="math notranslate nohighlight">
 \[Y=\mu + \sigma X,\]</div>
 <p>then <span class="math notranslate nohighlight">\(\E(Y) = \mu\)</span> and <span class="math notranslate nohighlight">\(\var(Y) = \sigma^2\)</span>.</p>
 </div>
-<div class="admonition-key-fact admonition">
+<div class="key-fact admonition">
 <p class="admonition-title">Key fact</p>
 <p>The linearity of the expectations operator allows us to write variance conveniently as</p>
 <div class="amsmath math notranslate nohighlight">
@@ -707,11 +700,11 @@ X = \left\{\begin{matrix}
 &amp;= \E(X^2) - \E(X)^2.
 \end{align*}\]</div>
 </div>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>The random variable <span class="math notranslate nohighlight">\(Y\)</span> follows a Binomial distribution with parameters <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(p\)</span>. Find <span class="math notranslate nohighlight">\(\E(Y)\)</span> and <span class="math notranslate nohighlight">\(\var(Y)\)</span>.</p>
 </div>
-<div class="admonition-solution dropdown admonition">
+<div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>Since <span class="math notranslate nohighlight">\(Y\sim B(n,p)\)</span>, it is the sum of <span class="math notranslate nohighlight">\(n\)</span> independent Bernoulli trials. We saw previously that if <span class="math notranslate nohighlight">\(X\)</span> has a Bernoulli distribution then <span class="math notranslate nohighlight">\(\E(X)=p\)</span> and <span class="math notranslate nohighlight">\(\var(X)=p(1-p)\)</span>. Therefore,</p>
 <div class="math notranslate nohighlight">
@@ -1086,7 +1079,7 @@ Gauss is pictured in this German banknote along with the normal density function
 <img alt="_images/5a75ef3acdf72ff5402c881895ffbc3245d5daa069261dd88377f5c800465a0b.png" src="_images/5a75ef3acdf72ff5402c881895ffbc3245d5daa069261dd88377f5c800465a0b.png" />
 </div>
 </div>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Make a plot like the one above to show how the PDF and CDF shift to the left or right as we change <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 </div>
@@ -1100,7 +1093,7 @@ Gauss is pictured in this German banknote along with the normal density function
 <p>Higher-order moments can be similarly defined; the <span class="math notranslate nohighlight">\(k\)</span>th central moment is</p>
 <div class="math notranslate nohighlight">
 \[\mu_k := \E\left[(X-\mu)^k\right]=\int_{-\infty }^{\infty }(x-\mu_X)^k f(x)\, dx.\]</div>
-<div class="admonition-extra-credit admonition">
+<div class="extra-credit dropdown admonition">
 <p class="admonition-title">Extra credit</p>
 <p>Use properties of <span class="math notranslate nohighlight">\(f_X(x)\)</span> to show that <span class="math notranslate nohighlight">\(\mu_0 = 1\)</span> and <span class="math notranslate nohighlight">\(\mu_1\)</span> = 0.</p>
 </div>
@@ -1154,11 +1147,11 @@ Gauss is pictured in this German banknote along with the normal density function
       </div>
     </a>
     <a class="right-next"
-       href="02d%20Pseudorandom%20number%20generation.html"
+       href="notation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Pseudorandom number generation</p>
+        <p class="prev-next-title">Notation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
