@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Parameter estimation &#8212; Quant Finance in Python</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
@@ -42,9 +42,9 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
-  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -87,7 +87,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
   
   <div id="pst-scroll-pixel-helper"></div>
-
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>
@@ -127,20 +126,15 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
-
-  <header>
   
-    <div class="bd-header navbar navbar-expand-lg bd-navbar">
-    </div>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
-  </header>
 
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -570,7 +564,7 @@ n=750:	(0.365, 0.436)
 <div class="math notranslate nohighlight">
 \[\E(\bar x_n) = \E\left[\frac{1}{n} \sum_{i=1}^n x_i\right] = \frac{1}{n}\sum_{i=1}^n \E(X) = \frac{1}{n}\cdot n \cdot\E(X) = \E(X).\]</div>
 <p>That is, the expected value of the sample mean is the true parameter <span class="math notranslate nohighlight">\(\mu_x\)</span>. The technical term for this is that the sample mean is an <em>unbiased</em> estimate of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-<div class="admonition-key-fact admonition">
+<div class="key-fact admonition">
 <p class="admonition-title">Key fact</p>
 <p>Closely related to the fact that <span class="math notranslate nohighlight">\(\E(\bar x_n) = \E(X)\)</span> is an important result known as the <strong>Law of Large Numbers</strong> (LLN), which says that</p>
 <div class="math notranslate nohighlight">
@@ -614,7 +608,7 @@ n=750:	(0.365, 0.436)
 <div class="math notranslate nohighlight">
 \[\var(\bar x_n) = \var\left[\frac{1}{n} \sum_{i=1}^n x_i\right] = \frac{1}{n^2} \var\left[\sum_{i=1}^n x_i\right] = \frac{\var(X)}{n} = \frac{\sigma^2}{n}.\]</div>
 <p>As we get more data (that is, <span class="math notranslate nohighlight">\(n \to \infty\)</span>), the variance of the sample mean approaches zero. This is consistent with what we saw above—that we become more certain of exactly what the population mean really is when we have a larger sample.</p>
-<div class="admonition-key-fact admonition">
+<div class="key-fact admonition">
 <p class="admonition-title">Key fact</p>
 <p>All three facts above are summarized by a fundamentally important result in statistics, the <strong>Central Limit Theorem</strong>, which says that</p>
 <div class="math notranslate nohighlight">
@@ -622,11 +616,11 @@ n=750:	(0.365, 0.436)
 <p>where <span class="math notranslate nohighlight">\(\stackrel{d}{\to}\)</span> means “converges in distribution”. The theoretical standard deviation of the mean, <span class="math notranslate nohighlight">\(\frac{\sigma}{\sqrt{n}},\)</span> is called the <em>standard error of the mean</em>.</p>
 <p>This is a general statement about <em>any</em> probability distribution (as long as the second moment is finite). In other words, with few exceptions, <em>whatever</em> the underlying distribution of <span class="math notranslate nohighlight">\(X\)</span> is, its sample mean converges to a normal distribution. This allows us to make very specific statments about how confident we are about observing any particular result.</p>
 </div>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Let <span class="math notranslate nohighlight">\(Z=\sqrt{n}\left(\frac{\bar x_n - \mu}{\sigma}\right).\)</span> Show that <span class="math notranslate nohighlight">\(\E(Z) = 0\)</span> and <span class="math notranslate nohighlight">\(\var(Z)=1\)</span>.</p>
 </div>
-<div class="admonition-solution dropdown admonition">
+<div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>Recall that <span class="math notranslate nohighlight">\(\var(a + bX) = b^2\var(X)\)</span> for constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>. Here, <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> are constants, not random variables. Therefore,</p>
 <div class="math notranslate nohighlight">
@@ -833,11 +827,11 @@ n=750:	(0.365, 0.436)
 \[y_i = 2 + 3 x_i + \varepsilon_i,\]</div>
 <p>where <span class="math notranslate nohighlight">\(\varepsilon_i \sim \N(0,1)\)</span> and is independent of <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
 <p>So while the <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> are independent, <span class="math notranslate nohighlight">\(y_i\)</span> obviously depends on <span class="math notranslate nohighlight">\(x_i\)</span>.</p>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Given this relation between <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> calculate the theoretical value of <span class="math notranslate nohighlight">\(\cov(X,Y)\)</span>. Simply apply the formulas for <span class="math notranslate nohighlight">\(\cov(aX,bY)\)</span> and <span class="math notranslate nohighlight">\(\cov(a+X,b+Y)\)</span> to this case. Write down the variance–covariance matrix for <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> so you can compare it to the estimates we get below.</p>
 </div>
-<div class="admonition-solution dropdown admonition">
+<div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>Since <span class="math notranslate nohighlight">\(X\sim\N(0,1)\)</span>, it’s variance is 1. The variance of <span class="math notranslate nohighlight">\(Y\)</span> is therefore</p>
 <div class="amsmath math notranslate nohighlight">
@@ -924,15 +918,15 @@ n=750:	(0.365, 0.436)
 </div>
 </div>
 </div>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Experiment with this simulation by increasing <span class="math notranslate nohighlight">\(N\)</span>. Verify that the sample covariance and correlation matrix converge to their theoretical values.</p>
 </div>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>Experiment by changing the other parameters in the the equation for <span class="math notranslate nohighlight">\(Y\)</span> and see if the sample mean and variance of the <span class="math notranslate nohighlight">\(y_i\)</span> behave as you expect.</p>
 </div>
-<div class="admonition-solution dropdown admonition">
+<div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <p>If we generalize the equation for <span class="math notranslate nohighlight">\(Y\)</span> to be</p>
 <div class="math notranslate nohighlight">
@@ -969,7 +963,7 @@ b &amp; b^2 + c^2 \\
 <div class="math notranslate nohighlight">
 \[R_{i,t} = \mu_i + \varepsilon_{i,t}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mu_i\)</span> is the assets expected return and <span class="math notranslate nohighlight">\(\varepsilon_{i,t}\sim \N(0,\sigma_i^2)\)</span> is the statistical noise in the return.</p>
-<div class="admonition-exercise admonition">
+<div class="exercise admonition">
 <p class="admonition-title">Exercise</p>
 <p>In this model, what is <span class="math notranslate nohighlight">\(\E(R_i)\)</span>? What is <span class="math notranslate nohighlight">\(\var(R_i)\)</span>?</p>
 </div>
@@ -1126,8 +1120,8 @@ b &amp; b^2 + c^2 \\
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
