@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Probability distributions &#8212; Quant Finance in Python</title>
   
@@ -29,47 +28,43 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=4a0e6a02" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=891ccba4" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/myadmonitions-checkpoint.css" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"cov": "\\operatorname{Cov}", "var": "\\operatorname{Var}", "N": "\\mathcal{N}", "E": "\\mathbb{E}", "P": "\\mathbb{P}", "R": "\\mathbb{R}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '02c Distributions';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://stoffprof.github.io/qf/02c Distributions.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -168,7 +163,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -203,6 +209,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l2"><a class="reference internal" href="02f%20Estimation.html">Parameter estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regression.html">Regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04a%20Regression%20theory.html">Linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04b%20Regression%20applications.html">Implementing regressions</a></li>
 </ul>
 </li>
 </ul>
@@ -381,12 +392,12 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="probability-distributions">
-<h1>Probability distributions<a class="headerlink" href="#probability-distributions" title="Permalink to this heading">#</a></h1>
+<h1>Probability distributions<a class="headerlink" href="#probability-distributions" title="Link to this heading">#</a></h1>
 <p>We have already seen how different probability distributions are related: if we repeat Bernoulli trials, the resulting random variable has a binomial distribution. In the limit as <span class="math notranslate nohighlight">\(n\)</span> increases, this gives us the normal distribution.</p>
 <p>Many other probability distributions can be constructed by combining random variables in different ways. These various distributions can be useful for describing all kinds of real-world phenomena.</p>
 <p>In this section we focus on just a handful of distributions that are especially relevent when working with financial data.</p>
 <section id="poisson-distribution">
-<h2>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this heading">#</a></h2>
+<h2>Poisson distribution<a class="headerlink" href="#poisson-distribution" title="Link to this heading">#</a></h2>
 <p>Consider again the binomial distribution as <span class="math notranslate nohighlight">\(n\to\infty\)</span>, but assume that the probability <span class="math notranslate nohighlight">\(p\)</span> is defined such that the product of <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(p\)</span> remains constant. In particular, assume that for any <span class="math notranslate nohighlight">\(n\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[np = \lambda\]</div>
@@ -546,7 +557,7 @@ Var(X) = 5.0
 <p>Note that the PMF is define only over the integers; the lines between the dots are simply visual aids. Note also that <span class="math notranslate nohighlight">\(\lambda\)</span> can be any positive real number.</p>
 </section>
 <section id="log-normal-distribution">
-<h2>Log-normal distribution<a class="headerlink" href="#log-normal-distribution" title="Permalink to this heading">#</a></h2>
+<h2>Log-normal distribution<a class="headerlink" href="#log-normal-distribution" title="Link to this heading">#</a></h2>
 <p>Suppose <span class="math notranslate nohighlight">\(Y \sim \N(\mu,\sigma^2)\)</span>, and define</p>
 <div class="math notranslate nohighlight">
 \[X=e^Y.\]</div>
@@ -659,7 +670,7 @@ Var(X) = 5.0
 <p>The log-normal distribution is often used in various financial applications. One reason is that, since the price of a stock can never be negative, it makes sense to model the price with a distribution that also never gives negative values.</p>
 </section>
 <section id="chi-squared-distribution">
-<h2>Chi-squared distribution<a class="headerlink" href="#chi-squared-distribution" title="Permalink to this heading">#</a></h2>
+<h2>Chi-squared distribution<a class="headerlink" href="#chi-squared-distribution" title="Link to this heading">#</a></h2>
 <p>Suppose <span class="math notranslate nohighlight">\(Z_i \sim \N(0,1)\)</span> and we calculate</p>
 <div class="math notranslate nohighlight">
 \[X = \sum_{i=1}^k Z_i^2.\]</div>
@@ -688,7 +699,7 @@ Var(X) = 5.0
 <p>If <span class="math notranslate nohighlight">\(X\sim\chi^2(k)\)</span> then <span class="math notranslate nohighlight">\(\E(X)=k\)</span> and <span class="math notranslate nohighlight">\(\var(X)=2k.\)</span></p>
 </section>
 <section id="students-t-distribution">
-<h2>Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution<a class="headerlink" href="#students-t-distribution" title="Permalink to this heading">#</a></h2>
+<h2>Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution<a class="headerlink" href="#students-t-distribution" title="Link to this heading">#</a></h2>
 <p>Suppose <span class="math notranslate nohighlight">\(Z \sim \N(0,1)\)</span> and <span class="math notranslate nohighlight">\(Q \sim \chi^2_{\nu}\)</span>. Then</p>
 <div class="math notranslate nohighlight">
 \[X = \frac{Z}{\sqrt{Q/\nu}}\]</div>
@@ -761,7 +772,7 @@ Var(X) = 5.0
 \end{split}\]</div>
 </section>
 <section id="f-distribution">
-<h2><span class="math notranslate nohighlight">\(F\)</span> distribution<a class="headerlink" href="#f-distribution" title="Permalink to this heading">#</a></h2>
+<h2><span class="math notranslate nohighlight">\(F\)</span> distribution<a class="headerlink" href="#f-distribution" title="Link to this heading">#</a></h2>
 <p>Given two independent chi-square distributed random variables, <span class="math notranslate nohighlight">\(Q_1\)</span> and <span class="math notranslate nohighlight">\(Q_2\)</span>, with <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span> degrees of freedom, respectively, the ratio</p>
 <div class="math notranslate nohighlight">
 \[X = \frac {Q_{1}/k_{1}}{Q_{2}/k_{2}}\]</div>
@@ -800,7 +811,7 @@ Var(X) = 5.0
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="other-distributions">
-<h1>Other distributions<a class="headerlink" href="#other-distributions" title="Permalink to this heading">#</a></h1>
+<h1>Other distributions<a class="headerlink" href="#other-distributions" title="Link to this heading">#</a></h1>
 <p>Many probability distributions have been developed by researchers seeking to describe various probabilistic phenomena. As we’ve seen with the connections between the several distributions above, distributions are usually related to others by making particular assumptions or by taking limits of parameters. The figure below, from <span id="id1">Leemis and McQueston [<a class="reference internal" href="bibliography.html#id11" title="Lawrence M. Leemis and Jacquelyn T. McQueston. Univariate distribution relationships. The American Statistician, 62(1):45–53, 2008. URL: https://doi.org/10.1198/000313008X270448.">2008</a>]</span>, shows the relationships between many (but by no means all) probability distributions. You can see, for example, that both the Poisson and Normal are limiting distributions of the Binomial distribution.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>

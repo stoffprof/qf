@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Probability theory &#8212; Quant Finance in Python</title>
   
@@ -29,47 +28,43 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=4a0e6a02" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=891ccba4" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/myadmonitions-checkpoint.css" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"cov": "\\operatorname{Cov}", "var": "\\operatorname{Var}", "N": "\\mathcal{N}", "E": "\\mathbb{E}", "P": "\\mathbb{P}", "R": "\\mathbb{R}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '02b Probability theory';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://stoffprof.github.io/qf/02b Probability theory.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -168,7 +163,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -203,6 +209,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l2"><a class="reference internal" href="02f%20Estimation.html">Parameter estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regression.html">Regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04a%20Regression%20theory.html">Linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04b%20Regression%20applications.html">Implementing regressions</a></li>
 </ul>
 </li>
 </ul>
@@ -385,7 +396,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="probability-theory">
-<h1>Probability theory<a class="headerlink" href="#probability-theory" title="Permalink to this heading">#</a></h1>
+<h1>Probability theory<a class="headerlink" href="#probability-theory" title="Link to this heading">#</a></h1>
 <p>To begin developing a theory of probability, it is useful to consider a simple random process such as a flipping a coin. There are two possible outcomes of a single coin toss, “Heads” or “Tails,” which we’ll denote <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(T\)</span>, respectively.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -411,7 +422,7 @@ document.write(`
 \[\P(\Omega) = \sum_{\omega\in\Omega} \P(\omega) = \P(H) + \P(T) = 1.\]</div>
 <p>In other words, the probability that something happens is one. As a matter of logic, if that weren’t true, we would have to redefine the sample space. If it is correctly defined as the exhuastive set of all possible outcomes, then one of those outcomes must occur.</p>
 <section id="random-variables">
-<h2>Random variables<a class="headerlink" href="#random-variables" title="Permalink to this heading">#</a></h2>
+<h2>Random variables<a class="headerlink" href="#random-variables" title="Link to this heading">#</a></h2>
 <p>A <em>random variable</em> is a function that maps an event to a real number. For example, define the random variable <span class="math notranslate nohighlight">\(X\)</span> to be the number of Heads that we observe in a single coin flip,</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -433,7 +444,7 @@ X(\omega) = \left\{\begin{matrix}
 <p>It is common practice to write simply <span class="math notranslate nohighlight">\(\P(x)\)</span> rather than <span class="math notranslate nohighlight">\(\P(X=x)\)</span>.</p>
 <p>More generally, a random variable defined for a Bernoulli trial with probability <span class="math notranslate nohighlight">\(p\)</span> is</p>
 <div class="math notranslate nohighlight" id="equation-eq-bernoulli">
-<span class="eqno">(9)<a class="headerlink" href="#equation-eq-bernoulli" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{align}
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq-bernoulli" title="Link to this equation">#</a></span>\[\begin{split}\begin{align}
 \P(X=1) &amp;= p, \\
 \P(X=0) &amp;= 1-p.
 \end{align}\end{split}\]</div>
@@ -484,7 +495,7 @@ X(\omega) = \left\{\begin{matrix}
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="binomial-distribution">
-<h1>Binomial distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this heading">#</a></h1>
+<h1>Binomial distribution<a class="headerlink" href="#binomial-distribution" title="Link to this heading">#</a></h1>
 <p>Generalizing from two coin flips, suppose that we repeat a Bernoulli trial <span class="math notranslate nohighlight">\(n\)</span> times. The trials are assumed to be mutually independent, meaning that the outcome of each trial has no effect on any other outcomes. Let <span class="math notranslate nohighlight">\(X\)</span> equal the number of Heads out of these trials. We characterize the random variable <span class="math notranslate nohighlight">\(X\)</span> by determining <span class="math notranslate nohighlight">\(\P(X=k)\)</span> for any possible value of <span class="math notranslate nohighlight">\(k\)</span>. This is given by the <em>probability mass function</em> (PMF),</p>
 <div class="math notranslate nohighlight">
 \[f(k; n,p) := \P(X=k) = {\binom {n}{k}}p^{k}(1-p)^{n-k}, \quad k=0,1,2,\ldots,n.\]</div>
@@ -551,7 +562,7 @@ X(\omega) = \left\{\begin{matrix}
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="expected-value-and-variance">
-<h1>Expected value and variance<a class="headerlink" href="#expected-value-and-variance" title="Permalink to this heading">#</a></h1>
+<h1>Expected value and variance<a class="headerlink" href="#expected-value-and-variance" title="Link to this heading">#</a></h1>
 <p>The <em>expected value</em> or <em>expectation</em> of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> with possible outcomes <span class="math notranslate nohighlight">\((x_1, x_2, \ldots, x_n)\)</span> is the weighted average of the outcomes,</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
@@ -642,7 +653,7 @@ X = \left\{\begin{matrix}
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="linearity-of-expectations">
-<h1>Linearity of expectations<a class="headerlink" href="#linearity-of-expectations" title="Permalink to this heading">#</a></h1>
+<h1>Linearity of expectations<a class="headerlink" href="#linearity-of-expectations" title="Link to this heading">#</a></h1>
 <p>We saw above that the mean and variance of a distribution are defined using the expectations operator <span class="math notranslate nohighlight">\(\E\)</span>, which we redefine here as applying to any function <span class="math notranslate nohighlight">\(g(\cdot)\)</span> of the random variable <span class="math notranslate nohighlight">\(X\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\E(g(X)) = \sum_{\omega\in\Omega} \P(\omega)\, g(X(\omega)).\]</div>
@@ -718,7 +729,7 @@ X = \left\{\begin{matrix}
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="the-normal-distribution">
-<h1>The normal distribution<a class="headerlink" href="#the-normal-distribution" title="Permalink to this heading">#</a></h1>
+<h1>The normal distribution<a class="headerlink" href="#the-normal-distribution" title="Link to this heading">#</a></h1>
 <p>Consider what happens as we increase the number of trials. In particular, suppose <span class="math notranslate nohighlight">\(n=50\)</span>, so <span class="math notranslate nohighlight">\(\E(X)=25\)</span> and <span class="math notranslate nohighlight">\(\var(X)=12.5\)</span>. The figure below shows the distribution of outcomes according to the binomial distribution along with a continuous function called the <em>normal distribution</em>.</p>
 <aside class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -926,7 +937,7 @@ Gauss is pictured in this German banknote along with the normal density function
 <p>Ituitively this is because there are an infinite number of outcomes so the probability of any one of them is <span class="math notranslate nohighlight">\(\frac{1}{\infty} = 0\)</span>.</p>
 </div>
 <section id="inverse-cdf">
-<h2>Inverse CDF<a class="headerlink" href="#inverse-cdf" title="Permalink to this heading">#</a></h2>
+<h2>Inverse CDF<a class="headerlink" href="#inverse-cdf" title="Link to this heading">#</a></h2>
 <p>The inverse of the CDF function allows us to answer the question “what value of a random draw from <span class="math notranslate nohighlight">\(X\)</span> would have a probability of less than <span class="math notranslate nohighlight">\(p\)</span> of happening?”. Rather than giving the probability associated with a realization of the random variable, it gives us what realization would be a associated with a given level of probability. In SciPy, the <code class="docutils literal notranslate"><span class="pre">ppf</span></code> function (“percent point function”) gives these values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1027,7 +1038,7 @@ Gauss is pictured in this German banknote along with the normal density function
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="expected-value-of-continuous-rvs">
-<h1>Expected value of continuous RVs<a class="headerlink" href="#expected-value-of-continuous-rvs" title="Permalink to this heading">#</a></h1>
+<h1>Expected value of continuous RVs<a class="headerlink" href="#expected-value-of-continuous-rvs" title="Link to this heading">#</a></h1>
 <p>The expected value of a continuous random variable is defined analagously to the defintion above for the discrete case:</p>
 <div class="math notranslate nohighlight">
 \[\E(X) := \sum_{\omega\in\Omega} \P(\omega)\, X(\omega) = \int_{-\infty}^{\infty} f_X(x) x \, dx.\]</div>
@@ -1086,7 +1097,7 @@ Gauss is pictured in this German banknote along with the normal density function
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="higher-order-moments">
-<h1>Higher-order moments<a class="headerlink" href="#higher-order-moments" title="Permalink to this heading">#</a></h1>
+<h1>Higher-order moments<a class="headerlink" href="#higher-order-moments" title="Link to this heading">#</a></h1>
 <p>The expected value is also called the first <em>moment</em> of <span class="math notranslate nohighlight">\(X\)</span>. More generally, the <span class="math notranslate nohighlight">\(k\)</span>th moment is <span class="math notranslate nohighlight">\(\E(X^k)\)</span>.</p>
 <p>Central moments are defined around the mean. For example, variance is the second <em>central moment</em>:</p>
 <div class="math notranslate nohighlight">

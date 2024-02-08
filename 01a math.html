@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Math background &#8212; Quant Finance in Python</title>
   
@@ -29,47 +28,43 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=4a0e6a02" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=891ccba4" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/myadmonitions-checkpoint.css" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"tex": {"macros": {"cov": "\\operatorname{Cov}", "var": "\\operatorname{Var}", "N": "\\mathcal{N}", "E": "\\mathbb{E}", "P": "\\mathbb{P}", "R": "\\mathbb{R}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '01a math';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://stoffprof.github.io/qf/01a math.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -168,7 +163,18 @@ const thebe_selector_output = ".output, .cell_output"
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -203,6 +209,11 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 <li class="toctree-l2"><a class="reference internal" href="02f%20Estimation.html">Parameter estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regression.html">Regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04a%20Regression%20theory.html">Linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04b%20Regression%20applications.html">Implementing regressions</a></li>
 </ul>
 </li>
 </ul>
@@ -395,7 +406,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="math-background">
-<h1>Math background<a class="headerlink" href="#math-background" title="Permalink to this heading">#</a></h1>
+<h1>Math background<a class="headerlink" href="#math-background" title="Link to this heading">#</a></h1>
 <p>We begin with a brief review of some basic mathematical facts that will be useful in the remainder of the course.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
@@ -422,7 +433,7 @@ document.write(`
 </details>
 </div>
 <section id="e-and-the-exponential-function">
-<h2><span class="math notranslate nohighlight">\(e\)</span> and the exponential function<a class="headerlink" href="#e-and-the-exponential-function" title="Permalink to this heading">#</a></h2>
+<h2><span class="math notranslate nohighlight">\(e\)</span> and the exponential function<a class="headerlink" href="#e-and-the-exponential-function" title="Link to this heading">#</a></h2>
 <p>Consider the function</p>
 <div class="math notranslate nohighlight">
 \[f(n) = \left(1+{\frac {1}{n}}\right)^{n},\]</div>
@@ -534,7 +545,7 @@ document.write(`
 \[\ln(xy) = \ln(x) + \ln(y).\]</div>
 </section>
 <section id="factorials">
-<h2>Factorials<a class="headerlink" href="#factorials" title="Permalink to this heading">#</a></h2>
+<h2>Factorials<a class="headerlink" href="#factorials" title="Link to this heading">#</a></h2>
 <p>The factorial of a positive integer <span class="math notranslate nohighlight">\(n\)</span> is the product of all integers from 1 up to <span class="math notranslate nohighlight">\(n\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[{\displaystyle n!=n\cdot (n-1)\cdot (n-2)\cdot (n-3)\cdot \cdots \cdot 3\cdot 2\cdot 1\,.}\]</div>
@@ -571,7 +582,7 @@ document.write(`
 </div>
 </section>
 <section id="combinations">
-<h2>Combinations<a class="headerlink" href="#combinations" title="Permalink to this heading">#</a></h2>
+<h2>Combinations<a class="headerlink" href="#combinations" title="Link to this heading">#</a></h2>
 <p>Factorials are critical for calculating the probabilities of possible outcomes. Given a set of <span class="math notranslate nohighlight">\(n\)</span> elements a <em>combination</em> is a choice of <span class="math notranslate nohighlight">\(k\)</span> items without regard to the ordering. There are <span class="math notranslate nohighlight">\(_nC_k\)</span> (“<em>n</em>-choose-<em>k</em>”) ways to select such a combination, where</p>
 <div class="math notranslate nohighlight">
 \[_nC_k = \binom{n}{k} := \frac{n!}{k!(n-k)!}.\]</div>
@@ -593,7 +604,7 @@ document.write(`
 </div>
 </section>
 <section id="infinite-series">
-<h2>Infinite series<a class="headerlink" href="#infinite-series" title="Permalink to this heading">#</a></h2>
+<h2>Infinite series<a class="headerlink" href="#infinite-series" title="Link to this heading">#</a></h2>
 <p>Consider the infinite series</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -611,10 +622,10 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 \[S=\frac{a}{1-x}.\]</div>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
 <p>A function is a mapping from an input to an output. For example,</p>
 <div class="math notranslate nohighlight" id="equation-func">
-<span class="eqno">(1)<a class="headerlink" href="#equation-func" title="Permalink to this equation">#</a></span>\[f(x) = 2x^2 - 3\]</div>
+<span class="eqno">(1)<a class="headerlink" href="#equation-func" title="Link to this equation">#</a></span>\[f(x) = 2x^2 - 3\]</div>
 <p>is a function of the variable <span class="math notranslate nohighlight">\(x\)</span>. Since <span class="math notranslate nohighlight">\(x\)</span> can take any real value and return a real value, we write <span class="math notranslate nohighlight">\(f\!: \R \rightarrow \R\)</span>. (Actually, this particular <span class="math notranslate nohighlight">\(f\)</span> will also work on complex numbers, which we do not consider.)</p>
 <p>We might think of the function in <a class="reference internal" href="#equation-func">(1)</a> as a special case of a more general set of functions with parameters <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(c\)</span>,</p>
 <div class="math notranslate nohighlight">
@@ -657,7 +668,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </div>
 </section>
 <section id="the-fundamental-theorems-of-calculus">
-<h2>The fundamental theorems of calculus<a class="headerlink" href="#the-fundamental-theorems-of-calculus" title="Permalink to this heading">#</a></h2>
+<h2>The fundamental theorems of calculus<a class="headerlink" href="#the-fundamental-theorems-of-calculus" title="Link to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(f\)</span> be a continuous function defined on the closed interval <span class="math notranslate nohighlight">\([a,b]\)</span>. Let <span class="math notranslate nohighlight">\(F\)</span> be the function defined as</p>
 <div class="math notranslate nohighlight">
 \[F(x) = \int_a^x f(z) \, dz.\]</div>
@@ -689,7 +700,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </div>
 </section>
 <section id="the-gaussian-integral">
-<span id="sec-gauss-integral"></span><h2>The Gaussian integral<a class="headerlink" href="#the-gaussian-integral" title="Permalink to this heading">#</a></h2>
+<span id="sec-gauss-integral"></span><h2>The Gaussian integral<a class="headerlink" href="#the-gaussian-integral" title="Link to this heading">#</a></h2>
 <p>Consider the function</p>
 <div class="math notranslate nohighlight">
 \[f(z) = e^{-z^2},\]</div>
@@ -706,7 +717,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </div>
 <p>Somewhat incredibly, the area under this curve — called the Gaussian integral, named for <a class="reference external" href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a> — is <span class="math notranslate nohighlight">\(\sqrt{\pi}\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-gauss-integral">
-<span class="eqno">(2)<a class="headerlink" href="#equation-gauss-integral" title="Permalink to this equation">#</a></span>\[\int _{-\infty }^{\infty }e^{-z^2}\,dz = \sqrt{\pi}.\]</div>
+<span class="eqno">(2)<a class="headerlink" href="#equation-gauss-integral" title="Link to this equation">#</a></span>\[\int _{-\infty }^{\infty }e^{-z^2}\,dz = \sqrt{\pi}.\]</div>
 <p>We can confirm using the <code class="docutils literal notranslate"><span class="pre">sympy</span></code> package for doing symbolic math.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -744,7 +755,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 <p>We will revisit this fact when we discuss the normal probability distribution.</p>
 </section>
 <section id="the-gamma-function">
-<h2>The gamma function<a class="headerlink" href="#the-gamma-function" title="Permalink to this heading">#</a></h2>
+<h2>The gamma function<a class="headerlink" href="#the-gamma-function" title="Link to this heading">#</a></h2>
 <p>The gamma function,</p>
 <div class="math notranslate nohighlight">
 \[\Gamma(x) := \int _{0}^{\infty }s^{x-1}e^{-s}ds, \quad x&gt;0,\]</div>
@@ -812,7 +823,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </div>
 </section>
 <section id="taylor-series">
-<span id="taylorseries"></span><h2>Taylor series<a class="headerlink" href="#taylor-series" title="Permalink to this heading">#</a></h2>
+<span id="taylorseries"></span><h2>Taylor series<a class="headerlink" href="#taylor-series" title="Link to this heading">#</a></h2>
 <p>The Taylor series approximation of a function, <span class="math notranslate nohighlight">\(f(x)\)</span>, around some point <span class="math notranslate nohighlight">\(a\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^{2} + \frac{f'''(a)}{3!}(x-a)^{3} + \cdots\]</div>
@@ -960,7 +971,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </div>
 </section>
 <section id="vectors">
-<h2>Vectors<a class="headerlink" href="#vectors" title="Permalink to this heading">#</a></h2>
+<h2>Vectors<a class="headerlink" href="#vectors" title="Link to this heading">#</a></h2>
 <p>A (Euclidean) vector is is a geometric object with direction and length.</p>
 <p>For example, the vector (4,2) originates at the origin (0,0) and ends at the point (4,2).</p>
 <div class="cell docutils container">
@@ -1033,10 +1044,10 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </div>
 </div>
 <section id="vector-norms">
-<h3>Vector norms<a class="headerlink" href="#vector-norms" title="Permalink to this heading">#</a></h3>
+<h3>Vector norms<a class="headerlink" href="#vector-norms" title="Link to this heading">#</a></h3>
 <p>The <em>length</em> of a vector is the distance from the origin to the terminal point of the vector. It is given by the <span class="math notranslate nohighlight">\(\ell^2\)</span> or “Euclidean” norm</p>
 <div class="math notranslate nohighlight" id="equation-l2norm">
-<span class="eqno">(3)<a class="headerlink" href="#equation-l2norm" title="Permalink to this equation">#</a></span>\[||{\boldsymbol {x}}||_2 := \sqrt{\mathbf{x}\cdot\mathbf{x}} = \sqrt{x_{1}^{2}+\cdots +x_{n}^{2}}.\]</div>
+<span class="eqno">(3)<a class="headerlink" href="#equation-l2norm" title="Link to this equation">#</a></span>\[||{\boldsymbol {x}}||_2 := \sqrt{\mathbf{x}\cdot\mathbf{x}} = \sqrt{x_{1}^{2}+\cdots +x_{n}^{2}}.\]</div>
 <p>It is easy to see why this is true for vectors on a 2-dimensional plane if we remember the Pythagorean Theorem.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1098,7 +1109,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </div>
 </section>
 <section id="dot-product">
-<h3>Dot product<a class="headerlink" href="#dot-product" title="Permalink to this heading">#</a></h3>
+<h3>Dot product<a class="headerlink" href="#dot-product" title="Link to this heading">#</a></h3>
 <p>The expression under the square root in equation <a class="reference internal" href="#equation-l2norm">(3)</a> is the <em>dot product</em>, <span class="math notranslate nohighlight">\(\mathbf{x}\cdot \mathbf{x}\)</span>, where</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{a}\cdot \mathbf{b} := \sum_{i=1}^n a_i b_i = a_1b_1 + \ldots + a_nb_n.\]</div>
@@ -1180,7 +1191,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </div>
 </section>
 <section id="angle-between-vectors">
-<h3>Angle between vectors<a class="headerlink" href="#angle-between-vectors" title="Permalink to this heading">#</a></h3>
+<h3>Angle between vectors<a class="headerlink" href="#angle-between-vectors" title="Link to this heading">#</a></h3>
 <p>The angle <span class="math notranslate nohighlight">\(\theta\)</span> between two vectors follows</p>
 <div class="math notranslate nohighlight">
 \[\cos(\theta) = \frac{a\cdot b}{||a||\cdot||b||},\]</div>
@@ -1263,7 +1274,7 @@ S &amp;= a+a x+a x^{2}+a x^{3} + \cdots \\
 </section>
 </section>
 <section id="matrices">
-<h2>Matrices<a class="headerlink" href="#matrices" title="Permalink to this heading">#</a></h2>
+<h2>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">#</a></h2>
 <p>A matrix is a tabular collection of vectors, each with the same number of elements. For example, let <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> be an <span class="math notranslate nohighlight">\(m\times n\)</span> matrix and <span class="math notranslate nohighlight">\(\mathbf{B}\)</span> be an <span class="math notranslate nohighlight">\(n\times p\)</span> matrix,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf {A} ={\begin{pmatrix}a_{11}&amp;a_{12}&amp;\cdots &amp;a_{1n}\\a_{21}&amp;a_{22}&amp;\cdots &amp;a_{2n}\\\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\a_{m1}&amp;a_{m2}&amp;\cdots &amp;a_{mn}\\\end{pmatrix}},\quad \mathbf {B} ={\begin{pmatrix}b_{11}&amp;b_{12}&amp;\cdots &amp;b_{1p}\\b_{21}&amp;b_{22}&amp;\cdots &amp;b_{2p}\\\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\b_{n1}&amp;b_{n2}&amp;\cdots &amp;b_{np}\\\end{pmatrix}}.\end{split}\]</div>
@@ -1279,7 +1290,7 @@ b_n
 \end{pmatrix}.\end{split}\]</div>
 <p>We can think of a matrix either as a group of row vectors stack on top of each other, or a group of column vectors stacked next to each other.</p>
 <section id="matrix-multiplication">
-<h3>Matrix multiplication<a class="headerlink" href="#matrix-multiplication" title="Permalink to this heading">#</a></h3>
+<h3>Matrix multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">#</a></h3>
 <p>The matrix product <span class="math notranslate nohighlight">\(\mathbf{C} = \mathbf{AB}\)</span> is defined to be the <span class="math notranslate nohighlight">\(m \times p\)</span> matrix</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}{\displaystyle \mathbf {C} ={\begin{pmatrix}c_{11}&amp;c_{12}&amp;\cdots &amp;c_{1p}\\c_{21}&amp;c_{22}&amp;\cdots &amp;c_{2p}\\\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\c_{m1}&amp;c_{m2}&amp;\cdots &amp;c_{mp}\\\end{pmatrix}}}\end{split}\]</div>
@@ -1294,7 +1305,7 @@ c_{ij} &amp;= a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots +a_{in}b_{nj} \\
 <figure class="align-center" id="matrix-multiplication-fig">
 <a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/e/e5/MatrixMultiplication.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/e/e5/MatrixMultiplication.png" src="https://upload.wikimedia.org/wikipedia/commons/e/e5/MatrixMultiplication.png" style="width: 500px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Matrix multiplication. Source: <a href="https://commons.wikimedia.org/wiki/File:MatrixMultiplication.png">Svjo</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons.</span><a class="headerlink" href="#matrix-multiplication-fig" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Matrix multiplication. Source: <a href="https://commons.wikimedia.org/wiki/File:MatrixMultiplication.png">Svjo</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons.</span><a class="headerlink" href="#matrix-multiplication-fig" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>A matrix in numpy is just an array with two dimensions. Here we create two matrices, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, to work with.</p>
@@ -1328,7 +1339,7 @@ c_{ij} &amp;= a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots +a_{in}b_{nj} \\
 </div>
 </section>
 <section id="identity-matrix">
-<h3>Identity matrix<a class="headerlink" href="#identity-matrix" title="Permalink to this heading">#</a></h3>
+<h3>Identity matrix<a class="headerlink" href="#identity-matrix" title="Link to this heading">#</a></h3>
 <p>The identity matrix has ones along the main diagonal and zeros elsewhere:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{I} := {\begin{pmatrix}1 &amp; 0 &amp; \cdots &amp; 0\\ 0 &amp; 1 &amp; \cdots &amp; 0\\\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\0 &amp; 0 &amp; \cdots &amp;1\\\end{pmatrix}}.\end{split}\]</div>
@@ -1368,7 +1379,7 @@ c_{ij} &amp;= a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots +a_{in}b_{nj} \\
 </div>
 </section>
 <section id="transpose">
-<h3>Transpose<a class="headerlink" href="#transpose" title="Permalink to this heading">#</a></h3>
+<h3>Transpose<a class="headerlink" href="#transpose" title="Link to this heading">#</a></h3>
 <p>Two transformations of matrices are frequently used. The first is the <em>transpose</em>, in which all of the elements are reflected across the main diagonal. Equivalently, we can think of writing all of the rows as the columns, and all the columns as rows.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\mathbf{A}' := {\begin{pmatrix}a_{11}&amp;a_{21}&amp;\cdots &amp;a_{m1}\\a_{12}&amp;a_{22}&amp;\cdots &amp;a_{m2}\\\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\a_{1m}&amp;a_{2m}&amp;\cdots &amp;a_{mn}\\\end{pmatrix}}\end{split}\]</div>
@@ -1410,7 +1421,7 @@ c_{ij} &amp;= a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots +a_{in}b_{nj} \\
 </div>
 </section>
 <section id="inverse">
-<h3>Inverse<a class="headerlink" href="#inverse" title="Permalink to this heading">#</a></h3>
+<h3>Inverse<a class="headerlink" href="#inverse" title="Link to this heading">#</a></h3>
 <p>The second important transformation is the <em>inverse</em> of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span>. This is the matrix <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{A} \times \mathbf{A}^{-1} = \mathbf{I}.\]</div>
@@ -1446,7 +1457,7 @@ c_{ij} &amp;= a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots +a_{in}b_{nj} \\
 </div>
 <p>In the case of a <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix, the inverse is given by</p>
 <div class="math notranslate nohighlight" id="equation-inv22">
-<span class="eqno">(4)<a class="headerlink" href="#equation-inv22" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(4)<a class="headerlink" href="#equation-inv22" title="Link to this equation">#</a></span>\[\begin{split}
 \left(\begin{array}{ll}
 a &amp; b \\
 c &amp; d
@@ -1461,7 +1472,7 @@ d &amp; -b \\
 </div>
 </section>
 <section id="solving-systems-of-equations">
-<h3>Solving systems of equations<a class="headerlink" href="#solving-systems-of-equations" title="Permalink to this heading">#</a></h3>
+<h3>Solving systems of equations<a class="headerlink" href="#solving-systems-of-equations" title="Link to this heading">#</a></h3>
 <p>Matrices are especially useful for compactly writing systems of equations. For example, consider the system of <span class="math notranslate nohighlight">\(m\)</span> linear equations</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}{\begin{matrix}a_{11}x_{1}+\cdots +a_{1n}x_{n}=b_{1}\\a_{21}x_{1}+\cdots +a_{2n}x_{n}=b_{2}\\\vdots \\a_{m1}x_{1}+\cdots +a_{mn}x_{n}=b_{m}\end{matrix}}.\end{split}\]</div>
@@ -1478,7 +1489,7 @@ x_1 - 4x_2 + 3x_3 &amp;= 2, \\
 \end{align*}\]</div>
 <p>Writing this in <span class="math notranslate nohighlight">\(\mathbf {Ax} =\mathbf {b}\)</span> form, we have</p>
 <div class="math notranslate nohighlight" id="equation-a-inv-b">
-<span class="eqno">(5)<a class="headerlink" href="#equation-a-inv-b" title="Permalink to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(5)<a class="headerlink" href="#equation-a-inv-b" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{pmatrix}3 &amp; 2 &amp; -2 \\ 1 &amp; -4 &amp; 3 \\ -2 &amp; 1 &amp; -2 \end{pmatrix} \begin{pmatrix}x_1\\x_2\\x_3\end{pmatrix} =\begin{pmatrix}1\\2\\-6\end{pmatrix}.
 \end{split}\]</div>
 <p>Solving for <span class="math notranslate nohighlight">\(\mathbf{x} := (x_1, x_2, x_3)'\)</span> using <a class="reference internal" href="#equation-a-inv-b">(5)</a>  is straightforward with <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
@@ -1523,10 +1534,10 @@ x_1 - 4x_2 + 3x_3 &amp;= 2, \\
 <p>Multiplying a matrix by a vector applies a linear transformation to the vector. In the case of <span class="math notranslate nohighlight">\(\mathbf{A}^{-1} \mathbf{b}\)</span>, we transform the <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> vector into the <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> vector according to the transformation given by <span class="math notranslate nohighlight">\(\mathbf{A}^{-1}\)</span>. Similarly, applying <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> to <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> will rotate and stretch it so it equals <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>.</p>
 </section>
 <section id="quadratic-form">
-<h3>Quadratic form<a class="headerlink" href="#quadratic-form" title="Permalink to this heading">#</a></h3>
+<h3>Quadratic form<a class="headerlink" href="#quadratic-form" title="Link to this heading">#</a></h3>
 <p>In many finance applications we will often encounter the <em>quadratic form</em></p>
 <div class="math notranslate nohighlight" id="equation-qform">
-<span class="eqno">(6)<a class="headerlink" href="#equation-qform" title="Permalink to this equation">#</a></span>\[\mathbf{x'Ax},\]</div>
+<span class="eqno">(6)<a class="headerlink" href="#equation-qform" title="Link to this equation">#</a></span>\[\mathbf{x'Ax},\]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> is a <em>symmetric</em> matrix, meaning for all elements, <span class="math notranslate nohighlight">\(a_{ij}=a_{ji}\)</span>.</p>
 <p>The derivative of a quadratic form is</p>
 <div class="math notranslate nohighlight">
