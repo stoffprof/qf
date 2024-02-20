@@ -5,25 +5,24 @@
 
 
 div.key-fact {
-    border-left-color: var(--pst-color-secondary);
+    border-left-color: #ebe977;
 }
 div.key-fact .admonition-title {
-    background-color: var(--pst-color-secondary-bg);
+    background-color: #f6f7db;
 }
 div.key-fact .admonition-title:after {
-    color: var(--pst-color-secondary);
+    color: #ebe977;
     content: "\f084";
 }
 
-
 div.extra-credit {
-    border-left-color: var(--pst-color-success);
+    border-left-color: #8045e5;
 }
 div.extra-credit .admonition-title {
-    background-color: var(--pst-color-success-bg);
+    background-color: #e0c7ff;
 }
 div.extra-credit .admonition-title:after {
-    color: var(--pst-color-success);
+    color: #8045e5;
     content: "\f19d";
 }
 

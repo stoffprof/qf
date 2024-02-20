@@ -32,10 +32,10 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=4a0e6a02" />
+    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=cdb3895b" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=891ccba4" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/myadmonitions-checkpoint.css" />
     <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
@@ -214,6 +214,16 @@
 </ul>
 </li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Factors</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06%20Calculating%20beta.html">Factor regressions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Portfolio optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05a%20Diversification.html">Diversification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05b%20Efficient%20portfolios.html">The efficient frontier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05c%20Numerical%20optimization.html">Numerical optimization</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
@@ -373,17 +383,33 @@ document.write(`
 <h1>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">#</a></h1>
 <div class="docutils container" id="id1">
 <div role="list" class="citation-list">
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>BF17<span class="fn-bracket">]</span></span>
+<p>David Blitz and Frank J Fabozzi. Sin stocks revisited: resolving the sin stock anomaly. <em>The Journal of Portfolio Management</em>, 44(1):105–111, 2017.</p>
+</div>
 <div class="citation" id="id4" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>CRR79<span class="fn-bracket">]</span></span>
 <p>John C Cox, Stephen A Ross, and Mark Rubinstein. Option pricing: a simplified approach. <em>Journal of Financial Economics</em>, 7(3):229–263, 1979. URL: <a class="reference external" href="https://doi.org/10.1016/0304-405X(79)90015-1">https://doi.org/10.1016/0304-405X(79)90015-1</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>HK09<span class="fn-bracket">]</span></span>
+<p>Harrison Hong and Marcin Kacperczyk. The price of sin: the effects of social norms on markets. <em>Journal of financial economics</em>, 93(1):15–36, 2009. URL: <a class="reference external" href="https://doi.org/10.1016/j.jfineco.2008.09.001">https://doi.org/10.1016/j.jfineco.2008.09.001</a>.</p>
 </div>
 <div class="citation" id="id9" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>Isi21<span class="fn-bracket">]</span></span>
 <p>M. Isichenko. <em>Quantitative Portfolio Management: The Art and Science of Statistical Arbitrage</em>. Wiley, 2021. ISBN 9781119821328. URL: <a class="reference external" href="https://books.google.com/books?id=s8E5EAAAQBAJ">https://books.google.com/books?id=s8E5EAAAQBAJ</a>.</p>
 </div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Kum09<span class="fn-bracket">]</span></span>
+<p>Alok Kumar. Who gambles in the stock market? <em>The Journal of Finance</em>, 64(4):1889–1933, 2009. URL: <a class="reference external" href="https://doi.org/10.1111/j.1540-6261.2009.01483.x">https://doi.org/10.1111/j.1540-6261.2009.01483.x</a>.</p>
+</div>
 <div class="citation" id="id11" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>LM08<span class="fn-bracket">]</span></span>
 <p>Lawrence M. Leemis and Jacquelyn T. McQueston. Univariate distribution relationships. <em>The American Statistician</em>, 62(1):45–53, 2008. URL: <a class="reference external" href="https://doi.org/10.1198/000313008X270448">https://doi.org/10.1198/000313008X270448</a>.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Mer80<span class="fn-bracket">]</span></span>
+<p>Robert C Merton. On estimating the expected return on the market: an exploratory investigation. <em>Journal of Financial Economics</em>, 8(4):323–361, 1980. URL: <a class="reference external" href="https://doi.org/10.1016/0304-405X(80)90007-0">https://doi.org/10.1016/0304-405X(80)90007-0</a>.</p>
 </div>
 <div class="citation" id="id2" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>WG08<span class="fn-bracket">]</span></span>

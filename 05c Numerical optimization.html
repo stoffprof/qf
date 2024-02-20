@@ -1,0 +1,1171 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Numerical optimization &#8212; Quant Finance in Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=cdb3895b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=891ccba4" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/myadmonitions-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"cov": "\\operatorname{Cov}", "var": "\\operatorname{Var}", "N": "\\mathcal{N}", "E": "\\mathbb{E}", "P": "\\mathbb{P}", "R": "\\mathbb{R}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05c Numerical optimization';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://stoffprof.github.io/qf/05c Numerical optimization.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notation" href="notation.html" />
+    <link rel="prev" title="The efficient frontier" href="05b%20Efficient%20portfolios.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/qf.png" class="logo__image only-light" alt="Quant Finance in Python - Home"/>
+    <script>document.write(`<img src="_static/qf.png" class="logo__image only-dark" alt="Quant Finance in Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01a%20math.html">Math background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01c%20prices.html">A model of prices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01b%20returns.html">Asset returns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01d%20quant%20interview.html">Quant interview problem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Econometrics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="probability.html">Probability</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02a%20MSE.html">Prediction: First look</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02b%20Probability%20theory.html">Probability theory</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="02d%20Pseudorandom%20number%20generation.html">Pseudorandom number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c%20Distributions.html">Probability distributions</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="02e%20Covariance.html">Covariance</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="02f%20Estimation.html">Parameter estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regression.html">Regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04a%20Regression%20theory.html">Linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04b%20Regression%20applications.html">Implementing regressions</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Factors</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06%20Calculating%20beta.html">Factor regressions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Portfolio optimization</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05a%20Diversification.html">Diversification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05b%20Efficient%20portfolios.html">The efficient frontier</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Numerical optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Additional sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/05c Numerical optimization.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Numerical optimization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-efficient-frontier">The efficient frontier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gmv-portfolio">The GMV portfolio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tangency-portfolio">The tangency portfolio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-constraints">Changing the constraints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#short-sale-constraints">Short-sale constraints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variations">Variations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-maximization">Utility maximization</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="numerical-optimization">
+<h1>Numerical optimization<a class="headerlink" href="#numerical-optimization" title="Link to this heading">#</a></h1>
+<p>Rather than using analytical methods to solve the portfolio optimization problem, we can use an algorithm to find the solution numerically.</p>
+<p>We’ll begin by reading in the same returns data we used in the previous section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/stoffprof/qf/main/data/MSCI_returns.csv&#39;</span><span class="p">,</span>
+                   <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The calculation below shows that, across our 33 countries, the average monthly return is 0.60%, or 60 basis points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rets</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    33.000000
+mean      0.005987
+std       0.003179
+min       0.001083
+25%       0.003382
+50%       0.005219
+75%       0.007208
+max       0.014904
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>When working with numerical optimization algorithms, it is important that the values being used in a function are not too small. If they are, the rounding error in calculations may be nonneglible relative to the magnitude of the values in the function, and the error can start to swamp the actual information.</p>
+<p>An easy solution in these data is simply to multiply by 100, which converts the units to percentage points.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert returns to percent</span>
+<span class="n">rets</span> <span class="o">=</span> <span class="n">rets</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># store parameter estimates in numpy arrays</span>
+
+<span class="n">μ</span> <span class="o">=</span> <span class="n">rets</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+<span class="n">Σ</span> <span class="o">=</span> <span class="n">rets</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">μ</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an equal-weights vector of N elements</span>
+<span class="n">ewgts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mvs</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Calculate mean, volatility, and Sharpe Ratio for a given set of portfolio weights&#39;&#39;&#39;</span>
+    <span class="n">μp</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">μ</span>
+    <span class="n">σp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Σ</span> <span class="o">@</span> <span class="n">weights</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">μp</span><span class="p">,</span> <span class="n">σp</span><span class="p">,</span> <span class="n">μp</span><span class="o">/</span><span class="n">σp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The equal-weighted portfolio has a return of 0.6%, volatility of about 5.3%, and a Sharpe ratio of 0.11:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mvs</span><span class="p">(</span><span class="n">ewgts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.5987296508261588, 5.254623942806401, 0.1139433872610088)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To implement numerical optimization, we start as before with the minimization problem:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{aligned}
+\min_{\omega} \quad &amp; \boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega} \\
+\textrm{subject to} \quad &amp; \boldsymbol{\omega}'\boldsymbol{\mu} = \mu_p\\
+  &amp;\boldsymbol{\omega}'\mathbf{1} = 1.
+\end{aligned}
+\end{equation*}\]</div>
+<p>Suppose we want an efficient portfolio with an expected return of 1.2% (per month). Then the <em>target return</em> is</p>
+<div class="math notranslate nohighlight">
+\[\mu_p = 1.2.\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># target return</span>
+<span class="n">tret</span> <span class="o">=</span> <span class="mf">1.2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can use the minimization algorithms in <code class="docutils literal notranslate"><span class="pre">scipy</span></code> to find us an efficient portoflio (that is, the one that achieves the target return and has minimum variance). To do so, we need to pass the function we want to minimize and the constraints.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">sco</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each constraint is entered as dictionary. Since we have two constraints, we’ll pass a list of two dictionaries. Each dictionary has two keys: <code class="docutils literal notranslate"><span class="pre">type</span></code> indicating whether it is an equality or inequality constraint; and <code class="docutils literal notranslate"><span class="pre">fun</span></code> that encodes a function representing the constraint. The function must return zero when the constraint is satisfied.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cons</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># expected return equals target return</span>
+    <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">mvs</span><span class="p">(</span><span class="n">w</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">tret</span><span class="p">},</span>  
+    
+    <span class="c1"># weights sum to one</span>
+    <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll define a function that gives the variance of a portfolio given its weights.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">portvar</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mvs</span><span class="p">(</span><span class="n">weights</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’re ready to call the optimization algorithm. We just pass the function to minimize, a starting point for the algorithm (a set of initial weights), and the name of the algorithm we want to use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">portvar</span><span class="p">,</span>             <span class="c1"># function to minimize</span>
+                 <span class="n">ewgts</span><span class="p">,</span>               <span class="c1"># starting point for variables (weights)</span>
+                 <span class="n">constraints</span> <span class="o">=</span> <span class="n">cons</span><span class="p">,</span>  <span class="c1"># constraints</span>
+                 <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;SLSQP&#39;</span>     <span class="c1"># minimization algorithm (sequential quadratic programming)</span>
+                 <span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+</div>
+<p>The result from calling the minizer is a <code class="docutils literal notranslate"><span class="pre">scipy</span></code> object that contains information about the solution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully
+ success: True
+  status: 0
+     fun: 15.751368675928148
+       x: [ 5.147e-03  9.919e-02 ... -5.111e-02  8.972e-01]
+     nit: 40
+     jac: [ 3.554e+01  2.205e+01 ...  1.942e+01  2.516e+01]
+    nfev: 1419
+    njev: 40
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see the value of the function at its minimum, <code class="docutils literal notranslate"><span class="pre">fun</span></code>. In our case, this is the value of the minimized variance. The <code class="docutils literal notranslate"><span class="pre">message</span></code> indicates that the optimization algorithm worked.</p>
+<p>The minimization algorithm returns the <span class="math notranslate nohighlight">\(x\)</span> values for the minimized function—in this case, the weights of the efficient portfolio—in the <code class="docutils literal notranslate"><span class="pre">x</span></code> property of the results object. We can pass that to our <code class="docutils literal notranslate"><span class="pre">mvs()</span></code> function to get the expected return, variance, and Sharpe ratio of this portfolio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mvs</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.1999999999908963, 3.9687993998094875, 0.30235844120730804)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not surprisingly, the expected return of the portfolio is 1.2%; it should be, since one of the constraints we passed the optimizer was that this was the target return. The volatility is <span class="output text_plain">3.969</span>, which matches the square-root of the variance.</p>
+<p>We can compare this value to the analytical result from equation <a class="reference internal" href="05b%20Efficient%20portfolios.html#equation-eff-var">(14)</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+
+<span class="n">Σinv</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">Σ</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">μ</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="n">μ</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">μ</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># variance equation</span>
+<span class="p">(</span><span class="n">C</span> <span class="o">*</span> <span class="n">tret</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">tret</span> <span class="o">+</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span> <span class="o">-</span> <span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>15.751368557754242
+</pre></div>
+</div>
+</div>
+</div>
+<p>This value from the analytical solution is almost identical to the variance calculated with <code class="docutils literal notranslate"><span class="pre">scipy</span></code> above.</p>
+<p>We can also compare the weights from the analytical solution to those found by <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># weights of efficient portfolio using analytical solution</span>
+
+<span class="n">wgts_analytical</span> <span class="o">=</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="p">((</span><span class="n">C</span><span class="o">*</span><span class="n">tret</span><span class="o">-</span><span class="n">B</span><span class="p">)</span><span class="o">*</span><span class="n">μ</span> <span class="o">+</span> <span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="n">B</span><span class="o">*</span><span class="n">tret</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span><span class="o">-</span><span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">wgts_analytical</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.00514628,  0.09920569, -0.13655024, -0.00909096, -0.14301062,
+        0.1189983 ,  0.52594177, -0.00794929,  0.13022454, -0.3051789 ,
+       -0.0534784 ,  0.07247556, -0.00486355, -0.16409209, -0.00335494,
+       -0.00171409, -0.02500287,  0.08706908,  0.04798438, -0.07742041,
+       -0.0414416 , -0.12018641, -0.01128564, -0.09122505, -0.14088947,
+        0.01444873, -0.15044581,  0.51636976,  0.03909081, -0.0512624 ,
+        0.03542919, -0.05111529,  0.89717394])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Difference between analytical weights and scipy weights</span>
+<span class="n">wgts_analytical</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-8.31800525e-07,  1.72201534e-05,  7.58057903e-05,  6.69073618e-07,
+       -7.21419571e-06,  1.13523784e-06,  2.31820235e-05,  9.59651024e-06,
+       -6.76200951e-05, -4.61834453e-05, -1.20893138e-06, -4.88056858e-06,
+       -2.46758868e-06, -1.59898413e-05, -3.92145323e-06,  1.97741864e-06,
+       -2.43220396e-06,  5.79067308e-06, -4.16024493e-06,  4.10699853e-05,
+       -5.34112173e-06, -2.28023537e-05, -1.31889907e-06, -6.36107380e-06,
+        9.83375003e-06,  3.54558344e-05,  9.79279727e-06, -4.29818151e-05,
+        3.91137599e-06, -3.72928379e-06, -3.48646804e-07, -5.54178045e-06,
+        9.89471954e-06])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Clearly, the efficient portfolios found by each method are essentially the same.</p>
+<section id="the-efficient-frontier">
+<h2>The efficient frontier<a class="headerlink" href="#the-efficient-frontier" title="Link to this heading">#</a></h2>
+<p>To find the efficient frontier, we can sweep across values of <span class="math notranslate nohighlight">\(\mu_p\)</span>, and for each one find the portfolio with minimum variance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># target returns</span>
+<span class="n">trets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tvols</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tret</span> <span class="ow">in</span> <span class="n">trets</span><span class="p">:</span>
+    <span class="n">cons</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">mvs</span><span class="p">(</span><span class="n">w</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">tret</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">portvar</span><span class="p">,</span> <span class="n">ewgts</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">cons</span><span class="p">)</span>
+    <span class="n">tvol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;fun&#39;</span><span class="p">])</span>
+    <span class="n">tvols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tvol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># initial portfolios</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Σ</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]),</span> <span class="n">μ</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    
+<span class="c1"># Efficient frontier</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tvols</span><span class="p">,</span> <span class="n">trets</span><span class="p">,</span> <span class="s1">&#39;g*&#39;</span><span class="p">)</span>
+
+<span class="c1"># xmax = np.sqrt(np.diag(Σ)).max() * 1.1</span>
+<span class="c1"># ymax = μ.max() * 1.1</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7dc546157d3d456b848a80f71ed3d58dedccf1062346fea7e07521b6993330e6.png" src="_images/7dc546157d3d456b848a80f71ed3d58dedccf1062346fea7e07521b6993330e6.png" />
+</div>
+</div>
+<section id="the-gmv-portfolio">
+<h3>The GMV portfolio<a class="headerlink" href="#the-gmv-portfolio" title="Link to this heading">#</a></h3>
+<p>Analytically, we found the GMV by minimizing the function for the variance of an efficient portfolio. We set the derivative equal to zero, and solved.</p>
+<p>Working numerically, we accomplish the same thing by specifying a new problem, although without a constraint to achieve any particular target return. That is, the problem is simply to find the minimum variance of <em>any</em> feasible portfolio, regardless of its expected return.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{aligned}
+\min_{\omega} \quad &amp; \boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega} \\
+\textrm{subject to} \quad &amp; \boldsymbol{\omega}'\mathbf{1} = 1.
+\end{aligned}
+\end{equation*}\]</div>
+<p>To implement this, all we have to do is redefine the constraint:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cons_gmv</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+
+<span class="n">gmv</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">portvar</span><span class="p">,</span> <span class="n">ewgts</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">cons_gmv</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gmv</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully
+ success: True
+  status: 0
+     fun: 10.62621981626728
+       x: [-1.596e-02  4.487e-02 ...  3.169e-01  6.821e-01]
+     nit: 35
+     jac: [ 2.125e+01  2.125e+01 ...  2.125e+01  2.125e+01]
+    nfev: 1246
+    njev: 35
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mvs</span><span class="p">(</span><span class="n">gmv</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.4634100699342624, 3.2597883085052133, 0.14215955947972606)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-tangency-portfolio">
+<h3>The tangency portfolio<a class="headerlink" href="#the-tangency-portfolio" title="Link to this heading">#</a></h3>
+<p>We previously saw that the Tangency portfolio has the maximum possible Sharpe ratio of any portfolio. The problem is therefore</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{aligned}
+\max_{\omega} \quad &amp; \frac{\boldsymbol{\omega}'\boldsymbol{\mu}}{\sqrt{\boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega}}}\\
+\textrm{subject to} \quad &amp; \boldsymbol{\omega}'\mathbf{1} = 1.
+\end{aligned}
+\end{equation*}\]</div>
+<p>The only complication is that <code class="docutils literal notranslate"><span class="pre">scipy</span></code> provides a method to minimize a function, but not maximize one. Not to worry: if we simply multiply our function by minus one and find the maximum, we will have found the minimum of the original function. (Maximizing <span class="math notranslate nohighlight">\(f(x) = -x^2\)</span> is the same as minimizing <span class="math notranslate nohighlight">\(f(x) = x^2\)</span>. Either way the answer is <span class="math notranslate nohighlight">\(x=0\)</span>.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">neg_sharpe</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">mvs</span><span class="p">(</span><span class="n">weights</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tng</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">neg_sharpe</span><span class="p">,</span> <span class="n">ewgts</span><span class="p">,</span>
+                   <span class="n">constraints</span><span class="o">=</span><span class="n">cons_gmv</span><span class="p">,</span>  <span class="c1"># note same constraints as GMV</span>
+                   <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tng</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully
+ success: True
+  status: 0
+     fun: -0.35505930463989627
+       x: [ 5.379e-02  2.246e-01 ... -8.988e-01  1.397e+00]
+     nit: 40
+     jac: [-2.654e-04 -2.005e-04 ... -2.167e-04 -8.932e-05]
+    nfev: 1360
+    njev: 40
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mvs</span><span class="p">(</span><span class="n">tng</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.894257512594097, 8.151476316131115, 0.35505930463989627)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Sharpe ratio of the tangency portfolio is about <span class="output text_plain">2.5</span> times that of the GMV portfolio.</p>
+</section>
+</section>
+<section id="changing-the-constraints">
+<h2>Changing the constraints<a class="headerlink" href="#changing-the-constraints" title="Link to this heading">#</a></h2>
+<p>So far, we used the minimization algorithm to get an answer that we already know how to find using analytical methods. So what is the benefit of using a numerical solver?</p>
+<p>Numerical solutions can be found for problems that are much harder or even impossible to solve with analytical techniques.</p>
+<section id="short-sale-constraints">
+<h3>Short-sale constraints<a class="headerlink" href="#short-sale-constraints" title="Link to this heading">#</a></h3>
+<p>For example, many investors, including mutual funds, cannot engage in short selling. That is, they cannot hold a negative position in any asset.</p>
+<p>We can represent their problem by adding one additional set of constraints to the problem that requires that all values of <span class="math notranslate nohighlight">\(\omega\)</span> must be nonnegative.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{aligned}
+\min_{\omega} \quad &amp; \boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega} \\
+\textrm{subjct to} \quad &amp; \boldsymbol{\omega}'\boldsymbol{\mu} = \mu_p,\\
+  &amp;\boldsymbol{\omega}'\mathbf{1} = 1, \\
+  &amp;\omega_i\geq 0 \quad \forall i.
+\end{aligned}
+\end{equation*}\]</div>
+<p>This problem is <em>much</em> harder to solve analytically, but trivial for the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> algorithm. We simply add additional constraints to the problem.</p>
+<p>The constraint that <span class="math notranslate nohighlight">\(\omega_i &gt; 0\)</span> is actually a special type of constraint called a <em>boundary</em>. These are easiest to implement by passing a list of upper- and lower-bounds to the algorithm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With a long-only portfolio there is no way to construct a portfolio with a return that is less than that of the lowest-return asset, or above that of the highest-return asset, so we have to choose a target return in that range.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tret</span> <span class="o">=</span> <span class="mf">1.2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">tret</span><span class="o">&lt;</span><span class="nb">max</span><span class="p">(</span><span class="n">μ</span><span class="p">),</span> <span class="s1">&#39;Target return is infeasible&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cons</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># expected return equals target return</span>
+    <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">mvs</span><span class="p">(</span><span class="n">w</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">tret</span><span class="p">},</span>  
+    
+    <span class="c1"># weights sum to one</span>
+    <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">portvar</span><span class="p">,</span> <span class="n">ewgts</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">cons</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Optimization terminated successfully&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3.01767497e-01, 7.31804815e-14, 8.17230300e-14, 1.54517084e-01,
+       2.58107029e-13, 2.38041232e-13, 3.57540165e-01, 4.96449418e-13,
+       3.38801232e-14, 6.35706029e-13, 3.96096973e-12, 6.43955974e-14,
+       1.91318546e-12, 1.19463344e-13, 1.12925565e-12, 5.94091899e-13,
+       1.31009525e-12, 2.31568346e-13, 1.86175254e-01, 1.97475692e-13,
+       1.71193196e-13, 1.47474950e-12, 1.91893158e-14, 1.05296253e-13,
+       9.17307378e-13, 1.23903023e-12, 6.94355773e-13, 8.26008434e-13,
+       3.26620137e-13, 2.34128808e-12, 2.82078115e-12, 4.09812152e-13,
+       8.11470150e-13])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The portfolio has the desired expected return of 6%, volatility of about 14%, and a Sharpe ratio of 0.43.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mvs</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.2000000007879021, 7.176131185216429, 0.16722102339210662)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Check your understanding</p>
+<p>The Sharpe ratio of this minimum-variance portfolio is significantly less than what we found above when we didn’t impose short-sale constraints. Why?</p>
+</div>
+<p>Many of the weight in the portfolio are now zero:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">rets</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="n">w</span><span class="p">[</span><span class="n">w</span><span class="o">&gt;</span><span class="mf">0.0001</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Denmark      0.357540
+Argentina    0.301767
+Mexico       0.186175
+Brazil       0.154517
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="c1"># initial portfolios</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Σ</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">]),</span> <span class="n">μ</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    
+<span class="c1"># EW portfolio</span>
+<span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">mvs</span><span class="p">(</span><span class="n">ewgts</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="s1">&#39;b*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1">################################################################</span>
+<span class="c1"># Unconstrained</span>
+<span class="c1">################################################################</span>
+
+<span class="c1"># Efficient frontier</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tvols</span><span class="p">,</span> <span class="n">trets</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Unconstrained&#39;</span><span class="p">)</span>
+
+<span class="c1"># GMV</span>
+<span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">mvs</span><span class="p">(</span><span class="n">gmv</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="s1">&#39;g*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Tangency</span>
+<span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">mvs</span><span class="p">(</span><span class="n">tng</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="s1">&#39;g*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1">################################################################</span>
+<span class="c1"># Long-only portfolios</span>
+<span class="c1">################################################################</span>
+
+<span class="c1"># Efficient frontier</span>
+<span class="n">tvols_c</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">trets_c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">μ</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">μ</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">tret</span> <span class="ow">in</span> <span class="n">trets_c</span><span class="p">:</span>
+    <span class="n">cons</span> <span class="o">=</span> <span class="p">({</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">mvs</span><span class="p">(</span><span class="n">w</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">tret</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span>  <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">})</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">portvar</span><span class="p">,</span> <span class="n">ewgts</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">cons</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">)</span>
+    <span class="n">tvol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;fun&#39;</span><span class="p">])</span>
+    <span class="n">tvols_c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tvol</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tvols_c</span><span class="p">,</span> <span class="n">trets_c</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Constrained&#39;</span><span class="p">)</span>
+
+<span class="c1"># GMV</span>
+<span class="n">gmv_c</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">portvar</span><span class="p">,</span> <span class="n">ewgts</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">cons_gmv</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">mvs</span><span class="p">(</span><span class="n">gmv_c</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="s1">&#39;r*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Tangency</span>
+<span class="n">tng_c</span> <span class="o">=</span> <span class="n">sco</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">neg_sharpe</span><span class="p">,</span> <span class="n">ewgts</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">cons_gmv</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">)</span>
+<span class="n">m</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">mvs</span><span class="p">(</span><span class="n">tng_c</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="s1">&#39;r*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Volatility&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Expected return&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/21fb16f75c3134779d4183a728f6825647bc7db0adb6c9f070e49bf5b8fddf0c.png" src="_images/21fb16f75c3134779d4183a728f6825647bc7db0adb6c9f070e49bf5b8fddf0c.png" />
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Suppose a hedge fund can use leverage (that is, borrow money) to buy stocks. This leverage allows the fund to have 200% of its capital invested in its portfolio.  Also, it can short stocks, but only up to a weight of –20% in each stock; similarly it cannot have a weight of more than +50% in any stock. What are the expected return, volatility, and Sharpe ratio of its this fund’s tangency portfoio?</p>
+</div>
+</section>
+</section>
+<section id="variations">
+<h2>Variations<a class="headerlink" href="#variations" title="Link to this heading">#</a></h2>
+<p>There are numerous ways that we might want to constrain the optimization problem:</p>
+<ul class="simple">
+<li><p>We might want a <em>sparse</em> solution, where we only select a small number of assets to hold.</p></li>
+<li><p>Alternatively, we might want to require a certain number of assets in the portfolio, or a minimum holding in every asset.</p></li>
+<li><p>We could add a cost of shorting.</p></li>
+<li><p>We could include <em>transaction costs</em> that reflect the cost of adjusting our portfolio from its current holdings. An often-used model if transaction cost is, for a given trade size <span class="math notranslate nohighlight">\(x\)</span>,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[C(x) = a|x| + b\sigma \frac{|x|^{3/2}}{V^{3/2}} + cx,\]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(c\)</span> are parameters, <span class="math notranslate nohighlight">\(\sigma\)</span> is volatility, and <span class="math notranslate nohighlight">\(V\)</span> is the volume of trading in the asset. <span class="math notranslate nohighlight">\(a\)</span> reflects the bid–ask spread. See, for example, <a class="reference external" href="http://dx.doi.org/10.1561/2400000023">Boyd et al. (2017).</a></p>
+</section>
+<section id="utility-maximization">
+<h2>Utility maximization<a class="headerlink" href="#utility-maximization" title="Link to this heading">#</a></h2>
+<img src="https://host.kelley.iu.edu/nstoffma/da/MV-utility.gif">
+Source: Ang (2014), Figure 3.8</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05b%20Efficient%20portfolios.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The efficient frontier</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="notation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Notation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-efficient-frontier">The efficient frontier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gmv-portfolio">The GMV portfolio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tangency-portfolio">The tangency portfolio</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-constraints">Changing the constraints</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#short-sale-constraints">Short-sale constraints</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variations">Variations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utility-maximization">Utility maximization</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  &copy; 2024 <a href="https://stoffprof.github.io">Noah Stoffman</a>. Version 0.24.01.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

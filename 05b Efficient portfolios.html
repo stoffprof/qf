@@ -1,0 +1,1441 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The efficient frontier &#8212; Quant Finance in Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=cdb3895b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=891ccba4" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/myadmonitions-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"cov": "\\operatorname{Cov}", "var": "\\operatorname{Var}", "N": "\\mathcal{N}", "E": "\\mathbb{E}", "P": "\\mathbb{P}", "R": "\\mathbb{R}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05b Efficient portfolios';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://stoffprof.github.io/qf/05b Efficient portfolios.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Numerical optimization" href="05c%20Numerical%20optimization.html" />
+    <link rel="prev" title="Diversification" href="05a%20Diversification.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/qf.png" class="logo__image only-light" alt="Quant Finance in Python - Home"/>
+    <script>document.write(`<img src="_static/qf.png" class="logo__image only-dark" alt="Quant Finance in Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01a%20math.html">Math background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01c%20prices.html">A model of prices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01b%20returns.html">Asset returns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01d%20quant%20interview.html">Quant interview problem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Econometrics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="probability.html">Probability</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02a%20MSE.html">Prediction: First look</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02b%20Probability%20theory.html">Probability theory</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="02d%20Pseudorandom%20number%20generation.html">Pseudorandom number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c%20Distributions.html">Probability distributions</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="02e%20Covariance.html">Covariance</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="02f%20Estimation.html">Parameter estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regression.html">Regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04a%20Regression%20theory.html">Linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04b%20Regression%20applications.html">Implementing regressions</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Factors</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06%20Calculating%20beta.html">Factor regressions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Portfolio optimization</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05a%20Diversification.html">Diversification</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The efficient frontier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05c%20Numerical%20optimization.html">Numerical optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Additional sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/05b Efficient portfolios.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The efficient frontier</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-adjusted-returns">Risk-adjusted returns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-global-minimum-variance-portfolio">The global minimum variance portfolio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tangency-portfolio">The tangency portfolio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationships-between-the-tng-gmv-and-ew-portfolios">Relationships between the TNG, GMV, and EW portfolios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-weights">Portfolio weights</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-efficient-frontier">
+<h1>The efficient frontier<a class="headerlink" href="#the-efficient-frontier" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>An <em>efficient portfolio</em> has minimum risk (variance) for a given level of return <span class="math notranslate nohighlight">\(\mu_p\)</span>. We can find these by choosing <span class="math notranslate nohighlight">\(\omega\)</span> to solve</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{aligned}
+\min_{\omega} \quad &amp; \boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega} \\
+\textrm{s.t.} \quad &amp; \boldsymbol{\omega}'\boldsymbol{\mu} = \mu_p\\
+  &amp;\boldsymbol{\omega}'\mathbf{1} = 1, \\
+\end{aligned}
+\end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\mu} = (\mu_1, \cdots, \mu_N)'\)</span> is the vector of expected returns for the primitive assets and <span class="math notranslate nohighlight">\(\mathbf{1} = (1, \ldots, 1)'\)</span> is a conforming vector of 1s. I am following the convention that boldface indicates a vector or matrix, while scalars are in regular font.</p>
+<p>This problem simply says to select weights that will create a portfolio with an expected return of <span class="math notranslate nohighlight">\(\mu_p\)</span> and has the lowest possible variance; the last condition implies that the portoflio must be <em>fully invested</em> with its weights adding up to one.</p>
+<p>This can be solved directly using the method of <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrange_multiplier">Lagrange multipliers</a>, which gives the solution</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\boldsymbol{\omega} &amp;= \boldsymbol{\Sigma}^{-1} \begin{pmatrix}\boldsymbol{\mu} &amp;\mathbf{1}\end{pmatrix} \begin{pmatrix}
+\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu} &amp; \mathbf{1}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}\\
+\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \mathbf{1} &amp; \mathbf{1}'\boldsymbol{\Sigma}^{-1} \mathbf{1}
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+\mu_p \\ 1
+\end{pmatrix} \\
+&amp;= \boldsymbol{\Sigma}^{-1}  \left( \begin{array}{cc} \boldsymbol{\mu} &amp; \boldsymbol{1} \\ \end{array} \right) \left( \begin{array}{cc} A &amp; B' \\ B &amp; C \\ \end{array} \right)^{-1}  \left( \begin{array}{c} \mu_p \\ 1 \\ \end{array} \right)
+\end{align*}\]</div>
+<p>where, for convenience, we have defined the scalars</p>
+<div class="math notranslate nohighlight">
+\[A=\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}, \quad
+B=\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \mathbf{1}, \quad
+C=\mathbf{1}'\boldsymbol{\Sigma}^{-1} \mathbf{1}.\]</div>
+<p>(Since <span class="math notranslate nohighlight">\(B\)</span> is just a scalar, <span class="math notranslate nohighlight">\(B=B'\)</span>, and we can ignore the transpose.)</p>
+<div class="extra-credit dropdown admonition">
+<p class="admonition-title">Extra credit</p>
+<p>To solve a constrained optimization using the method of Lagrange multipliers, we form the <em>Lagrangian</em> function that combines the function we seek to minimize along with the constraints. Each constraint is multiplied by an unknown constant, called a Lagrange multiplier. In our case, defining <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span> as the two Lagrange multipliers, we have</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L} = \frac{1}{2}\boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega} - \lambda(\boldsymbol{\omega}'\boldsymbol{\mu} - \mu_p) - \delta(\boldsymbol{\omega}'\mathbf{1} - 1).\]</div>
+<p>I’m also using the trick of multiplying the variance by <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span> because I know that the derivative of a quadratic form will be multiplied by 2 and I want it to disappear. Obviously, the <span class="math notranslate nohighlight">\(x\)</span> that minimizes <span class="math notranslate nohighlight">\(f(x)\)</span> will also minimize <span class="math notranslate nohighlight">\(\frac{1}{2}f(x)\)</span>.</p>
+<p>Then we proceed as ususal, differentiating with respect to <span class="math notranslate nohighlight">\(\boldsymbol{\omega}\)</span> and setting equal to zero. The derivative is</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial\mathcal{L}}{\partial\omega} = \boldsymbol{\Sigma}\boldsymbol{\omega} - \lambda\boldsymbol{\mu} - \delta\mathbf{1},\]</div>
+<p>and setting this equal to zero yields the optimal solution for the weights:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\boldsymbol{\omega} &amp;= \boldsymbol{\Sigma}^{-1}(\lambda\boldsymbol{\mu} + \delta\mathbf{1}) \\
+&amp;= \boldsymbol{\Sigma}^{-1}\begin{pmatrix}\boldsymbol{\mu} &amp;\mathbf{1}\end{pmatrix}
+\begin{pmatrix}\lambda \\ \delta\end{pmatrix}.
+\end{align*}\]</div>
+<p>Next, we solve for the Lagrange multipliers, <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>. First, since <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}\)</span> is symmetric, <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{-1}\)</span> is also symmetric, and <span class="math notranslate nohighlight">\(\left(\boldsymbol{\Sigma}^{-1}\right)' = \boldsymbol{\Sigma}^{-1}\)</span>. Therefore, using the fact that <span class="math notranslate nohighlight">\((AB)' = B'A'\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\omega}' = (\lambda\boldsymbol{\mu} + \delta\mathbf{1})'\boldsymbol{\Sigma}^{-1}.\]</div>
+<p>Substituting this expression for the weights into the first constraint gives</p>
+<div class="math notranslate nohighlight">
+\[ (\lambda\boldsymbol{\mu} + \delta\mathbf{1})'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu} = \mu_p,\]</div>
+<p>and into the second constraint:</p>
+<div class="math notranslate nohighlight">
+\[ (\lambda\boldsymbol{\mu} + \delta\mathbf{1})'\boldsymbol{\Sigma}^{-1} \mathbf{1} = 1.\]</div>
+<p>Combining these, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+\lambda \boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu} + \delta \mathbf{1}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu} \\
+\lambda \boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\mathbf{1} + \delta \mathbf{1}'\boldsymbol{\Sigma}^{-1}\mathbf{1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\mu_p \\ 1
+\end{pmatrix},\end{split}\]</div>
+<p>which we can simplify by collecting terms:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu} &amp; \mathbf{1}'\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu} \\
+\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\mathbf{1} &amp; \mathbf{1}'\boldsymbol{\Sigma}^{-1}\mathbf{1}
+\end{pmatrix}
+\begin{pmatrix}
+\lambda \\ \delta
+\end{pmatrix}
+=
+\begin{pmatrix}
+\mu_p \\ 1
+\end{pmatrix}.\end{split}\]</div>
+<p>Solving for the unknowns, we have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+\lambda \\ \delta
+\end{pmatrix}
+=
+\begin{pmatrix}
+\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu} &amp; \mathbf{1}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}\\
+\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \mathbf{1} &amp; \mathbf{1}'\boldsymbol{\Sigma}^{-1} \mathbf{1}
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+\mu_p \\ 1
+\end{pmatrix}.\end{split}\]</div>
+<p>We can then substitute these into the solution for the weights above, which gives</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{\omega} = \boldsymbol{\Sigma}^{-1} \begin{pmatrix}\boldsymbol{\mu} &amp;\mathbf{1}\end{pmatrix} \begin{pmatrix}
+\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu} &amp; \mathbf{1}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}\\
+\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \mathbf{1} &amp; \mathbf{1}'\boldsymbol{\Sigma}^{-1} \mathbf{1}
+\end{pmatrix}^{-1}
+\begin{pmatrix}
+\mu_p \\ 1
+\end{pmatrix},\end{split}\]</div>
+<p>as shown in the main text.</p>
+<p>Note that <span class="math notranslate nohighlight">\(\mathbf{1}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}\)</span> is the same as <span class="math notranslate nohighlight">\(\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1}\mathbf{1}\)</span>, since one is just the transpose of the other, and the transpose of a scalar is just itself.</p>
+</div>
+<p>Recall that the inverse of a simple <span class="math notranslate nohighlight">\(2\times 2\)</span> matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+a &amp; b \\
+c &amp; d \\
+\end{pmatrix}^{-1} = \frac{1}{ad-bc} \begin{pmatrix}
+d &amp; -b \\
+-c &amp; a \\
+\end{pmatrix}.\end{split}\]</div>
+<p>Applying this formula to the matrix with these scalars and simplifying, we get</p>
+<div class="math notranslate nohighlight" id="equation-wgts-eff">
+<span class="eqno">(13)<a class="headerlink" href="#equation-wgts-eff" title="Link to this equation">#</a></span>\[\begin{equation}
+\boldsymbol{\omega}  = \boldsymbol{\Sigma}^{-1}  \left[ \frac{(C\mu_p - B)\boldsymbol{\mu} + (A-B\mu_p)\mathbf{1}}{AC-B^2} \right].
+\end{equation}\]</div>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>To check this calculation yourself, note that matrix transpose rules imply that <span class="math notranslate nohighlight">\((AB)' = B'A'\)</span>.</p>
+</aside>
+<p>Using these weights we can find the variance of an efficient portfolio as</p>
+<div class="math notranslate nohighlight" id="equation-eff-var">
+<span class="eqno">(14)<a class="headerlink" href="#equation-eff-var" title="Link to this equation">#</a></span>\[\begin{equation}
+\var(R_p) = \boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega} = \frac{C\mu_p^2 - 2B\mu_p + A}{AC-B^2}.
+\end{equation}\]</div>
+<p>This is a quadratic equation in <span class="math notranslate nohighlight">\(\mu_p\)</span>. Since the square-root of a parabola is a hyperbola, the efficient frontier is a hyperbola in mean–standard deviation space.</p>
+<p>Let’s apply these formulas to some real data. We’ll use the returns on international indexes compiled by <a class="reference external" href="https://www.msci.com/end-of-day-data-search">MSCI</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rets</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/stoffprof/qf/main/data/MSCI_returns.csv&#39;</span><span class="p">,</span>
+                   <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">])</span>
+
+<span class="n">rets</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+DatetimeIndex: 408 entries, 1990-01-31 to 2023-12-29
+Columns: 33 entries, Argentina to USA
+dtypes: float64(33)
+memory usage: 108.4 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rets</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Argentina</th>
+      <th>Australia</th>
+      <th>Belgium</th>
+      <th>Brazil</th>
+      <th>Canada</th>
+      <th>Chile</th>
+      <th>Denmark</th>
+      <th>Finland</th>
+      <th>France</th>
+      <th>Germany</th>
+      <th>...</th>
+      <th>Portugal</th>
+      <th>Singapore</th>
+      <th>Spain</th>
+      <th>Sweden</th>
+      <th>Switzerland</th>
+      <th>Taiwan</th>
+      <th>Thailand</th>
+      <th>Turkey</th>
+      <th>UK</th>
+      <th>USA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>...</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+      <td>408.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.014904</td>
+      <td>0.005206</td>
+      <td>0.003341</td>
+      <td>0.013252</td>
+      <td>0.005710</td>
+      <td>0.007075</td>
+      <td>0.009427</td>
+      <td>0.007477</td>
+      <td>0.005402</td>
+      <td>0.005187</td>
+      <td>...</td>
+      <td>0.001518</td>
+      <td>0.004375</td>
+      <td>0.005109</td>
+      <td>0.007666</td>
+      <td>0.007208</td>
+      <td>0.004941</td>
+      <td>0.005219</td>
+      <td>0.010337</td>
+      <td>0.003319</td>
+      <td>0.007439</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.132109</td>
+      <td>0.059793</td>
+      <td>0.058295</td>
+      <td>0.128778</td>
+      <td>0.055201</td>
+      <td>0.071972</td>
+      <td>0.055175</td>
+      <td>0.083554</td>
+      <td>0.057833</td>
+      <td>0.064066</td>
+      <td>...</td>
+      <td>0.063034</td>
+      <td>0.067766</td>
+      <td>0.069529</td>
+      <td>0.070573</td>
+      <td>0.046869</td>
+      <td>0.087821</td>
+      <td>0.097860</td>
+      <td>0.141535</td>
+      <td>0.047665</td>
+      <td>0.043395</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-0.505322</td>
+      <td>-0.255683</td>
+      <td>-0.365554</td>
+      <td>-0.669332</td>
+      <td>-0.271550</td>
+      <td>-0.291079</td>
+      <td>-0.256723</td>
+      <td>-0.317711</td>
+      <td>-0.224328</td>
+      <td>-0.243514</td>
+      <td>...</td>
+      <td>-0.262499</td>
+      <td>-0.291842</td>
+      <td>-0.255165</td>
+      <td>-0.266555</td>
+      <td>-0.157226</td>
+      <td>-0.336661</td>
+      <td>-0.340531</td>
+      <td>-0.412439</td>
+      <td>-0.191268</td>
+      <td>-0.172471</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-0.048475</td>
+      <td>-0.028411</td>
+      <td>-0.026428</td>
+      <td>-0.050618</td>
+      <td>-0.027077</td>
+      <td>-0.037732</td>
+      <td>-0.026554</td>
+      <td>-0.037857</td>
+      <td>-0.030528</td>
+      <td>-0.030736</td>
+      <td>...</td>
+      <td>-0.035350</td>
+      <td>-0.026439</td>
+      <td>-0.034266</td>
+      <td>-0.031631</td>
+      <td>-0.019582</td>
+      <td>-0.045752</td>
+      <td>-0.041601</td>
+      <td>-0.072142</td>
+      <td>-0.025510</td>
+      <td>-0.018555</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.016344</td>
+      <td>0.005002</td>
+      <td>0.008247</td>
+      <td>0.012427</td>
+      <td>0.008224</td>
+      <td>0.003282</td>
+      <td>0.015715</td>
+      <td>0.003287</td>
+      <td>0.008047</td>
+      <td>0.010629</td>
+      <td>...</td>
+      <td>0.001786</td>
+      <td>0.005664</td>
+      <td>0.006438</td>
+      <td>0.007618</td>
+      <td>0.009222</td>
+      <td>0.004478</td>
+      <td>0.004780</td>
+      <td>0.003863</td>
+      <td>0.004286</td>
+      <td>0.011495</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.084514</td>
+      <td>0.043142</td>
+      <td>0.038348</td>
+      <td>0.077348</td>
+      <td>0.040475</td>
+      <td>0.056321</td>
+      <td>0.043973</td>
+      <td>0.054076</td>
+      <td>0.041722</td>
+      <td>0.044034</td>
+      <td>...</td>
+      <td>0.044890</td>
+      <td>0.039810</td>
+      <td>0.045754</td>
+      <td>0.049288</td>
+      <td>0.037714</td>
+      <td>0.046674</td>
+      <td>0.049368</td>
+      <td>0.082460</td>
+      <td>0.034346</td>
+      <td>0.034265</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.948111</td>
+      <td>0.169986</td>
+      <td>0.226819</td>
+      <td>0.812508</td>
+      <td>0.210092</td>
+      <td>0.215524</td>
+      <td>0.182849</td>
+      <td>0.323702</td>
+      <td>0.229260</td>
+      <td>0.223888</td>
+      <td>...</td>
+      <td>0.214636</td>
+      <td>0.256672</td>
+      <td>0.294679</td>
+      <td>0.228124</td>
+      <td>0.164638</td>
+      <td>0.464364</td>
+      <td>0.431842</td>
+      <td>0.723034</td>
+      <td>0.164153</td>
+      <td>0.130219</td>
+    </tr>
+  </tbody>
+</table>
+<p>8 rows × 33 columns</p>
+</div></div></div>
+</div>
+<p>One useful way to to visualize correlations is the <em>pair plot</em> available in the <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> plotting system. Pay close attention to the changing scales across plots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">rets</span><span class="p">[[</span><span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> <span class="s1">&#39;Greece&#39;</span><span class="p">,</span> <span class="s1">&#39;Japan&#39;</span><span class="p">,</span> <span class="s1">&#39;Korea&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;UK&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8f4b79ee27162c59b50568f1867aea8dac3e870e55d7459fbd39c1954c80c270.png" src="_images/8f4b79ee27162c59b50568f1867aea8dac3e870e55d7459fbd39c1954c80c270.png" />
+</div>
+</div>
+<p>We can apply our formulas directly to the estimated covariance and expected returns from the data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># store mean and covariance matrix as numpy arrays</span>
+<span class="n">μ</span> <span class="o">=</span> <span class="n">rets</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+<span class="n">Σ</span> <span class="o">=</span> <span class="n">rets</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">inv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">μ</span><span class="p">)</span>
+<span class="n">Σinv</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">Σ</span><span class="p">)</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">μ</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="n">μ</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">μ</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.12606891062173323, 4.361176967429771, 941.0684737386565)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise</p>
+<p>Verify that <span class="math notranslate nohighlight">\(C\)</span> is simply the sum of the elements of <span class="math notranslate nohighlight">\(\Sigma^{-1}\)</span>.</p>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ccodes</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Argentina&#39;</span><span class="p">:</span> <span class="s1">&#39;ARG&#39;</span><span class="p">,</span>  <span class="s1">&#39;Australia&#39;</span><span class="p">:</span> <span class="s1">&#39;AUS&#39;</span><span class="p">,</span>  <span class="s1">&#39;Belgium&#39;</span><span class="p">:</span> <span class="s1">&#39;BEL&#39;</span><span class="p">,</span>  <span class="s1">&#39;Brazil&#39;</span><span class="p">:</span> <span class="s1">&#39;BRA&#39;</span><span class="p">,</span> <span class="s1">&#39;Canada&#39;</span><span class="p">:</span> <span class="s1">&#39;CAN&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Chile&#39;</span><span class="p">:</span> <span class="s1">&#39;CHL&#39;</span><span class="p">,</span> <span class="s1">&#39;Denmark&#39;</span><span class="p">:</span> <span class="s1">&#39;DNK&#39;</span><span class="p">,</span> <span class="s1">&#39;Finland&#39;</span><span class="p">:</span> <span class="s1">&#39;FIN&#39;</span><span class="p">,</span> <span class="s1">&#39;France&#39;</span><span class="p">:</span> <span class="s1">&#39;FRA&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">:</span> <span class="s1">&#39;DEU&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Greece&#39;</span><span class="p">:</span> <span class="s1">&#39;GRC&#39;</span><span class="p">,</span> <span class="s1">&#39;Hong Kong&#39;</span><span class="p">:</span> <span class="s1">&#39;HKG&#39;</span><span class="p">,</span> <span class="s1">&#39;Indonesia&#39;</span><span class="p">:</span> <span class="s1">&#39;IDN&#39;</span><span class="p">,</span> <span class="s1">&#39;Ireland&#39;</span><span class="p">:</span> <span class="s1">&#39;IRL&#39;</span><span class="p">,</span> <span class="s1">&#39;Italy&#39;</span><span class="p">:</span> <span class="s1">&#39;ITA&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Japan&#39;</span><span class="p">:</span> <span class="s1">&#39;JPN&#39;</span><span class="p">,</span> <span class="s1">&#39;Korea&#39;</span><span class="p">:</span> <span class="s1">&#39;KOR&#39;</span><span class="p">,</span> <span class="s1">&#39;Malaysia&#39;</span><span class="p">:</span> <span class="s1">&#39;MYS&#39;</span><span class="p">,</span> <span class="s1">&#39;Mexico&#39;</span><span class="p">:</span> <span class="s1">&#39;MEX&#39;</span><span class="p">,</span> <span class="s1">&#39;Netherlands&#39;</span><span class="p">:</span> <span class="s1">&#39;NLD&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;New Zealand&#39;</span><span class="p">:</span> <span class="s1">&#39;NZL&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">:</span> <span class="s1">&#39;NOR&#39;</span><span class="p">,</span> <span class="s1">&#39;Philippines&#39;</span><span class="p">:</span> <span class="s1">&#39;PHL&#39;</span><span class="p">,</span> <span class="s1">&#39;Portugal&#39;</span><span class="p">:</span> <span class="s1">&#39;PRT&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Singapore&#39;</span><span class="p">:</span> <span class="s1">&#39;SGP&#39;</span><span class="p">,</span> <span class="s1">&#39;Spain&#39;</span><span class="p">:</span> <span class="s1">&#39;ESP&#39;</span><span class="p">,</span> <span class="s1">&#39;Sweden&#39;</span><span class="p">:</span> <span class="s1">&#39;SWE&#39;</span><span class="p">,</span> <span class="s1">&#39;Switzerland&#39;</span><span class="p">:</span> <span class="s1">&#39;CHE&#39;</span><span class="p">,</span> <span class="s1">&#39;Taiwan&#39;</span><span class="p">:</span> <span class="s1">&#39;TWN&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Thailand&#39;</span><span class="p">:</span> <span class="s1">&#39;THA&#39;</span><span class="p">,</span> <span class="s1">&#39;Turkey&#39;</span><span class="p">:</span> <span class="s1">&#39;TUR&#39;</span><span class="p">,</span> <span class="s1">&#39;UK&#39;</span><span class="p">:</span> <span class="s1">&#39;UK&#39;</span><span class="p">,</span> <span class="s1">&#39;USA&#39;</span><span class="p">:</span> <span class="s1">&#39;USA&#39;</span><span class="p">}</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+
+<span class="c1"># target returns</span>
+<span class="n">trets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+
+<span class="c1"># volatility of efficient portfolio, using equation above</span>
+<span class="n">vol_eff_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">C</span><span class="o">*</span><span class="n">trets</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">trets</span> <span class="o">+</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span> <span class="o">-</span> <span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Plot individual countries</span>
+<span class="n">vols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Σ</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">vols</span><span class="p">,</span> <span class="n">μ</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">cntry</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rets</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">ccodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cntry</span><span class="p">),</span> <span class="p">(</span><span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">μ</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    
+<span class="c1"># Efficient frontier</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vol_eff_p</span><span class="p">,</span> <span class="n">trets</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+
+<span class="c1"># EW portfolio</span>
+<span class="n">ewret</span> <span class="o">=</span> <span class="n">rets</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ewret</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">ewret</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s1">&#39;b*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># GMV portfolio</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">C</span><span class="p">),</span> <span class="n">B</span><span class="o">/</span><span class="n">C</span><span class="p">,</span> <span class="s1">&#39;y*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Volatility&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Expected return&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="n">loc</span><span class="p">]</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/39f561ccaac8b0a836b4d6d022e62df86457724209e1896efc95db5bdc8f4787.png" src="_images/39f561ccaac8b0a836b4d6d022e62df86457724209e1896efc95db5bdc8f4787.png" />
+</div>
+</div>
+<section id="risk-adjusted-returns">
+<h2>Risk-adjusted returns<a class="headerlink" href="#risk-adjusted-returns" title="Link to this heading">#</a></h2>
+<p>Another way of forumlating the same problem is to suppose that an investor wishes to <em>maximize</em> the risk-adjusted return. She likes return, so wants as much of that as possible; but she dislikes risk and wants as little of that as possible. How much does she dislike riks? It depends on her level of <em>risk aversion</em>. We’ll suppose that we can summarize this risk aversion with a parameter <span class="math notranslate nohighlight">\(\gamma\)</span>.</p>
+<p>In this case, the investors problem is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{aligned}
+\max_{\omega} \quad &amp; \boldsymbol{\omega}'\boldsymbol{\mu} - \gamma \boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega} \\
+\textrm{s.t.} \quad &amp; \boldsymbol{\omega}'\mathbf{1} = 1.
+\end{aligned}
+\end{equation*}\]</div>
+<p>Using calculus to solve this problem leads to the same result we saw above: as we vary <span class="math notranslate nohighlight">\(\gamma\)</span> we trace out a hyperbola-shaped frontier in mean-volatility space.</p>
+<div class="extra-credit dropdown admonition">
+<p class="admonition-title">Extra credit</p>
+<p>Following the same steps above, the Langrangian is</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L} = \boldsymbol{\omega}'\boldsymbol{\mu} - \gamma\boldsymbol{\omega}'\boldsymbol{\Sigma}\boldsymbol{\omega} - \eta(\boldsymbol{\omega}'\mathbf{1} - 1)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\eta\)</span> are the Lagrange multipliers. Setting the derivative equal to zero, we have</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\boldsymbol{\mu} - 2\gamma\boldsymbol{\Sigma}\boldsymbol{\omega} - \eta\mathbf{1} &amp;= 0 \\
+\Rightarrow \boldsymbol{\Sigma}\boldsymbol{\omega} - \frac{1}{2\gamma}\boldsymbol{\mu} + \frac{\eta}{2\gamma}\mathbf{1} &amp;= 0
+\end{align*}\]</div>
+<p>so</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\boldsymbol{\omega} &amp;= \boldsymbol{\Sigma}^{-1} \left[\frac{1}{2\gamma}\boldsymbol{\mu} - \frac{\eta}{2\gamma}\mathbf{1}\right] \\
+&amp;= \boldsymbol{\Sigma}^{-1}\begin{pmatrix}\boldsymbol{\mu} &amp;\mathbf{1}\end{pmatrix} \begin{pmatrix}\frac{1}{2\gamma} \\ -\frac{\eta}{2\gamma}\end{pmatrix}.
+\end{align*}\]</div>
+<p>Comparing to the solution above, we can see that the weights here are the same, where the constants are related by</p>
+<div class="math notranslate nohighlight">
+\[\lambda = \frac{1}{2\gamma}, \quad \delta = -\frac{\eta}{2\gamma}.\]</div>
+</div>
+</section>
+<section id="the-global-minimum-variance-portfolio">
+<h2>The global minimum variance portfolio<a class="headerlink" href="#the-global-minimum-variance-portfolio" title="Link to this heading">#</a></h2>
+<p>The variance of an efficient portfolio is a function of the target return, <span class="math notranslate nohighlight">\(\mu_p\)</span>. We can minimize this function to find the portfolio with minimum possible variance:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\frac{\partial \var{R_p}}{\partial \mu} &amp;= \frac{2C\mu_p - 2B}{AC-B^2} = 0 \\
+&amp;\Longrightarrow \mu_p = \frac{B}{C}.
+\end{align*}\]</div>
+<p>That is, the <em>global minimum variance</em> portfolio (“GMV”) has an expected return of <span class="math notranslate nohighlight">\(B/C\)</span>. Substituting this into the solution for optimal weights,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\boldsymbol{\omega}_{\text{gmv}} &amp;= \frac{\boldsymbol{\Sigma}^{-1}\cdot \mathbf{1}\left(A-\frac{B^2}{C}\right)}{AC-B^2} \\
+&amp;= \frac{\boldsymbol{\Sigma}^{-1} \mathbf{1}}{C},
+\end{align*}\]</div>
+<p>implying that the variance is</p>
+<div class="math notranslate nohighlight">
+\[\var(R^p_{min}) = \left(\frac{1}{C} \boldsymbol{\Sigma}^{-1} \mathbf{1}\right)' \boldsymbol{\Sigma} \left(\frac{1}{C} \boldsymbol{\Sigma}^{-1} \mathbf{1}\right) = \frac{1}{C^2} \mathbf{1} \boldsymbol{\Sigma}^{-1} \mathbf{1} = \frac{1}{C}.\]</div>
+<p>In volatility–return space, then, the GMV is at <span class="math notranslate nohighlight">\(\left(\sqrt{\frac{1}{C}}, \frac{B}{C}\right)\)</span>.</p>
+</section>
+<section id="the-tangency-portfolio">
+<h2>The tangency portfolio<a class="headerlink" href="#the-tangency-portfolio" title="Link to this heading">#</a></h2>
+<p>The Sharpe ratio, <span class="math notranslate nohighlight">\(\theta \equiv \mu/\sigma\)</span>, is a measure of reward-to-risk: how much return do we get per unit of volatility. The <em>tangency portfolio</em> has the maximum Sharpe ratio of all portfolios on the frontier.</p>
+<p>The Sharpe ratio of an efficient portfolio is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}\label{sr}
+    \frac{\mu_p}{\sqrt{\boldsymbol{\omega}' \boldsymbol{\Sigma} \boldsymbol{\omega}}} = \frac{\mu_p \sqrt{AC-B^2}}{\sqrt{C\mu_p^2 - B\mu_p + A}}.
+\end{equation*}\]</div>
+<p>Differentiating with respect to <span class="math notranslate nohighlight">\(\mu_p\)</span> and simplifying, we find that the expected return on the tangency portfolio is</p>
+<div class="math notranslate nohighlight">
+\[\mu_p=\frac{A}{B}.\]</div>
+<p>To find the volatility, we first substitute into equation <a class="reference internal" href="#equation-wgts-eff">(13)</a> to find the weights of the tangency portfolio, which are given by</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\boldsymbol{\omega}_{\text{tng}} = \boldsymbol{\Sigma}^{-1}  \frac{\left(\frac{AC}{B} - B\right)\boldsymbol{\mu}}{AC-B^2} =
+\frac{\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}{B}.
+\end{equation*}\]</div>
+<p>The variance of the tangency portfolio is therefore</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\sigma^2_{\text{tng}} = (\boldsymbol{\omega}_{\text{tng}})'\boldsymbol{\Sigma}(\boldsymbol{\omega}_{\text{tng}}) = \left(\frac{\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}{B}\right)' \boldsymbol{\Sigma} \left(\frac{\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}{B}\right) = \frac{\boldsymbol{\mu}'\boldsymbol{\Sigma}\boldsymbol{\mu}}{B^2} = \frac{A}{B^2},
+\end{equation*}\]</div>
+<p>so in volatility–expected return space, the portfolio is located at at <span class="math notranslate nohighlight">\(\left(\frac{\sqrt{A}}{B}, \frac{A}{B}\right)\)</span>.</p>
+<p>Therefore, the Sharpe ratio is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    \theta_{\text{tng}} = \frac{A/B}{\sqrt{A}/B} = \sqrt{A} = \sqrt{\boldsymbol{\mu}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}.
+\end{equation*}\]</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+
+<span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.04</span>
+
+<span class="c1"># target returns</span>
+<span class="n">trets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+
+<span class="c1"># volatility of efficient portfolio, using equation above</span>
+<span class="n">vol_eff_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">C</span><span class="o">*</span><span class="n">trets</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">B</span><span class="o">*</span><span class="n">trets</span> <span class="o">+</span> <span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">C</span> <span class="o">-</span> <span class="n">B</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Plot individual countries</span>
+<span class="n">vols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">Σ</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">vols</span><span class="p">,</span> <span class="n">μ</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">cntry</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rets</span><span class="o">.</span><span class="n">columns</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">ccodes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cntry</span><span class="p">),</span> <span class="p">(</span><span class="n">vols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">μ</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        
+<span class="c1"># GMV portfolio location</span>
+<span class="n">gmv_μ</span> <span class="o">=</span> <span class="n">B</span><span class="o">/</span><span class="n">C</span>
+<span class="n">gmv_σ</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">C</span><span class="p">)</span>
+        
+<span class="c1"># Efficient frontier</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vol_eff_p</span><span class="p">[</span><span class="n">trets</span><span class="o">&gt;=</span><span class="n">gmv_μ</span><span class="p">],</span> <span class="n">trets</span><span class="p">[</span><span class="n">trets</span><span class="o">&gt;=</span><span class="n">gmv_μ</span><span class="p">],</span> <span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">vol_eff_p</span><span class="p">[</span><span class="n">trets</span><span class="o">&lt;</span><span class="n">gmv_μ</span><span class="p">],</span> <span class="n">trets</span><span class="p">[</span><span class="n">trets</span><span class="o">&lt;</span><span class="n">gmv_μ</span><span class="p">],</span> <span class="s1">&#39;r:&#39;</span><span class="p">)</span>
+
+<span class="c1"># Capital Allocation Line — slope is just the Sharpe Ratio of the Tangency portfolio</span>
+<span class="n">cal_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cal_x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">cal_x</span><span class="p">)</span>
+
+<span class="c1"># Tangency portfolio</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="o">/</span><span class="n">B</span><span class="p">,</span> <span class="s1">&#39;g*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># GMV portfolio</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gmv_σ</span><span class="p">,</span> <span class="n">gmv_μ</span><span class="p">,</span> <span class="s1">&#39;y*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="c1"># Equal-weighted portfolio</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ewret</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="n">ewret</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="s1">&#39;b*&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Volatility&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Expected return&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># print Sharpe ratios</span>
+<span class="kn">from</span> <span class="nn">matplotlib.offsetbox</span> <span class="kn">import</span> <span class="n">AnchoredText</span>
+<span class="n">txt</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\theta_</span><span class="si">{tng}</span><span class="s2">=$&quot;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{:.2}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">A</span><span class="p">))</span> <span class="o">+</span> 
+       <span class="sa">r</span><span class="s2">&quot;$\theta_</span><span class="si">{gmv}</span><span class="s2">=$&quot;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{:.2}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">B</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">C</span><span class="p">)))</span>
+<span class="n">at</span> <span class="o">=</span> <span class="n">AnchoredText</span><span class="p">(</span><span class="n">txt</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;lightyellow&#39;</span><span class="p">),</span>
+                  <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">at</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_boxstyle</span><span class="p">(</span><span class="s1">&#39;round,pad=0,rounding_size=0.2&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">at</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/97c0827269878d61853535f60012ea86b65774929bd7288c486a35c645bcdb6a.png" src="_images/97c0827269878d61853535f60012ea86b65774929bd7288c486a35c645bcdb6a.png" />
+</div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Check your understanding</p>
+<p>Is the Sharpe ratio of a portfolio shown on this graph? Where can we see the Sharpe ratio for the tangency portfolio?</p>
+</div>
+</section>
+<section id="relationships-between-the-tng-gmv-and-ew-portfolios">
+<h2>Relationships between the TNG, GMV, and EW portfolios<a class="headerlink" href="#relationships-between-the-tng-gmv-and-ew-portfolios" title="Link to this heading">#</a></h2>
+<p>As we saw above, the weights of the tangency portfolio are</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\omega}_{\text{tng}} = \frac{\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}{B} = \frac{\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}{\mathbf{1}'\boldsymbol{\Sigma}^{-1} \boldsymbol{\mu}}.\]</div>
+<p>If we assume that all assets have the same expected return, <span class="math notranslate nohighlight">\(\mu\)</span>, then the vector of returns is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{\mu} = \mu \cdot \begin{pmatrix}1 \\ \vdots \\ 1\end{pmatrix} = \mu \mathbf{1}.\end{split}\]</div>
+<p>The weights therefore become</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\omega}_{\text{tng}} = \frac{\boldsymbol{\Sigma}^{-1} \mu\mathbf{1}}{\mathbf{1}'\boldsymbol{\Sigma}^{-1} \mu\mathbf{1}} = \frac{\boldsymbol{\Sigma}^{-1} \mathbf{1}}{\mathbf{1}'\boldsymbol{\Sigma}^{-1} \mathbf{1}} = \boldsymbol{\omega}_{\text{gmv}}.\]</div>
+<p>That is, the GMV portfolio is equivalent to the tangency portfolio if we assume that all expected returns are the same.</p>
+<p>Next, consider the extreme case where all assets are uncorrelated and have the same variance. The covariance matrix is therefore simply</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{\Sigma} =
+\begin{pmatrix}
+\sigma^2 &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; \sigma^2 &amp; 0 &amp; \vdots \\
+0 &amp; 0 &amp;\ddots  &amp; 0 \\
+0 &amp; 0 &amp; \cdots  &amp; \sigma^2 \\
+\end{pmatrix} = \sigma^2 \bf{I},\end{split}\]</div>
+<p>where the common variance is given by the constant <span class="math notranslate nohighlight">\(\sigma^2\)</span>. In this case, the weights in the GMV are</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\omega}_{\text{gmv}} = \frac{\boldsymbol{\Sigma}^{-1} \mathbf{1}}{\mathbf{1}'\boldsymbol{\Sigma}^{-1} \mathbf{1}}
+= \frac{(\sigma^2\bf{I})^{-1} \mathbf{1}}{\mathbf{1}'(\sigma^2\bf{I})^{-1} \mathbf{1}}
+= \frac{\mathbf{1}}{\mathbf{1}'\mathbf{1}}
+= \left(\frac{1}{N}, \frac{1}{N}, \ldots, \frac{1}{N}\right)' = \boldsymbol{\omega}_{\text{ew}}\]</div>
+<p>That is, the GMV is equivlent to the equal-weighted portfolio in this case.</p>
+<p>We can therefore think of the the equal-weighted portfolio as a special case of the global minimum variance portfolio, and the global minimum variance portfolio as a special case of the tangency portfolio. That is,</p>
+<ul class="simple">
+<li><p>the EW portfolio requires no estimates of expected returns, covariances, or variances;</p></li>
+<li><p>the GMV does use information about variances and covariances, but requires no estimates of expected returns; and</p></li>
+<li><p>the tangency portfolio requires estimates of all three.</p></li>
+</ul>
+<p>The fact that the GMV can be calculated using estimates of only variances/covariances is important because it is actually a lot harder to estimate expected returns than it is to estimate the covariance matrix, as shown by <span id="id1">Merton [<a class="reference internal" href="bibliography.html#id12" title="Robert C Merton. On estimating the expected return on the market: an exploratory investigation. Journal of Financial Economics, 8(4):323–361, 1980. URL: https://doi.org/10.1016/0304-405X(80)90007-0.">1980</a>]</span>. We can collect more high-frequency data about returns to get more accurate estimates of variances and covariances, but sampling data with higher frequency does nothing to tell us more about the expected return. All we can do is wait for more time to pass to get more data and improve our estimate of the expected return.</p>
+<p>If instead we assume that all assets have the same variance and a single correlation, we can write the variance–covariance matrix like this:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{\Sigma} = \sigma^2 \begin{pmatrix}
+1 &amp; \rho &amp; \cdots &amp; \rho \\
+\rho &amp; 1 &amp; \ddots &amp; \rho \\
+\vdots &amp; \cdots &amp; \ddots &amp; \vdots \\
+\rho &amp; \cdots &amp; \rho &amp; 1 \\
+\end{pmatrix}.\end{split}\]</div>
+<p>In this case it can be shown that the GMV weights are</p>
+<div class="math notranslate nohighlight">
+\[\omega_{\text{gmv}} = \frac{\boldsymbol{\Sigma}^{-1}\mathbf{1}}{\mathbf{1}'\boldsymbol{\Sigma}^{-1}\mathbf{1}}
+= \left(\frac{1}{N}, \cdots, \frac{1}{N}\right)' = \omega_{\text{ew}}.\]</div>
+<p>Choosing particular values for <span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span>, and <span class="math notranslate nohighlight">\(\rho\)</span>, we see that the GMV weights are indeed those of an equal-weighted portfolio. Experiment by changing the inputs to see for yourself.</p>
+</section>
+<section id="portfolio-weights">
+<h2>Portfolio weights<a class="headerlink" href="#portfolio-weights" title="Link to this heading">#</a></h2>
+<p>The index weights for the tangency and GMV portfolios are given here:</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w_tng</span> <span class="o">=</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="n">μ</span> <span class="o">/</span> <span class="n">B</span>
+<span class="n">w_gmv</span> <span class="o">=</span> <span class="n">Σinv</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">/</span> <span class="n">C</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;tng&#39;</span><span class="p">:</span> <span class="n">w_tng</span><span class="p">,</span>
+              <span class="s1">&#39;gmv&#39;</span><span class="p">:</span> <span class="n">w_gmv</span><span class="p">},</span>
+             <span class="n">index</span><span class="o">=</span><span class="n">rets</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;tng&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tng</th>
+      <th>gmv</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>1.390912</td>
+      <td>0.682073</td>
+    </tr>
+    <tr>
+      <th>Denmark</th>
+      <td>1.348146</td>
+      <td>0.167741</td>
+    </tr>
+    <tr>
+      <th>Switzerland</th>
+      <td>1.154863</td>
+      <td>0.238205</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>0.479434</td>
+      <td>-0.021912</td>
+    </tr>
+    <tr>
+      <th>Netherlands</th>
+      <td>0.291644</td>
+      <td>-0.238206</td>
+    </tr>
+    <tr>
+      <th>Spain</th>
+      <td>0.254620</td>
+      <td>-0.090184</td>
+    </tr>
+    <tr>
+      <th>Hong Kong</th>
+      <td>0.224482</td>
+      <td>0.006253</td>
+    </tr>
+    <tr>
+      <th>Australia</th>
+      <td>0.223929</td>
+      <td>0.044869</td>
+    </tr>
+    <tr>
+      <th>Mexico</th>
+      <td>0.189138</td>
+      <td>-0.013510</td>
+    </tr>
+    <tr>
+      <th>Chile</th>
+      <td>0.118473</td>
+      <td>0.119227</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>0.101400</td>
+      <td>0.006688</td>
+    </tr>
+    <tr>
+      <th>Brazil</th>
+      <td>0.077465</td>
+      <td>-0.046800</td>
+    </tr>
+    <tr>
+      <th>Korea</th>
+      <td>0.075968</td>
+      <td>-0.068992</td>
+    </tr>
+    <tr>
+      <th>Argentina</th>
+      <td>0.053574</td>
+      <td>-0.015952</td>
+    </tr>
+    <tr>
+      <th>Indonesia</th>
+      <td>0.032395</td>
+      <td>-0.021096</td>
+    </tr>
+    <tr>
+      <th>Finland</th>
+      <td>0.029396</td>
+      <td>-0.024219</td>
+    </tr>
+    <tr>
+      <th>Taiwan</th>
+      <td>0.006876</td>
+      <td>0.053126</td>
+    </tr>
+    <tr>
+      <th>Malaysia</th>
+      <td>-0.025532</td>
+      <td>0.136125</td>
+    </tr>
+    <tr>
+      <th>Thailand</th>
+      <td>-0.041154</td>
+      <td>-0.055666</td>
+    </tr>
+    <tr>
+      <th>Philippines</th>
+      <td>-0.077124</td>
+      <td>0.017397</td>
+    </tr>
+    <tr>
+      <th>Norway</th>
+      <td>-0.120371</td>
+      <td>-0.120106</td>
+    </tr>
+    <tr>
+      <th>Greece</th>
+      <td>-0.121523</td>
+      <td>-0.023834</td>
+    </tr>
+    <tr>
+      <th>Sweden</th>
+      <td>-0.143375</td>
+      <td>-0.153526</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>-0.196977</td>
+      <td>0.080998</td>
+    </tr>
+    <tr>
+      <th>Singapore</th>
+      <td>-0.235240</td>
+      <td>-0.099785</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>-0.260078</td>
+      <td>0.053809</td>
+    </tr>
+    <tr>
+      <th>Ireland</th>
+      <td>-0.314821</td>
+      <td>-0.098426</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>-0.371431</td>
+      <td>-0.043497</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>-0.438154</td>
+      <td>0.188425</td>
+    </tr>
+    <tr>
+      <th>Belgium</th>
+      <td>-0.555686</td>
+      <td>0.046050</td>
+    </tr>
+    <tr>
+      <th>Portugal</th>
+      <td>-0.594292</td>
+      <td>0.127940</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>-0.661251</td>
+      <td>-0.150053</td>
+    </tr>
+    <tr>
+      <th>UK</th>
+      <td>-0.895708</td>
+      <td>0.316839</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05a%20Diversification.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Diversification</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05c%20Numerical%20optimization.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Numerical optimization</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#risk-adjusted-returns">Risk-adjusted returns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-global-minimum-variance-portfolio">The global minimum variance portfolio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tangency-portfolio">The tangency portfolio</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationships-between-the-tng-gmv-and-ew-portfolios">Relationships between the TNG, GMV, and EW portfolios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#portfolio-weights">Portfolio weights</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  &copy; 2024 <a href="https://stoffprof.github.io">Noah Stoffman</a>. Version 0.24.01.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
