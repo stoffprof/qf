@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=cdb3895b" />
@@ -226,6 +226,12 @@
 <li class="toctree-l1"><a class="reference internal" href="05a%20Diversification.html">Diversification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05b%20Efficient%20portfolios.html">The efficient frontier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05c%20Numerical%20optimization.html">Numerical optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time series modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="07a%20Time%20series%20analysis.html">Time series models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07aa%20Applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07b%20Markov%20switching%20model.html">Markov Switching model</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="nav bd-sidenav">
@@ -1565,8 +1571,8 @@ MSE(\beta_0,\beta_1) = \frac{1}{N} \sum_{i=1}^N \left[y_i - (\beta_0 + \beta_1 x
 \frac{\partial MSE}{\partial \beta_1} = -\frac{2}{N} \sum_i x_i \left[y_i - (\beta_0 + \beta_1 x_i)\right].
 \end{equation*}\]</div>
 <p>In vector notation, this is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-12a0d36b-5af3-40ce-afe7-f3f997d94414">
-<span class="eqno">()<a class="headerlink" href="#equation-12a0d36b-5af3-40ce-afe7-f3f997d94414" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c39d82c9-8792-47c3-885b-45760a159525">
+<span class="eqno">(10)<a class="headerlink" href="#equation-c39d82c9-8792-47c3-885b-45760a159525" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \frac{\partial}{\partial \beta} \frac{(y-X\beta)'(y-X\beta)}{N} = -\frac{2}{N} X'(y-X\beta) = \frac{2}{N} X'(X\beta-y).
 \end{equation}\]</div>
 <p>This vector is called the <em>gradient</em> of the function.</p>

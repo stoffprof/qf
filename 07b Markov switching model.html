@@ -1,0 +1,1666 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Markov Switching model &#8212; Quant Finance in Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=cdb3895b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=891ccba4" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/myadmonitions-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"cov": "\\operatorname{Cov}", "var": "\\operatorname{Var}", "N": "\\mathcal{N}", "E": "\\mathbb{E}", "P": "\\mathbb{P}", "R": "\\mathbb{R}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07b Markov switching model';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://stoffprof.github.io/qf/07b Markov switching model.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Notation" href="notation.html" />
+    <link rel="prev" title="Applications" href="07aa%20Applications.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/qf.png" class="logo__image only-light" alt="Quant Finance in Python - Home"/>
+    <script>document.write(`<img src="_static/qf.png" class="logo__image only-dark" alt="Quant Finance in Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01a%20math.html">Math background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01c%20prices.html">A model of prices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01b%20returns.html">Asset returns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01d%20quant%20interview.html">Quant interview problem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Econometrics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="probability.html">Probability</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02a%20MSE.html">Prediction: First look</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02b%20Probability%20theory.html">Probability theory</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="02d%20Pseudorandom%20number%20generation.html">Pseudorandom number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c%20Distributions.html">Probability distributions</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="02e%20Covariance.html">Covariance</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="02f%20Estimation.html">Parameter estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regression.html">Regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04a%20Regression%20theory.html">Linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04b%20Regression%20applications.html">Implementing regressions</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Factors</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06%20Calculating%20beta.html">Factor regressions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Portfolio optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05a%20Diversification.html">Diversification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05b%20Efficient%20portfolios.html">The efficient frontier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05c%20Numerical%20optimization.html">Numerical optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time series modeling</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="07a%20Time%20series%20analysis.html">Time series models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07aa%20Applications.html">Applications</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Markov Switching model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Additional sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/07b Markov switching model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Markov Switching model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdp-growth">GDP growth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-great-moderation">The Great Moderation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.ar_model</span> <span class="kn">import</span> <span class="n">AutoReg</span><span class="p">,</span> <span class="n">ar_select_order</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.regime_switching.markov_autoregression</span> <span class="kn">import</span> <span class="n">MarkovAutoregression</span>
+
+<span class="kn">import</span> <span class="nn">pandas_datareader</span> <span class="k">as</span> <span class="nn">pdr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="markov-switching-model">
+<h1>Markov Switching model<a class="headerlink" href="#markov-switching-model" title="Link to this heading">#</a></h1>
+<p>A times series <span class="math notranslate nohighlight">\({x_t}\)</span> follows a Markov switching autoregressive model if</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x_t = \left\{\begin{matrix}
+c_0 + \sum_{i=1}^p \phi_{0,i} x_{t-i} + \varepsilon_{0t} \quad \text{if } s_t=0,\\ 
+c_1 + \sum_{i=1}^p \phi_{1,i} x_{t-i} + \varepsilon_{1t} \quad \text{if } s_t=1 ,
+\end{matrix}\right.
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\varepsilon_{it}\sim N(0,\sigma_i^2)\)</span>.</p>
+<p>The <em>state variable</em> <span class="math notranslate nohighlight">\(s_t\)</span> is a <em>Markov chain</em> with transition probabilities</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P(S_t=s_t|S_{t-1}=s_{t-1})=\begin{pmatrix}
+1-\eta_0 &amp; \eta_0 \\ 
+\eta_1 &amp; 1-\eta_1
+\end{pmatrix}.\end{split}\]</div>
+<p>In words, this says that the probability of transitioning from state 0 to state 1 is <span class="math notranslate nohighlight">\(\eta_0\)</span>, and the probability of transitioning from state 1 to state 0 is <span class="math notranslate nohighlight">\(\eta_1\)</span>. These <span class="math notranslate nohighlight">\(\eta\)</span>s are additional parameters that we must estimate from the data. Note also that the rows of the transition matrix sum to one.</p>
+<section id="gdp-growth">
+<h2>GDP growth<a class="headerlink" href="#gdp-growth" title="Link to this heading">#</a></h2>
+<p>We’ll use the Real Gross Domestic Product series (in Billions of Chained 2012 Dollars, Seasonally Adjusted)</p>
+<p><a class="reference external" href="https://fred.stlouisfed.org/series/GDPC1">https://fred.stlouisfed.org/series/GDPC1</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;GDPC1&#39;</span><span class="p">,</span> <span class="mi">1947</span><span class="p">)</span>
+
+<span class="c1"># set index frequency to quarterly</span>
+<span class="n">gdp</span> <span class="o">=</span> <span class="n">gdp</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s1">&#39;QS&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Billions of 2012 dollars&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/919827421de95acf44d982440ab2385250f0e1d66fcc6096498cb808b647ca33.png" src="_images/919827421de95acf44d982440ab2385250f0e1d66fcc6096498cb808b647ca33.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gdp</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;GDP Growth&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/12b2199c989c3d5e3b99de127416ed7d20f041f2d7f80df9780fb1f439feb89f.png" src="_images/12b2199c989c3d5e3b99de127416ed7d20f041f2d7f80df9780fb1f439feb89f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># restrict series to pre-COVID period</span>
+<span class="n">gdpgr</span> <span class="o">=</span> <span class="n">gdpgr</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GDPC1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>291.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.007772</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.009282</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-0.026302</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.003114</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.007701</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.012460</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.038564</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modsel</span> <span class="o">=</span> <span class="n">ar_select_order</span><span class="p">(</span><span class="n">gdpgr</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="s1">&#39;aic&#39;</span><span class="p">)</span>
+
+<span class="n">modsel</span><span class="o">.</span><span class="n">ar_lags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr_ar3</span> <span class="o">=</span> <span class="n">AutoReg</span><span class="p">(</span><span class="n">gdpgr</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdpgr_ar3</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:                  GDPC1   No. Observations:                  291
+Model:                     AutoReg(3)   Log Likelihood                 963.618
+Method:               Conditional MLE   S.D. of innovations              0.009
+Date:                Mon, 04 Mar 2024   AIC                          -1917.236
+Time:                        20:59:27   BIC                          -1898.921
+Sample:                    01-01-1948   HQIC                         -1909.896
+                         - 10-01-2019                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0049      0.001      6.462      0.000       0.003       0.006
+GDPC1.L1       0.3324      0.058      5.699      0.000       0.218       0.447
+GDPC1.L2       0.1516      0.061      2.494      0.013       0.032       0.271
+GDPC1.L3      -0.1165      0.058     -2.003      0.045      -0.230      -0.002
+                                    Roots                                    
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1           -2.0729           -0.0000j            2.0729           -0.5000
+AR.2            1.6873           -1.1377j            2.0350           -0.0944
+AR.3            1.6873           +1.1377j            2.0350            0.0944
+-----------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<p>Start with a simple model where only the mean varies between the states.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr_mod</span> <span class="o">=</span> <span class="n">MarkovAutoregression</span><span class="p">(</span><span class="n">gdpgr</span><span class="p">,</span> <span class="n">k_regimes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">switching_ar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">gdpgr_res</span> <span class="o">=</span> <span class="n">gdpgr_mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdpgr_res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -3.371919
+         Iterations: 55
+         Function evaluations: 73
+         Gradient evaluations: 73
+                         Markov Switching Model Results                         
+================================================================================
+Dep. Variable:                    GDPC1   No. Observations:                  288
+Model:             MarkovAutoregression   Log Likelihood                 971.113
+Date:                  Mon, 04 Mar 2024   AIC                          -1926.225
+Time:                          20:59:30   BIC                          -1896.922
+Sample:                      04-01-1947   HQIC                         -1914.482
+                           - 10-01-2019                                         
+Covariance Type:                 approx                                         
+                             Regime 0 parameters                              
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0136      0.004     -3.589      0.000      -0.021      -0.006
+                             Regime 1 parameters                              
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0084      0.001     11.105      0.000       0.007       0.010
+                           Non-switching parameters                           
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+sigma2      5.676e-05   5.48e-06     10.349      0.000     4.6e-05    6.75e-05
+ar.L1          0.3866      0.061      6.298      0.000       0.266       0.507
+ar.L2          0.2269      0.078      2.915      0.004       0.074       0.379
+ar.L3         -0.2163      0.070     -3.107      0.002      -0.353      -0.080
+                         Regime transition parameters                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+p[0-&gt;0]     1.709e-10        nan        nan        nan         nan         nan
+p[1-&gt;0]        0.0293      0.015      1.958      0.050   -2.33e-05       0.059
+==============================================================================
+
+Warnings:
+[1] Covariance matrix calculated using numerical (complex-step) differentiation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Looking at the estimates of the transition probability, it’s clear that the optimizer didn’t find a good solution, which is why the standard errors on the probabilities are infinite. The likelihood function was likely not actually maximized. Let’s try again with a bit more control over the optmizer.</p>
+<p>We should get a log-likelihood of about 974.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr_mod2</span> <span class="o">=</span> <span class="n">MarkovAutoregression</span><span class="p">(</span><span class="n">gdpgr</span><span class="p">,</span> <span class="n">k_regimes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">switching_ar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: this is advanced code. There is no need to understand it for this course.</span>
+
+<span class="k">class</span> <span class="nc">ParamStore</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;A callback class for storing parameters from optimization algorithm&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">transform_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">loglik</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">loglike</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">param_names</span><span class="p">)</span>
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Log-Like&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">loglik</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">param_history</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">param_history</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">param_history</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">param_history</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">param_history</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+        <span class="k">return</span><span class="p">(</span><span class="n">param_history</span><span class="p">)</span>
+
+<span class="n">param_store</span> <span class="o">=</span> <span class="n">ParamStore</span><span class="p">(</span><span class="n">gdpgr_mod2</span><span class="p">)</span>
+
+<span class="n">gdpgr_res2</span> <span class="o">=</span> <span class="n">gdpgr_mod2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="n">em_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">search_reps</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                            <span class="n">search_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">param_store</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">gdpgr_res2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -3.381633
+         Iterations: 41
+         Function evaluations: 59
+         Gradient evaluations: 59
+                         Markov Switching Model Results                         
+================================================================================
+Dep. Variable:                    GDPC1   No. Observations:                  288
+Model:             MarkovAutoregression   Log Likelihood                 973.910
+Date:                  Mon, 04 Mar 2024   AIC                          -1931.821
+Time:                          21:00:57   BIC                          -1902.517
+Sample:                      04-01-1947   HQIC                         -1920.077
+                           - 10-01-2019                                         
+Covariance Type:                 approx                                         
+                             Regime 0 parameters                              
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0122      0.003     -4.179      0.000      -0.018      -0.006
+                             Regime 1 parameters                              
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0089      0.001     11.227      0.000       0.007       0.010
+                           Non-switching parameters                           
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+sigma2      5.018e-05   5.27e-06      9.530      0.000    3.99e-05    6.05e-05
+ar.L1          0.4411      0.066      6.718      0.000       0.312       0.570
+ar.L2          0.2589      0.069      3.739      0.000       0.123       0.395
+ar.L3         -0.2654      0.069     -3.826      0.000      -0.401      -0.129
+                         Regime transition parameters                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+p[0-&gt;0]        0.2315      0.138      1.680      0.093      -0.039       0.502
+p[1-&gt;0]        0.0415      0.018      2.320      0.020       0.006       0.077
+==============================================================================
+
+Warnings:
+[1] Covariance matrix calculated using numerical (complex-step) differentiation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The DataFrame below shows how the parameter values changed through the iteration steps.</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param_store</span><span class="o">.</span><span class="n">param_history</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>p[0-&gt;0]</th>
+      <th>p[1-&gt;0]</th>
+      <th>const[0]</th>
+      <th>const[1]</th>
+      <th>sigma2</th>
+      <th>ar.L1</th>
+      <th>ar.L2</th>
+      <th>ar.L3</th>
+      <th>Log-Like</th>
+    </tr>
+    <tr>
+      <th>iteration</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.005003</td>
+      <td>0.010728</td>
+      <td>-0.017475</td>
+      <td>0.008101</td>
+      <td>0.000062</td>
+      <td>0.308672</td>
+      <td>0.163952</td>
+      <td>-0.144363</td>
+      <td>968.549072</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.005003</td>
+      <td>0.010728</td>
+      <td>-0.017418</td>
+      <td>0.008191</td>
+      <td>0.000062</td>
+      <td>0.308681</td>
+      <td>0.163961</td>
+      <td>-0.144367</td>
+      <td>968.557434</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.005003</td>
+      <td>0.010728</td>
+      <td>-0.017228</td>
+      <td>0.008192</td>
+      <td>0.000062</td>
+      <td>0.308708</td>
+      <td>0.163993</td>
+      <td>-0.144382</td>
+      <td>968.573226</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.005003</td>
+      <td>0.010752</td>
+      <td>-0.016800</td>
+      <td>0.008202</td>
+      <td>0.000061</td>
+      <td>0.324349</td>
+      <td>0.181830</td>
+      <td>-0.153086</td>
+      <td>969.130708</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.005003</td>
+      <td>0.010890</td>
+      <td>-0.015802</td>
+      <td>0.008247</td>
+      <td>0.000059</td>
+      <td>0.369044</td>
+      <td>0.210625</td>
+      <td>-0.188981</td>
+      <td>969.736775</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.005004</td>
+      <td>0.010994</td>
+      <td>-0.016168</td>
+      <td>0.008249</td>
+      <td>0.000060</td>
+      <td>0.379241</td>
+      <td>0.208437</td>
+      <td>-0.192156</td>
+      <td>969.790208</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.005005</td>
+      <td>0.011239</td>
+      <td>-0.016218</td>
+      <td>0.008254</td>
+      <td>0.000060</td>
+      <td>0.392773</td>
+      <td>0.199274</td>
+      <td>-0.194113</td>
+      <td>969.845691</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.005006</td>
+      <td>0.011577</td>
+      <td>-0.016270</td>
+      <td>0.008255</td>
+      <td>0.000060</td>
+      <td>0.400247</td>
+      <td>0.190443</td>
+      <td>-0.193344</td>
+      <td>969.894349</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.005010</td>
+      <td>0.012239</td>
+      <td>-0.016229</td>
+      <td>0.008258</td>
+      <td>0.000059</td>
+      <td>0.407097</td>
+      <td>0.181313</td>
+      <td>-0.192963</td>
+      <td>969.978230</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.005016</td>
+      <td>0.013532</td>
+      <td>-0.016097</td>
+      <td>0.008267</td>
+      <td>0.000059</td>
+      <td>0.413757</td>
+      <td>0.172483</td>
+      <td>-0.193632</td>
+      <td>970.126576</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.005027</td>
+      <td>0.016242</td>
+      <td>-0.015775</td>
+      <td>0.008286</td>
+      <td>0.000059</td>
+      <td>0.419919</td>
+      <td>0.164902</td>
+      <td>-0.196110</td>
+      <td>970.379959</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>0.005048</td>
+      <td>0.022607</td>
+      <td>-0.014988</td>
+      <td>0.008327</td>
+      <td>0.000058</td>
+      <td>0.421943</td>
+      <td>0.163663</td>
+      <td>-0.201573</td>
+      <td>970.742058</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.005065</td>
+      <td>0.028824</td>
+      <td>-0.013895</td>
+      <td>0.008375</td>
+      <td>0.000057</td>
+      <td>0.412212</td>
+      <td>0.179529</td>
+      <td>-0.206755</td>
+      <td>971.006017</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.005075</td>
+      <td>0.031639</td>
+      <td>-0.013013</td>
+      <td>0.008430</td>
+      <td>0.000056</td>
+      <td>0.396749</td>
+      <td>0.209218</td>
+      <td>-0.212032</td>
+      <td>971.202650</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.005078</td>
+      <td>0.031099</td>
+      <td>-0.013314</td>
+      <td>0.008450</td>
+      <td>0.000056</td>
+      <td>0.389252</td>
+      <td>0.227913</td>
+      <td>-0.216345</td>
+      <td>971.253699</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.005081</td>
+      <td>0.030530</td>
+      <td>-0.013375</td>
+      <td>0.008446</td>
+      <td>0.000056</td>
+      <td>0.389533</td>
+      <td>0.232151</td>
+      <td>-0.220641</td>
+      <td>971.258219</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.005084</td>
+      <td>0.030572</td>
+      <td>-0.013441</td>
+      <td>0.008444</td>
+      <td>0.000056</td>
+      <td>0.389856</td>
+      <td>0.232539</td>
+      <td>-0.221806</td>
+      <td>971.258623</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.005087</td>
+      <td>0.030588</td>
+      <td>-0.013433</td>
+      <td>0.008443</td>
+      <td>0.000056</td>
+      <td>0.389980</td>
+      <td>0.232428</td>
+      <td>-0.222068</td>
+      <td>971.258728</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.005094</td>
+      <td>0.030604</td>
+      <td>-0.013425</td>
+      <td>0.008443</td>
+      <td>0.000056</td>
+      <td>0.390073</td>
+      <td>0.232289</td>
+      <td>-0.222316</td>
+      <td>971.258922</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.005110</td>
+      <td>0.030624</td>
+      <td>-0.013416</td>
+      <td>0.008443</td>
+      <td>0.000056</td>
+      <td>0.390177</td>
+      <td>0.232130</td>
+      <td>-0.222619</td>
+      <td>971.259285</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.005140</td>
+      <td>0.030654</td>
+      <td>-0.013404</td>
+      <td>0.008442</td>
+      <td>0.000056</td>
+      <td>0.390318</td>
+      <td>0.231926</td>
+      <td>-0.223039</td>
+      <td>971.259971</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.005199</td>
+      <td>0.030702</td>
+      <td>-0.013385</td>
+      <td>0.008441</td>
+      <td>0.000056</td>
+      <td>0.390534</td>
+      <td>0.231647</td>
+      <td>-0.223667</td>
+      <td>971.261261</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.005319</td>
+      <td>0.030782</td>
+      <td>-0.013357</td>
+      <td>0.008441</td>
+      <td>0.000056</td>
+      <td>0.390881</td>
+      <td>0.231253</td>
+      <td>-0.224652</td>
+      <td>971.263660</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.005562</td>
+      <td>0.030919</td>
+      <td>-0.013311</td>
+      <td>0.008440</td>
+      <td>0.000056</td>
+      <td>0.391462</td>
+      <td>0.230692</td>
+      <td>-0.226252</td>
+      <td>971.268065</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.006065</td>
+      <td>0.031165</td>
+      <td>-0.013237</td>
+      <td>0.008439</td>
+      <td>0.000056</td>
+      <td>0.392461</td>
+      <td>0.229904</td>
+      <td>-0.228911</td>
+      <td>971.276096</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>0.007158</td>
+      <td>0.031613</td>
+      <td>-0.013113</td>
+      <td>0.008439</td>
+      <td>0.000056</td>
+      <td>0.394227</td>
+      <td>0.228845</td>
+      <td>-0.233427</td>
+      <td>971.291065</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>0.128063</td>
+      <td>0.040840</td>
+      <td>-0.011087</td>
+      <td>0.008476</td>
+      <td>0.000053</td>
+      <td>0.422460</td>
+      <td>0.216730</td>
+      <td>-0.308388</td>
+      <td>971.989482</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>0.131970</td>
+      <td>0.040968</td>
+      <td>-0.011065</td>
+      <td>0.008477</td>
+      <td>0.000053</td>
+      <td>0.422812</td>
+      <td>0.216661</td>
+      <td>-0.309267</td>
+      <td>971.992267</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>0.178880</td>
+      <td>0.043299</td>
+      <td>-0.011084</td>
+      <td>0.008612</td>
+      <td>0.000051</td>
+      <td>0.438891</td>
+      <td>0.226108</td>
+      <td>-0.325020</td>
+      <td>972.382323</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>0.202929</td>
+      <td>0.045728</td>
+      <td>-0.011466</td>
+      <td>0.008812</td>
+      <td>0.000049</td>
+      <td>0.464477</td>
+      <td>0.244134</td>
+      <td>-0.335516</td>
+      <td>972.929908</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>0.188408</td>
+      <td>0.047382</td>
+      <td>-0.011430</td>
+      <td>0.008949</td>
+      <td>0.000049</td>
+      <td>0.478318</td>
+      <td>0.254173</td>
+      <td>-0.324177</td>
+      <td>973.275586</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>0.210326</td>
+      <td>0.047046</td>
+      <td>-0.011719</td>
+      <td>0.009014</td>
+      <td>0.000049</td>
+      <td>0.482711</td>
+      <td>0.253760</td>
+      <td>-0.305555</td>
+      <td>973.555041</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>0.215864</td>
+      <td>0.045322</td>
+      <td>-0.011761</td>
+      <td>0.008996</td>
+      <td>0.000049</td>
+      <td>0.465906</td>
+      <td>0.258426</td>
+      <td>-0.273826</td>
+      <td>973.808703</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>0.229624</td>
+      <td>0.041985</td>
+      <td>-0.012294</td>
+      <td>0.008915</td>
+      <td>0.000050</td>
+      <td>0.449719</td>
+      <td>0.258892</td>
+      <td>-0.263856</td>
+      <td>973.892206</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>0.234388</td>
+      <td>0.041533</td>
+      <td>-0.012215</td>
+      <td>0.008863</td>
+      <td>0.000050</td>
+      <td>0.441607</td>
+      <td>0.259526</td>
+      <td>-0.264528</td>
+      <td>973.909367</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>0.230253</td>
+      <td>0.041411</td>
+      <td>-0.012251</td>
+      <td>0.008854</td>
+      <td>0.000050</td>
+      <td>0.440652</td>
+      <td>0.258731</td>
+      <td>-0.265166</td>
+      <td>973.910158</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>0.231679</td>
+      <td>0.041542</td>
+      <td>-0.012222</td>
+      <td>0.008858</td>
+      <td>0.000050</td>
+      <td>0.441116</td>
+      <td>0.258869</td>
+      <td>-0.265547</td>
+      <td>973.910248</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>0.231474</td>
+      <td>0.041525</td>
+      <td>-0.012225</td>
+      <td>0.008858</td>
+      <td>0.000050</td>
+      <td>0.441072</td>
+      <td>0.258857</td>
+      <td>-0.265429</td>
+      <td>973.910251</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>0.231482</td>
+      <td>0.041524</td>
+      <td>-0.012225</td>
+      <td>0.008858</td>
+      <td>0.000050</td>
+      <td>0.441068</td>
+      <td>0.258858</td>
+      <td>-0.265438</td>
+      <td>973.910251</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>0.231483</td>
+      <td>0.041524</td>
+      <td>-0.012225</td>
+      <td>0.008858</td>
+      <td>0.000050</td>
+      <td>0.441068</td>
+      <td>0.258858</td>
+      <td>-0.265438</td>
+      <td>973.910251</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>0.231483</td>
+      <td>0.041524</td>
+      <td>-0.012225</td>
+      <td>0.008858</td>
+      <td>0.000050</td>
+      <td>0.441068</td>
+      <td>0.258858</td>
+      <td>-0.265438</td>
+      <td>973.910251</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We have two states, with constant terms <span class="math notranslate nohighlight">\(c_1 = -0.0122\)</span> and <span class="math notranslate nohighlight">\(c_2 = 0.0089\)</span>. Clearly, the first state is a low-growth (or “recession”) state and the second state is the high-growth state.</p>
+<p>The transition probability matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix}
+0.2315 &amp; 0.7685\\ 
+0.0415 &amp; 0.9585 
+\end{pmatrix},\end{split}\]</div>
+<p>so if you’re in the high-growth state, there’s about a 96% chance you’ll stay there, but if you’re in the recession state there’s a 77% chance you’ll transition out of it. If you think about how long recessions last, this makes perfect sense.</p>
+<p>The <em>expected duration</em> of the two states are given by <span class="math notranslate nohighlight">\(\frac{1}{0.7685}\)</span> and <span class="math notranslate nohighlight">\(\frac{1}{0.0415}.\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr_res2</span><span class="o">.</span><span class="n">expected_durations</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.30120739, 24.08223192])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s look at the filtered probabilities of state 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr_res2</span><span class="o">.</span><span class="n">filtered_marginal_probabilities</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;DATE&#39;&gt;
+</pre></div>
+</div>
+<img alt="_images/82fdaa870c3b41ee51239f02ec57f62b32b953accc67f12a37333be289a5a88a.png" src="_images/82fdaa870c3b41ee51239f02ec57f62b32b953accc67f12a37333be289a5a88a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get NBER recessions data</span>
+<span class="n">usrec</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;USREC&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1947</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdpgr_res2</span><span class="o">.</span><span class="n">filtered_marginal_probabilities</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">usrec</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">usrec</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Filtered probability of recession&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gdpgr_res2</span><span class="o">.</span><span class="n">smoothed_marginal_probabilities</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">usrec</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">usrec</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;lightgrey&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Smoothed probability of recession&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">gdpgr</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">gdpgr</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/9e7721431604a9d83b5111a5decce98e1e5a0507066e38665789d30f47c9181e.png" src="_images/9e7721431604a9d83b5111a5decce98e1e5a0507066e38665789d30f47c9181e.png" />
+</div>
+</div>
+</section>
+<section id="the-great-moderation">
+<h2>The Great Moderation<a class="headerlink" href="#the-great-moderation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">gdpgr</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+
+<span class="n">gdpgr</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;GDP&#39;</span><span class="p">,</span> <span class="s1">&#39;Std.Dev.&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x285a545d0&gt;
+</pre></div>
+</div>
+<img alt="_images/2c9267b6696a6bd3f5fa13471bca13d474d87811afa2070171ca37f3b0450e82.png" src="_images/2c9267b6696a6bd3f5fa13471bca13d474d87811afa2070171ca37f3b0450e82.png" />
+</div>
+</div>
+<p>The volatility in the series after 1985 is about half of what it is before that.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr</span><span class="p">[:</span><span class="s1">&#39;1985&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GDPC1    0.011468
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdpgr</span><span class="p">[</span><span class="s1">&#39;1985&#39;</span><span class="p">:]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GDPC1    0.005627
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>This decline in the volatility of GDP growth is known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Great_Moderation">Great Moderation</a>.</p>
+<p>We can estimate a Markov Switching Model where the autoregressive structure changes depending on which state we are in.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mod_gdpgr2</span> <span class="o">=</span> <span class="n">MarkovAutoregression</span><span class="p">(</span><span class="n">gdpgr</span><span class="p">,</span> <span class="n">k_regimes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                                  <span class="n">switching_ar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                  <span class="n">switching_variance</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">res_gdpgr2</span> <span class="o">=</span> <span class="n">mod_gdpgr2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">disp</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res_gdpgr2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: -3.464561
+         Iterations: 56
+         Function evaluations: 69
+         Gradient evaluations: 69
+                         Markov Switching Model Results                         
+================================================================================
+Dep. Variable:                    GDPC1   No. Observations:                  288
+Model:             MarkovAutoregression   Log Likelihood                 997.793
+Date:                  Mon, 04 Mar 2024   AIC                          -1971.587
+Time:                          21:05:05   BIC                          -1927.631
+Sample:                      04-01-1947   HQIC                         -1953.972
+                           - 10-01-2019                                         
+Covariance Type:                 approx                                         
+                             Regime 0 parameters                              
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0039      0.003      1.397      0.162      -0.002       0.009
+sigma2         0.0002   4.87e-05      3.559      0.000     7.8e-05       0.000
+ar.L1          0.1709      0.310      0.551      0.582      -0.437       0.779
+ar.L2          0.0335      0.154      0.218      0.828      -0.268       0.335
+ar.L3         -0.0191      0.198     -0.096      0.923      -0.407       0.369
+                             Regime 1 parameters                              
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0089      0.001      9.174      0.000       0.007       0.011
+sigma2      2.749e-05   3.63e-06      7.569      0.000    2.04e-05    3.46e-05
+ar.L1          0.3493      0.098      3.547      0.000       0.156       0.542
+ar.L2          0.3075      0.077      3.998      0.000       0.157       0.458
+ar.L3         -0.2081      0.088     -2.367      0.018      -0.380      -0.036
+                         Regime transition parameters                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+p[0-&gt;0]        0.8766      0.140      6.277      0.000       0.603       1.150
+p[1-&gt;0]        0.0463      0.030      1.541      0.123      -0.013       0.105
+==============================================================================
+
+Warnings:
+[1] Covariance matrix calculated using numerical (complex-step) differentiation.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The main difference in the models is the huge difference in the estimate of the volatility parameters in each regime:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_gdpgr2</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;sigma2[0]&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">res_gdpgr2</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;sigma2[1]&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.309701686627559
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_gdpgr2</span><span class="o">.</span><span class="n">smoothed_marginal_probabilities</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/89ccf50d244d0a84131881eb3a4ed296b72dbe99f4eadf191347d9dfa6ec1606.png" src="_images/89ccf50d244d0a84131881eb3a4ed296b72dbe99f4eadf191347d9dfa6ec1606.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="kn">from</span> <span class="nn">statsmodels.tsa</span> <span class="kn">import</span> <span class="n">stattools</span> <span class="k">as</span> <span class="n">st</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">res_gdpgr2</span><span class="o">.</span><span class="n">resid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">res_gdpgr2</span><span class="o">.</span><span class="n">resid</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residuals&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;ACF&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c2e4d5af8f8deb0a03209f45a2881cca721aba51481d97f2faeb91b89ec59044.png" src="_images/c2e4d5af8f8deb0a03209f45a2881cca721aba51481d97f2faeb91b89ec59044.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">acf</span><span class="p">,</span> <span class="n">qstats</span><span class="p">,</span> <span class="n">pvals</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">acf</span><span class="p">(</span><span class="n">res_gdpgr2</span><span class="o">.</span><span class="n">resid</span><span class="p">,</span> <span class="n">nlags</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">qstat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pvals</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.4981213 , 0.75555926, 0.89337712, 0.70475991, 0.56096594,
+       0.52677942, 0.64021147, 0.67956929, 0.65692947, 0.40697053,
+       0.37580521, 0.26037749])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07aa%20Applications.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Applications</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="notation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Notation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gdp-growth">GDP growth</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-great-moderation">The Great Moderation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  &copy; 2024 <a href="https://stoffprof.github.io">Noah Stoffman</a>. Version 0.24.01.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

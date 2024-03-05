@@ -227,6 +227,12 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">The efficient frontier</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05c%20Numerical%20optimization.html">Numerical optimization</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time series modeling</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="07a%20Time%20series%20analysis.html">Time series models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07aa%20Applications.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07b%20Markov%20switching%20model.html">Markov Switching model</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
@@ -1059,7 +1065,7 @@ memory usage: 108.4 KB
 <img alt="_images/97c0827269878d61853535f60012ea86b65774929bd7288c486a35c645bcdb6a.png" src="_images/97c0827269878d61853535f60012ea86b65774929bd7288c486a35c645bcdb6a.png" />
 </div>
 </div>
-<div class="tip admonition">
+<div class="exercise tip admonition">
 <p class="admonition-title">Check your understanding</p>
 <p>Is the Sharpe ratio of a portfolio shown on this graph? Where can we see the Sharpe ratio for the tangency portfolio?</p>
 </div>
@@ -1111,6 +1117,34 @@ memory usage: 108.4 KB
 <div class="math notranslate nohighlight">
 \[\omega_{\text{gmv}} = \frac{\boldsymbol{\Sigma}^{-1}\mathbf{1}}{\mathbf{1}'\boldsymbol{\Sigma}^{-1}\mathbf{1}}
 = \left(\frac{1}{N}, \cdots, \frac{1}{N}\right)' = \omega_{\text{ew}}.\]</div>
+<div class="extra-credit dropdown admonition">
+<p class="admonition-title">Extra credit</p>
+<p>To see this relationship, we start with the inverse of this variance–covariance matrix, which can be shown to be</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{\Sigma}^{-1} = \frac{1}{\sigma^2}\cdot\frac{1}{[(N-1)\rho+1](\rho-1)}\begin{pmatrix}-(N-2)\rho-1 &amp; \rho &amp; \cdots &amp; \rho \\\rho &amp; -(N-2)\rho-1 &amp; \ddots &amp; \rho \\\vdots &amp; \cdots &amp; \ddots &amp; \vdots \\\rho &amp; \cdots &amp; \rho &amp; -(N-2)\rho-1 \\\end{pmatrix}.\end{split}\]</div>
+<p>The matrix part simply has <span class="math notranslate nohighlight">\(\rho\)</span> in all the off-diagonal terms, and <span class="math notranslate nohighlight">\(-(N-2)\rho-1\)</span> along the diagonal.</p>
+<p>For example, in the <span class="math notranslate nohighlight">\(N=2\)</span> case, this is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\boldsymbol{\Sigma}^{-1} = \frac{1}{\sigma^2}\cdot\frac{1}{(\rho+1)(\rho-1)}
+\begin{pmatrix}
+-1 &amp; \rho \\
+\rho &amp; -1 \\
+\end{pmatrix}.\end{split}\]</div>
+<p>Now, to calculate <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{-1}\mathbf{1}\)</span>, we know that the result will be an <span class="math notranslate nohighlight">\(N\times 1\)</span> vector where each value is the sum of each row in <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}^{-1}\)</span>. Each of these sums is the same: we have <span class="math notranslate nohighlight">\(N-1\)</span> terms with <span class="math notranslate nohighlight">\(\rho\)</span>, plus the <span class="math notranslate nohighlight">\(-(N-2)\rho-1\)</span> term, so every row is</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sigma^2} \frac{(N-1)\rho - (N-2)\rho-1}{[(N-1)\rho+1](\rho-1)} = \frac{1}{\sigma^2}\frac{1}{(N-1)\rho+1}.\]</div>
+<p>That is,</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\Sigma}^{-1}\mathbf{1} = \frac{1}{\sigma^2} \left(\frac{1}{(N-1)\rho + 1}, \quad \cdots, \quad \frac{1}{(N-1)\rho + 1} \right)'.\]</div>
+<p>Now, <span class="math notranslate nohighlight">\(\mathbf{1}'\boldsymbol{\Sigma}^{-1}\mathbf{1}\)</span> is just the sum of these <span class="math notranslate nohighlight">\(N\)</span> values:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{1}'\boldsymbol{\Sigma}^{-1}\mathbf{1} = \frac{1}{\sigma^2} \frac{N}{(N-1)\rho + 1}.\]</div>
+<p>Therefore, the GMV weights are</p>
+<div class="math notranslate nohighlight">
+\[\omega_{\text{gmv}} = \frac{\boldsymbol{\Sigma}^{-1}\mathbf{1}}{\mathbf{1}'\boldsymbol{\Sigma}^{-1}\mathbf{1}}
+= \left(\frac{1}{N}, \cdots, \frac{1}{N}\right)' = \omega_{\text{ew}}.\]</div>
+<p>Of course, we need no information about either of the parameters, <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\rho\)</span>, to calculate the equal-weight portfolio. So if we assume that these are the only two parameters in the covariance matrix, it no longer matters what they are. <em>Whatever</em> they are, they have no effect on the weights of the GMV, and estimating them becomes irrelevant. We simply end up with the equal-weighted portfolio.</p>
+</div>
 <p>Choosing particular values for <span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span>, and <span class="math notranslate nohighlight">\(\rho\)</span>, we see that the GMV weights are indeed those of an equal-weighted portfolio. Experiment by changing the inputs to see for yourself.</p>
 </section>
 <section id="portfolio-weights">

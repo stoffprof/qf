@@ -1,0 +1,2062 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Applications &#8212; Quant Finance in Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/myadmonitions.css?v=cdb3895b" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=891ccba4" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/myadmonitions-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="_static/.ipynb_checkpoints/custom-checkpoint.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"cov": "\\operatorname{Cov}", "var": "\\operatorname{Var}", "N": "\\mathcal{N}", "E": "\\mathbb{E}", "P": "\\mathbb{P}", "R": "\\mathbb{R}"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '07aa Applications';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://stoffprof.github.io/qf/07aa Applications.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Markov Switching model" href="07b%20Markov%20switching%20model.html" />
+    <link rel="prev" title="Time series models" href="07a%20Time%20series%20analysis.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/qf.png" class="logo__image only-light" alt="Quant Finance in Python - Home"/>
+    <script>document.write(`<img src="_static/qf.png" class="logo__image only-dark" alt="Quant Finance in Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Preliminaries</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01a%20math.html">Math background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01c%20prices.html">A model of prices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01b%20returns.html">Asset returns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01d%20quant%20interview.html">Quant interview problem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Econometrics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="probability.html">Probability</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="02a%20MSE.html">Prediction: First look</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02b%20Probability%20theory.html">Probability theory</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="02d%20Pseudorandom%20number%20generation.html">Pseudorandom number generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02c%20Distributions.html">Probability distributions</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="02e%20Covariance.html">Covariance</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="02f%20Estimation.html">Parameter estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="regression.html">Regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="04a%20Regression%20theory.html">Linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04b%20Regression%20applications.html">Implementing regressions</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Factors</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="06%20Calculating%20beta.html">Factor regressions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Portfolio optimization</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="05a%20Diversification.html">Diversification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05b%20Efficient%20portfolios.html">The efficient frontier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05c%20Numerical%20optimization.html">Numerical optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Time series modeling</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="07a%20Time%20series%20analysis.html">Time series models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07b%20Markov%20switching%20model.html">Markov Switching model</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sources.html">Additional sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/07aa Applications.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Applications</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unemployment">Unemployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection">Model selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals">Residuals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oil-prices">Oil prices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#housing-starts">Housing starts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-seasonality">Removing seasonality</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inflation">Inflation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="applications">
+<h1>Applications<a class="headerlink" href="#applications" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas_datareader</span> <span class="k">as</span> <span class="nn">pdr</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa</span> <span class="kn">import</span> <span class="n">stattools</span> <span class="k">as</span> <span class="n">st</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima_process</span> <span class="kn">import</span> <span class="n">ArmaProcess</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.ar_model</span> <span class="kn">import</span> <span class="n">AutoReg</span><span class="p">,</span> <span class="n">ar_select_order</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tsa.arima.model</span> <span class="kn">import</span> <span class="n">ARIMA</span>
+
+<span class="c1"># Suppress all warnings about future changes to syntax</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">simplefilter</span>
+<span class="n">simplefilter</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="unemployment">
+<h2>Unemployment<a class="headerlink" href="#unemployment" title="Link to this heading">#</a></h2>
+<p>This application follows example in Tsay (<a class="reference external" href="https://www.wiley.com/en-us/Nonlinear+Time+Series+Analysis-p-9781119264071">2018</a>), chapter 1. We’ll begin by downloading monthly unemployment data. <a class="reference external" href="https://fred.stlouisfed.org/series/UNRATE">This series</a>, calculated by the Bureau of Labor Statistics, is seasonally adjusted and begins in 1948.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ur</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;UNRATE&#39;</span><span class="p">,</span> <span class="mi">1948</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll begin by calculating the average rate on a quarterly basis. This is simple to do using the <code class="docutils literal notranslate"><span class="pre">resample</span></code> method in pandas, which is possible since we have a <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ur</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;1948-01-01&#39;, &#39;1948-02-01&#39;, &#39;1948-03-01&#39;, &#39;1948-04-01&#39;,
+               &#39;1948-05-01&#39;, &#39;1948-06-01&#39;, &#39;1948-07-01&#39;, &#39;1948-08-01&#39;,
+               &#39;1948-09-01&#39;, &#39;1948-10-01&#39;,
+               ...
+               &#39;2023-04-01&#39;, &#39;2023-05-01&#39;, &#39;2023-06-01&#39;, &#39;2023-07-01&#39;,
+               &#39;2023-08-01&#39;, &#39;2023-09-01&#39;, &#39;2023-10-01&#39;, &#39;2023-11-01&#39;,
+               &#39;2023-12-01&#39;, &#39;2024-01-01&#39;],
+              dtype=&#39;datetime64[ns]&#39;, name=&#39;DATE&#39;, length=913, freq=None)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urq</span> <span class="o">=</span> <span class="n">ur</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">)[</span><span class="s1">&#39;UNRATE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE
+1948-03-31    3.733333
+1948-06-30    3.666667
+1948-09-30    3.766667
+1948-12-31    3.833333
+1949-03-31    4.666667
+                ...   
+2023-03-31    3.500000
+2023-06-30    3.566667
+2023-09-30    3.700000
+2023-12-31    3.733333
+2024-03-31    3.700000
+Freq: QE-DEC, Name: UNRATE, Length: 305, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urq</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3547ac9fcd3a37def4961afc1b09a37f860b885774703e356f809a7e89b62532.png" src="_images/3547ac9fcd3a37def4961afc1b09a37f860b885774703e356f809a7e89b62532.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urqd</span> <span class="o">=</span> <span class="n">urq</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urqd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/102b448eaace2d6687ea024cb232d0083ce000611ae76b63ff9a4c4cc6adfc0c.png" src="_images/102b448eaace2d6687ea024cb232d0083ce000611ae76b63ff9a4c4cc6adfc0c.png" />
+</div>
+</div>
+<p>To simplify the analysis, we’ll drop the period at the end of the sample, when the pandemic caused a massive, never-before-seen change in unemployment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">urqd</span> <span class="o">=</span> <span class="n">urqd</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="s1">&#39;2019&#39;</span><span class="p">]</span>
+
+<span class="n">urqd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/568496c112fac89279a2ca4cd5a3c71107cfc78ff8988b0787ec7cdf7f872eab.png" src="_images/568496c112fac89279a2ca4cd5a3c71107cfc78ff8988b0787ec7cdf7f872eab.png" />
+</div>
+</div>
+<section id="model-selection">
+<h3>Model selection<a class="headerlink" href="#model-selection" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modsel</span> <span class="o">=</span> <span class="n">ar_select_order</span><span class="p">(</span><span class="n">urqd</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modsel</span><span class="o">.</span><span class="n">aic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13): 54.32144737112342,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12): 54.42094086280888,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14): 55.84344763960897,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17): 57.2607918802232,
+ (1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18): 57.69784661067407,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15): 57.79642700162014,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16): 59.4825059813455,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11): 61.86310769438589,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9): 63.41455049360643,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10): 65.39972192790353,
+ (1, 2, 3, 4, 5, 6, 7, 8): 71.07799946574383,
+ (1, 2, 3, 4, 5, 6, 7): 77.34567959026421,
+ (1, 2, 3, 4, 5): 77.66080314812741,
+ (1, 2, 3, 4): 78.079152106241,
+ (1, 2, 3, 4, 5, 6): 78.57654719651806,
+ (1, 2, 3): 79.59357752393483,
+ (1, 2): 81.46660530259607,
+ (1,): 84.68063860839631,
+ 0: 222.63356851361561}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modsel</span><span class="o">.</span><span class="n">bic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{(1,): 91.87006136759999,
+ (1, 2): 92.25073944140158,
+ (1, 2, 3): 93.97242304234219,
+ (1, 2, 3, 4): 96.05270900425019,
+ (1, 2, 3, 4, 5): 99.22907142573845,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9): 99.36166428962483,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12): 101.15218879763279,
+ (1, 2, 3, 4, 5, 6, 7, 8): 103.43040188216038,
+ (1, 2, 3, 4, 5, 6): 103.73952685373094,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13): 104.64740668554916,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10): 104.94154710352376,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11): 104.99964424960795,
+ (1, 2, 3, 4, 5, 6, 7): 106.10337062707893,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14): 109.76411833363656,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15): 115.31180907524956,
+ (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16): 120.59259943457675,
+ (1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17): 121.9655967130563,
+ (1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18): 125.997362823109,
+ 0: 226.22827989321746}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar_select_order</span><span class="p">(</span><span class="n">urqd</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="s1">&#39;aic&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ar_lags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar_select_order</span><span class="p">(</span><span class="n">urqd</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="s1">&#39;bic&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ar_lags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using BIC would choose <span class="math notranslate nohighlight">\(p=1\)</span>, but AIC indicates <span class="math notranslate nohighlight">\(p=13\)</span>.</p>
+<p>Comparing these two models using both AIC and BIC suggests <span class="math notranslate nohighlight">\(p=13\)</span> is a good model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar1</span> <span class="o">=</span> <span class="n">AutoReg</span><span class="p">(</span><span class="n">urqd</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ar1</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:                 UNRATE   No. Observations:                  287
+Model:                     AutoReg(1)   Log Likelihood                 -51.751
+Method:               Conditional MLE   S.D. of innovations              0.290
+Date:                Mon, 04 Mar 2024   AIC                            109.501
+Time:                        20:54:07   BIC                            120.469
+Sample:                    09-30-1948   HQIC                           113.898
+                         - 12-31-2019                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const       6.993e-05      0.017      0.004      0.997      -0.034       0.034
+UNRATE.L1      0.6500      0.045     14.466      0.000       0.562       0.738
+                                    Roots                                    
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1            1.5385           +0.0000j            1.5385            0.0000
+-----------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar13</span> <span class="o">=</span> <span class="n">AutoReg</span><span class="p">(</span><span class="n">urqd</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ar13</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:                 UNRATE   No. Observations:                  287
+Model:                    AutoReg(13)   Log Likelihood                 -16.418
+Method:               Conditional MLE   S.D. of innovations              0.257
+Date:                Mon, 04 Mar 2024   AIC                             62.836
+Time:                        20:54:12   BIC                            117.033
+Sample:                    09-30-1951   HQIC                            84.590
+                         - 12-31-2019                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0010      0.016      0.061      0.951      -0.029       0.031
+UNRATE.L1      0.7109      0.060     11.827      0.000       0.593       0.829
+UNRATE.L2     -0.0097      0.072     -0.135      0.893      -0.151       0.132
+UNRATE.L3     -0.0635      0.072     -0.881      0.378      -0.205       0.078
+UNRATE.L4     -0.2520      0.072     -3.506      0.000      -0.393      -0.111
+UNRATE.L5      0.0935      0.072      1.290      0.197      -0.049       0.235
+UNRATE.L6      0.1542      0.069      2.220      0.026       0.018       0.290
+UNRATE.L7      0.0011      0.070      0.016      0.987      -0.136       0.138
+UNRATE.L8     -0.3298      0.069     -4.751      0.000      -0.466      -0.194
+UNRATE.L9      0.1800      0.072      2.509      0.012       0.039       0.321
+UNRATE.L10     0.0809      0.071      1.136      0.256      -0.059       0.220
+UNRATE.L11    -0.0135      0.071     -0.190      0.849      -0.153       0.126
+UNRATE.L12    -0.2278      0.071     -3.209      0.001      -0.367      -0.089
+UNRATE.L13     0.0949      0.058      1.639      0.101      -0.019       0.208
+                                    Roots                                     
+==============================================================================
+                   Real          Imaginary           Modulus         Frequency
+------------------------------------------------------------------------------
+AR.1            -1.0734           -0.3600j            1.1321           -0.4485
+AR.2            -1.0734           +0.3600j            1.1321            0.4485
+AR.3            -0.8641           -0.8669j            1.2240           -0.3747
+AR.4            -0.8641           +0.8669j            1.2240            0.3747
+AR.5            -0.3644           -1.0261j            1.0889           -0.3043
+AR.6            -0.3644           +1.0261j            1.0889            0.3043
+AR.7             0.4348           -1.0201j            1.1089           -0.1859
+AR.8             0.4348           +1.0201j            1.1089            0.1859
+AR.9             0.8500           -0.7549j            1.1369           -0.1156
+AR.10            0.8500           +0.7549j            1.1369            0.1156
+AR.11            1.0908           -0.3209j            1.1371           -0.0455
+AR.12            1.0908           +0.3209j            1.1371            0.0455
+AR.13            2.2514           -0.0000j            2.2514           -0.0000
+------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s prune the model to keep only coefficients that are statistically significant.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar13</span><span class="o">.</span><span class="n">tvalues</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>const          0.061384
+UNRATE.L1     11.827093
+UNRATE.L2     -0.134720
+UNRATE.L3     -0.881150
+UNRATE.L4     -3.506309
+UNRATE.L5      1.289900
+UNRATE.L6      2.220079
+UNRATE.L7      0.016272
+UNRATE.L8     -4.750995
+UNRATE.L9      2.509202
+UNRATE.L10     1.136459
+UNRATE.L11    -0.190377
+UNRATE.L12    -3.208969
+UNRATE.L13     1.639165
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 5% significance level</span>
+
+<span class="n">ar13</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="n">ar13</span><span class="o">.</span><span class="n">tvalues</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">1.96</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UNRATE.L1     11.827093
+UNRATE.L4     -3.506309
+UNRATE.L6      2.220079
+UNRATE.L8     -4.750995
+UNRATE.L9      2.509202
+UNRATE.L12    -3.208969
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1% significance level</span>
+
+<span class="n">ar13</span><span class="o">.</span><span class="n">pvalues</span><span class="p">[</span><span class="n">ar13</span><span class="o">.</span><span class="n">pvalues</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UNRATE.L1     2.827644e-32
+UNRATE.L4     4.543675e-04
+UNRATE.L8     2.024185e-06
+UNRATE.L12    1.332118e-03
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar_v2</span> <span class="o">=</span> <span class="n">AutoReg</span><span class="p">(</span><span class="n">urqd</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ar_v2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:                 UNRATE   No. Observations:                  287
+Model:             Restr. AutoReg(12)   Log Likelihood                 -29.081
+Method:               Conditional MLE   S.D. of innovations              0.269
+Date:                Mon, 04 Mar 2024   AIC                             70.161
+Time:                        20:54:23   BIC                             91.862
+Sample:                    06-30-1951   HQIC                            78.870
+                         - 12-31-2019                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const          0.0004      0.016      0.025      0.980      -0.031       0.032
+UNRATE.L1      0.6276      0.045     14.010      0.000       0.540       0.715
+UNRATE.L4     -0.1772      0.044     -3.987      0.000      -0.264      -0.090
+UNRATE.L8     -0.1174      0.043     -2.733      0.006      -0.202      -0.033
+UNRATE.L12    -0.1222      0.043     -2.856      0.004      -0.206      -0.038
+                                    Roots                                     
+==============================================================================
+                   Real          Imaginary           Modulus         Frequency
+------------------------------------------------------------------------------
+AR.1             1.0301           -0.3268j            1.0807           -0.0489
+AR.2             1.0301           +0.3268j            1.0807            0.0489
+AR.3             0.8843           -0.7578j            1.1645           -0.1128
+AR.4             0.8843           +0.7578j            1.1645            0.1128
+AR.5             0.4442           -1.1222j            1.2069           -0.1900
+AR.6             0.4442           +1.1222j            1.2069            0.1900
+AR.7            -0.3140           -1.1605j            1.2023           -0.2921
+AR.8            -0.3140           +1.1605j            1.2023            0.2921
+AR.9            -1.1815           -0.3878j            1.2435           -0.4495
+AR.10           -1.1815           +0.3878j            1.2435            0.4495
+AR.11           -0.8630           -0.9177j            1.2597           -0.3701
+AR.12           -0.8630           +0.9177j            1.2597            0.3701
+------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">AutoReg</span><span class="p">(</span><span class="n">urqd</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="n">trend</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:                 UNRATE   No. Observations:                  287
+Model:             Restr. AutoReg(12)   Log Likelihood                 -19.055
+Method:               Conditional MLE   S.D. of innovations              0.259
+Date:                Mon, 04 Mar 2024   AIC                             52.110
+Time:                        20:54:25   BIC                             77.427
+Sample:                    06-30-1951   HQIC                            62.270
+                         - 12-31-2019                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+UNRATE.L1      0.6668      0.044     15.141      0.000       0.580       0.753
+UNRATE.L4     -0.2399      0.047     -5.126      0.000      -0.332      -0.148
+UNRATE.L6      0.1848      0.049      3.745      0.000       0.088       0.282
+UNRATE.L8     -0.3058      0.061     -5.047      0.000      -0.425      -0.187
+UNRATE.L9      0.1861      0.056      3.323      0.001       0.076       0.296
+UNRATE.L12    -0.1472      0.042     -3.512      0.000      -0.229      -0.065
+                                    Roots                                     
+==============================================================================
+                   Real          Imaginary           Modulus         Frequency
+------------------------------------------------------------------------------
+AR.1             1.0569           -0.2923j            1.0966           -0.0429
+AR.2             1.0569           +0.2923j            1.0966            0.0429
+AR.3             0.8633           -0.7253j            1.1275           -0.1112
+AR.4             0.8633           +0.7253j            1.1275            0.1112
+AR.5             0.4598           -1.0438j            1.1406           -0.1840
+AR.6             0.4598           +1.0438j            1.1406            0.1840
+AR.7            -1.0861           -0.3895j            1.1538           -0.4452
+AR.8            -1.0861           +0.3895j            1.1538            0.4452
+AR.9            -0.4159           -1.0497j            1.1290           -0.3100
+AR.10           -0.4159           +1.0497j            1.1290            0.3100
+AR.11           -0.8780           -1.1148j            1.4190           -0.3562
+AR.12           -0.8780           +1.1148j            1.4190            0.3562
+------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">glob=True</span></code> performs a global search over all <span class="math notranslate nohighlight">\(2^{12}=4096\)</span> possible models. Clearly trying all possible models for a large number of lags would eventually become infeasible; using 20 lags requires testing over 1 million models, for example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sel</span> <span class="o">=</span> <span class="n">ar_select_order</span><span class="p">(</span><span class="n">urqd</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">glob</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sel</span><span class="o">.</span><span class="n">ar_lags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 4, 6, 8, 9, 12]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="residuals">
+<h3>Residuals<a class="headerlink" href="#residuals" title="Link to this heading">#</a></h3>
+<p>The <em>standardized residuals</em> are calculated by scaling the residuals from their estimated standard deviation, <span class="math notranslate nohighlight">\(\epsilon_t / \sigma.\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">std_resid</span> <span class="o">=</span> <span class="n">ar_v2</span><span class="o">.</span><span class="n">resid</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ar_v2</span><span class="o">.</span><span class="n">sigma2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">std_resid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Standardized Residuals&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">std_resid</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span>
+                               <span class="n">zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">auto_ylims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ACF&#39;</span><span class="p">)</span>
+
+<span class="n">acf</span><span class="p">,</span> <span class="n">qstats</span><span class="p">,</span> <span class="n">pvals</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">acf</span><span class="p">(</span><span class="n">std_resid</span><span class="p">,</span> <span class="n">nlags</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">qstat</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>                           
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">pvals</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Box-Ljung statistic $p$-values&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/d7d0f9897dca728d5fbad8dae9e9dbd3ca481d54c941589b595b6e7ed6157010.png" src="_images/d7d0f9897dca728d5fbad8dae9e9dbd3ca481d54c941589b595b6e7ed6157010.png" />
+</div>
+</div>
+<p>We can use <a class="reference external" href="https://en.wikipedia.org/wiki/Kernel_density_estimation">kernel density estimation</a> to get an empirical estimate of the PDF.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">std_resid</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">bw_method</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9a16468f65d3e8d437e2030482fdf55b0e95a034d7f6116713b7de61d70fdb31.png" src="_images/9a16468f65d3e8d437e2030482fdf55b0e95a034d7f6116713b7de61d70fdb31.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">std_resid</span><span class="o">.</span><span class="n">skew</span><span class="p">(),</span> <span class="n">std_resid</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.5712214353027925, 1.8777501533375105)
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are several statistical tests we can use to test the null hypothesis that data are drawn from a normal distribution. Two that are available in <code class="docutils literal notranslate"><span class="pre">scipy</span></code> are due to D’Agostino and Pearson (1973) and the Shapiro and Wilk (1965). The former combines information about the skewness and kurtosis of a series; the latter is a more complicated test that uses information about <a class="reference external" href="https://en.wikipedia.org/wiki/Order_statistic">order statistics</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">normaltest</span><span class="p">,</span> <span class="n">shapiro</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normaltest</span><span class="p">(</span><span class="n">std_resid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NormaltestResult(statistic=28.285962906502313, pvalue=7.207442680254298e-07)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shapiro</span><span class="p">(</span><span class="n">std_resid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ShapiroResult(statistic=0.9581716196512814, pvalue=4.05104489794122e-07)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="oil-prices">
+<h2>Oil prices<a class="headerlink" href="#oil-prices" title="Link to this heading">#</a></h2>
+<p>Next we’ll use the Crude Oil Price series for West Texas Intermediate at Cushing, Oklahoma (WTI), available from <a class="reference external" href="https://fred.stlouisfed.org/series/WCOILWTICO">FRED</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oil</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;WCOILWTICO&#39;</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2022</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oil</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatetimeIndex([&#39;2000-01-07&#39;, &#39;2000-01-14&#39;, &#39;2000-01-21&#39;, &#39;2000-01-28&#39;,
+               &#39;2000-02-04&#39;, &#39;2000-02-11&#39;, &#39;2000-02-18&#39;, &#39;2000-02-25&#39;,
+               &#39;2000-03-03&#39;, &#39;2000-03-10&#39;,
+               ...
+               &#39;2021-10-29&#39;, &#39;2021-11-05&#39;, &#39;2021-11-12&#39;, &#39;2021-11-19&#39;,
+               &#39;2021-11-26&#39;, &#39;2021-12-03&#39;, &#39;2021-12-10&#39;, &#39;2021-12-17&#39;,
+               &#39;2021-12-24&#39;, &#39;2021-12-31&#39;],
+              dtype=&#39;datetime64[ns]&#39;, name=&#39;DATE&#39;, length=1148, freq=None)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify a frequency for the series</span>
+<span class="n">oil</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">oil</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;W-FRI&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">oil</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/99798c69ebb40bb9ed7656d177abbd654d3b0c5b5f3d868423b10b45de2e192f.png" src="_images/99798c69ebb40bb9ed7656d177abbd654d3b0c5b5f3d868423b10b45de2e192f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oild</span> <span class="o">=</span> <span class="n">oil</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oild</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/228269b02494bd41c43c2e74b1de146279b00ee4df4c39aada34b441e503906b.png" src="_images/228269b02494bd41c43c2e74b1de146279b00ee4df4c39aada34b441e503906b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar_select_order</span><span class="p">(</span><span class="n">oild</span><span class="p">,</span> <span class="n">maxlag</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ic</span><span class="o">=</span><span class="s1">&#39;aic&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ar_lags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6, 7, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar8</span> <span class="o">=</span> <span class="n">AutoReg</span><span class="p">(</span><span class="n">oild</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ar8</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:             WCOILWTICO   No. Observations:                 1147
+Model:                     AutoReg(8)   Log Likelihood               -2671.389
+Method:               Conditional MLE   S.D. of innovations              2.526
+Date:                Mon, 04 Mar 2024   AIC                           5362.779
+Time:                        20:55:56   BIC                           5413.158
+Sample:                    03-10-2000   HQIC                          5381.805
+                         - 12-31-2021                                         
+=================================================================================
+                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+const             0.0237      0.075      0.317      0.751      -0.123       0.170
+WCOILWTICO.L1     0.1983      0.030      6.720      0.000       0.140       0.256
+WCOILWTICO.L2    -0.0084      0.030     -0.279      0.780      -0.067       0.051
+WCOILWTICO.L3     0.0298      0.030      0.989      0.323      -0.029       0.089
+WCOILWTICO.L4     0.0053      0.030      0.176      0.860      -0.054       0.064
+WCOILWTICO.L5     0.0643      0.030      2.113      0.035       0.005       0.124
+WCOILWTICO.L6     0.0067      0.030      0.221      0.825      -0.053       0.066
+WCOILWTICO.L7    -0.0138      0.030     -0.451      0.652      -0.073       0.046
+WCOILWTICO.L8     0.1029      0.030      3.449      0.001       0.044       0.161
+                                    Roots                                    
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1            1.2337           -0.0000j            1.2337           -0.0000
+AR.2            0.9660           -0.9514j            1.3559           -0.1238
+AR.3            0.9660           +0.9514j            1.3559            0.1238
+AR.4            0.0942           -1.3281j            1.3315           -0.2387
+AR.5            0.0942           +1.3281j            1.3315            0.2387
+AR.6           -0.9111           -0.9477j            1.3146           -0.3719
+AR.7           -0.9111           +0.9477j            1.3146            0.3719
+AR.8           -1.3983           -0.0000j            1.3983           -0.5000
+-----------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar8</span><span class="o">.</span><span class="n">tvalues</span><span class="p">[</span><span class="n">ar8</span><span class="o">.</span><span class="n">tvalues</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">1.96</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WCOILWTICO.L1    6.719652
+WCOILWTICO.L5    2.113267
+WCOILWTICO.L8    3.449110
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ar8b</span> <span class="o">=</span> <span class="n">AutoReg</span><span class="p">(</span><span class="n">oild</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ar8b</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:             WCOILWTICO   No. Observations:                 1147
+Model:              Restr. AutoReg(8)   Log Likelihood               -2672.063
+Method:               Conditional MLE   S.D. of innovations              2.527
+Date:                Mon, 04 Mar 2024   AIC                           5354.126
+Time:                        20:55:59   BIC                           5379.316
+Sample:                    03-10-2000   HQIC                          5363.639
+                         - 12-31-2021                                         
+=================================================================================
+                    coef    std err          z      P&gt;|z|      [0.025      0.975]
+---------------------------------------------------------------------------------
+const             0.0242      0.075      0.324      0.746      -0.123       0.171
+WCOILWTICO.L1     0.1981      0.029      6.865      0.000       0.142       0.255
+WCOILWTICO.L5     0.0673      0.029      2.309      0.021       0.010       0.124
+WCOILWTICO.L8     0.1025      0.029      3.520      0.000       0.045       0.160
+                                    Roots                                    
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1            1.2366           -0.0000j            1.2366           -0.0000
+AR.2            0.9397           -0.9430j            1.3313           -0.1253
+AR.3            0.9397           +0.9430j            1.3313            0.1253
+AR.4            0.0902           -1.3322j            1.3352           -0.2392
+AR.5            0.0902           +1.3322j            1.3352            0.2392
+AR.6           -0.9398           -0.9376j            1.3276           -0.3752
+AR.7           -0.9398           +0.9376j            1.3276            0.3752
+AR.8           -1.4169           -0.0000j            1.4169           -0.5000
+-----------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">std_resid</span> <span class="o">=</span> <span class="n">ar8b</span><span class="o">.</span><span class="n">resid</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ar8b</span><span class="o">.</span><span class="n">sigma2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">,</span> <span class="n">ax3</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">std_resid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Standardized Residuals&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">std_resid</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Standardized Residuals&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;ACF&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">graphics</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">plot_acf</span><span class="p">(</span><span class="n">std_resid</span><span class="o">.</span><span class="n">values</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">zero</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax3</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Squared Standardized Residuals&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;ACF&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/0c81aa2880aa746d6f1fa9f2b8b88a33f2ae9f4e8f95f5c85fc1bfcf7bd214ac.png" src="_images/0c81aa2880aa746d6f1fa9f2b8b88a33f2ae9f4e8f95f5c85fc1bfcf7bd214ac.png" />
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">std_resid</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">bw_method</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Standardized residuals&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add N(0,1) plot</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;N(0,1)&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/f31b0053e8461a6c34eb9991123c75d74e9ed344b127630f2a4d1f071a44cbff.png" src="_images/f31b0053e8461a6c34eb9991123c75d74e9ed344b127630f2a4d1f071a44cbff.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">std_resid</span><span class="o">.</span><span class="n">skew</span><span class="p">(),</span> <span class="n">std_resid</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.2010018903861333, 6.484699584106204)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normaltest</span><span class="p">(</span><span class="n">std_resid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NormaltestResult(statistic=167.43736331173835, pvalue=4.3796411197904635e-37)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="housing-starts">
+<h2>Housing starts<a class="headerlink" href="#housing-starts" title="Link to this heading">#</a></h2>
+<p>Next we’ll examine housing starts using the series <em>Housing Starts: Total: New Privately Owned Housing Units Started</em> (<a class="reference external" href="https://fred.stlouisfed.org/series/HOUSTNSA">HOUSTNSA</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hstarts</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;HOUSTNSA&#39;</span><span class="p">,</span> <span class="s1">&#39;1959&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-06-01&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">asfreq</span><span class="p">(</span><span class="s1">&#39;MS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+
+<span class="n">hstarts</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">hstartsd</span> <span class="o">=</span> <span class="n">hstarts</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">hstartsd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/bb036ba371edb53df7208649d74a32475881c537967310173d269e2e605b1ef0.png" src="_images/bb036ba371edb53df7208649d74a32475881c537967310173d269e2e605b1ef0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sel</span> <span class="o">=</span> <span class="n">ar_select_order</span><span class="p">(</span><span class="n">hstartsd</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># fit selected model</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">sel</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:               HOUSTNSA   No. Observations:                  725
+Model:                    AutoReg(24)   Log Likelihood               -2588.520
+Method:               Conditional MLE   S.D. of innovations              9.715
+Date:                Mon, 04 Mar 2024   AIC                           5229.040
+Time:                        20:56:23   BIC                           5347.405
+Sample:                    02-01-1961   HQIC                          5274.792
+                         - 06-01-2019                                         
+================================================================================
+                   coef    std err          z      P&gt;|z|      [0.025      0.975]
+--------------------------------------------------------------------------------
+const            1.5130      0.476      3.176      0.001       0.579       2.447
+HOUSTNSA.L1     -0.3121      0.037     -8.500      0.000      -0.384      -0.240
+HOUSTNSA.L2     -0.1216      0.038     -3.167      0.002      -0.197      -0.046
+HOUSTNSA.L3      0.0025      0.039      0.064      0.949      -0.073       0.078
+HOUSTNSA.L4     -0.0305      0.039     -0.791      0.429      -0.106       0.045
+HOUSTNSA.L5      0.0102      0.038      0.266      0.790      -0.065       0.085
+HOUSTNSA.L6     -0.0438      0.038     -1.142      0.253      -0.119       0.031
+HOUSTNSA.L7     -0.0471      0.038     -1.231      0.218      -0.122       0.028
+HOUSTNSA.L8     -0.0808      0.038     -2.109      0.035      -0.156      -0.006
+HOUSTNSA.L9     -0.0442      0.038     -1.167      0.243      -0.119       0.030
+HOUSTNSA.L10    -0.1300      0.038     -3.435      0.001      -0.204      -0.056
+HOUSTNSA.L11     0.0224      0.038      0.590      0.555      -0.052       0.097
+HOUSTNSA.L12     0.3743      0.036     10.273      0.000       0.303       0.446
+HOUSTNSA.L13     0.2721      0.037      7.442      0.000       0.200       0.344
+HOUSTNSA.L14     0.0571      0.038      1.505      0.132      -0.017       0.132
+HOUSTNSA.L15    -0.0656      0.038     -1.740      0.082      -0.140       0.008
+HOUSTNSA.L16    -0.1683      0.038     -4.459      0.000      -0.242      -0.094
+HOUSTNSA.L17    -0.0527      0.038     -1.380      0.168      -0.127       0.022
+HOUSTNSA.L18    -0.0823      0.038     -2.157      0.031      -0.157      -0.008
+HOUSTNSA.L19     0.0121      0.038      0.315      0.752      -0.063       0.087
+HOUSTNSA.L20    -0.0796      0.038     -2.080      0.038      -0.155      -0.005
+HOUSTNSA.L21    -0.0776      0.038     -2.025      0.043      -0.153      -0.002
+HOUSTNSA.L22     0.0101      0.038      0.264      0.792      -0.065       0.085
+HOUSTNSA.L23     0.0699      0.038      1.832      0.067      -0.005       0.145
+HOUSTNSA.L24     0.2320      0.036      6.381      0.000       0.161       0.303
+                                    Roots                                     
+==============================================================================
+                   Real          Imaginary           Modulus         Frequency
+------------------------------------------------------------------------------
+AR.1            -1.0944           -0.0000j            1.0944           -0.5000
+AR.2            -1.0287           -0.2557j            1.0600           -0.4612
+AR.3            -1.0287           +0.2557j            1.0600            0.4612
+AR.4            -0.8888           -0.5122j            1.0258           -0.4168
+AR.5            -0.8888           +0.5122j            1.0258            0.4168
+AR.6            -0.7595           -0.7729j            1.0836           -0.3736
+AR.7            -0.7595           +0.7729j            1.0836            0.3736
+AR.8            -0.5357           -0.8995j            1.0469           -0.3355
+AR.9            -0.5357           +0.8995j            1.0469            0.3355
+AR.10           -0.3297           -1.0518j            1.1023           -0.2983
+AR.11           -0.3297           +1.0518j            1.1023            0.2983
+AR.12           -0.0165           -1.0406j            1.0408           -0.2525
+AR.13           -0.0165           +1.0406j            1.0408            0.2525
+AR.14            0.2036           -1.0573j            1.0767           -0.2197
+AR.15            0.2036           +1.0573j            1.0767            0.2197
+AR.16            0.5019           -0.8703j            1.0046           -0.1667
+AR.17            0.5019           +0.8703j            1.0046            0.1667
+AR.18            0.7643           -0.8223j            1.1226           -0.1308
+AR.19            0.7643           +0.8223j            1.1226            0.1308
+AR.20            0.8692           -0.5012j            1.0033           -0.0832
+AR.21            0.8692           +0.5012j            1.0033            0.0832
+AR.22            1.0703           -0.2593j            1.1013           -0.0378
+AR.23            1.0703           +0.2593j            1.1013            0.0378
+AR.24            1.0921           -0.0000j            1.0921           -0.0000
+------------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<section id="removing-seasonality">
+<h3>Removing seasonality<a class="headerlink" href="#removing-seasonality" title="Link to this heading">#</a></h3>
+<p>By allowing each month of the year to have its own intercept — or “dummy variable” — we can remove the seasonal variation in the series.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hstartsd</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">hstartsd</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE
+1     -4.412250
+2      4.283616
+3     33.086749
+4     14.078273
+5      4.043405
+6      0.141506
+7     -3.674732
+8     -1.874897
+9     -4.164297
+10     2.827088
+11   -15.835380
+12   -15.077766
+Name: HOUSTNSA, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>When estimating an autoregression or running order selection, we can include seasonal dummies. Here’s we’ll exclude the main intercept and instead have 12 dummies (one for each month).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sel</span> <span class="o">=</span> <span class="n">ar_select_order</span><span class="p">(</span><span class="n">hstartsd</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="n">seasonal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">trend</span><span class="o">=</span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="n">old_names</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">sel</span><span class="o">.</span><span class="n">ar_lags</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The initial data begin in January, but when we difference the data we end up with a series that starts in February. Therefore, the <code class="docutils literal notranslate"><span class="pre">s(1,12)</span></code> coefficient is automatically defined as the February dummy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="n">sel</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            AutoReg Model Results                             
+==============================================================================
+Dep. Variable:               HOUSTNSA   No. Observations:                  725
+Model:               Seas. AutoReg(2)   Log Likelihood               -2652.556
+Method:               Conditional MLE   S.D. of innovations              9.487
+Date:                Mon, 04 Mar 2024   AIC                           5335.112
+Time:                        20:56:29   BIC                           5403.863
+Sample:                    04-01-1959   HQIC                          5361.648
+                         - 06-01-2019                                         
+===============================================================================
+                  coef    std err          z      P&gt;|z|      [0.025      0.975]
+-------------------------------------------------------------------------------
+s(1,12)         1.2726      1.373      0.927      0.354      -1.418       3.963
+s(2,12)        33.9203      1.240     27.351      0.000      31.490      36.351
+s(3,12)        24.3411      1.760     13.832      0.000      20.892      27.790
+s(4,12)        11.9993      1.891      6.345      0.000       8.292      15.706
+s(5,12)         2.9518      1.345      2.194      0.028       0.315       5.588
+s(6,12)        -3.1503      1.234     -2.552      0.011      -5.569      -0.731
+s(7,12)        -2.9387      1.232     -2.385      0.017      -5.353      -0.524
+s(8,12)        -5.1398      1.236     -4.158      0.000      -7.563      -2.717
+s(9,12)         1.3821      1.239      1.116      0.264      -1.045       3.810
+s(10,12)      -15.4785      1.235    -12.530      0.000     -17.900     -13.057
+s(11,12)      -19.4297      1.349    -14.400      0.000     -22.074     -16.785
+s(12,12)      -10.6828      1.525     -7.006      0.000     -13.671      -7.694
+HOUSTNSA.L1    -0.2953      0.037     -7.994      0.000      -0.368      -0.223
+HOUSTNSA.L2    -0.1148      0.037     -3.107      0.002      -0.187      -0.042
+                                    Roots                                    
+=============================================================================
+                  Real          Imaginary           Modulus         Frequency
+-----------------------------------------------------------------------------
+AR.1           -1.2862           -2.6564j            2.9514           -0.3218
+AR.2           -1.2862           +2.6564j            2.9514            0.3218
+-----------------------------------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">fig</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">lags</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a8ea42cfbb7d48c07c2bd0a5e63a5887052529a105a78f793971b055de5b1380.png" src="_images/a8ea42cfbb7d48c07c2bd0a5e63a5887052529a105a78f793971b055de5b1380.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="inflation">
+<h2>Inflation<a class="headerlink" href="#inflation" title="Link to this heading">#</a></h2>
+<p>Consumer Price Index for All Urban Consumers: All Items in U.S. City Average (<a class="reference external" href="https://fred.stlouisfed.org/series/CPIAUCNS">CPIAUCNS</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpi</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;CPIAUCNS&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1971-01&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2016-12&#39;</span><span class="p">)</span>
+<span class="n">cpi</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">cpi</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;MS&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpi</span> <span class="o">=</span> <span class="n">pdr</span><span class="o">.</span><span class="n">get_data_fred</span><span class="p">(</span><span class="s1">&#39;CPIAUCNS&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;1970&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
+
+<span class="n">cpi</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">(</span><span class="n">cpi</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;MS&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cpi</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE
+2023-09-01    307.789
+2023-10-01    307.671
+2023-11-01    307.051
+2023-12-01    306.746
+2024-01-01    308.417
+Freq: MS, Name: CPIAUCNS, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># calculating an annualized inflation rate in percent</span>
+<span class="n">inf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">cpi</span><span class="p">)</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;QS&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">diff</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">*</span> <span class="mi">400</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATE
+2021-10-01     6.024046
+2022-01-01     9.016425
+2022-04-01    11.718482
+2022-07-01     5.244475
+2022-10-01     1.465529
+2023-01-01     4.155865
+2023-04-01     4.742695
+2023-07-01     3.450284
+2023-10-01     0.419097
+2024-01-01     1.639115
+Freq: QS-JAN, Name: CPIAUCNS, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inf</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">inf</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\Delta \log CPI$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/224c94be418680c8398728cc623974aee87ee6d3fd085672bd84ceb9b2d8b2ca.png" src="_images/224c94be418680c8398728cc623974aee87ee6d3fd085672bd84ceb9b2d8b2ca.png" />
+</div>
+</div>
+<p>Another flexible model for estimation are <em>seasonal autoregressive integrated moving average models</em>, or <a class="reference external" href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html">SARIMAX</a>. These models are a class of <a class="reference external" href="https://www.statsmodels.org/stable/statespace.html">state space</a> models,</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+\begin{split}y_t &amp; = Z_t \alpha_t + d_t + \varepsilon_t, \\
+\alpha_{t+1} &amp; = T_t \alpha_t + c_t + R_t \eta_t. \\\end{split}
+\end{equation*}\]</div>
+<p>Here, we observe the time series <span class="math notranslate nohighlight">\(y_t\)</span>, but it depends on the <em>state variable</em>, <span class="math notranslate nohighlight">\(\alpha_{t}\)</span>, which is unobservable. The <span class="math notranslate nohighlight">\(\varepsilon\)</span> and <span class="math notranslate nohighlight">\(\eta\)</span> terms are both noise processes. (Uppercase letters denote matrices, while lowercase letters are vectors.) The first equation is called the <em>observation equation</em> while the second set of equations are the <em>state equations</em>.</p>
+<p>This class of models nests ARMA models as well as other types of models. For example, we can write the ARMA(1,1) model</p>
+<div class="math notranslate nohighlight">
+\[y_t = \phi y_{t-1} + \varepsilon_t + \theta_1 \varepsilon_{t-1}, \qquad \varepsilon_t \sim N(0, \sigma^2)\]</div>
+<p>as a state-space model:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y_t &amp; = \underbrace{\begin{bmatrix} 1 &amp; \theta_1 \end{bmatrix}}_{Z} \underbrace{\begin{bmatrix} \alpha_{1,t} \\ \alpha_{2,t} \end{bmatrix}}_{\alpha_t} \\
+    \begin{bmatrix} \alpha_{1,t+1} \\ \alpha_{2,t+1} \end{bmatrix} &amp; = \underbrace{\begin{bmatrix}
+        \phi &amp; 0 \\
+        1      &amp; 0     \\
+    \end{bmatrix}}_{T} \begin{bmatrix} \alpha_{1,t} \\ \alpha_{2,t} \end{bmatrix} +
+    \underbrace{\begin{bmatrix} 1 \\ 0 \end{bmatrix}}_{R} \underbrace{\varepsilon_{t+1}}_{\eta_t}.
+\end{align*}\]</div>
+<p>To see this, note that the observation equation says</p>
+<div class="math notranslate nohighlight">
+\[y_t = \alpha_{1,t} + \theta_1 \alpha_{2,t},\]</div>
+<p>which implies that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-0d923e86-fec8-49e8-afa9-4a196321c307">
+<span class="eqno">(18)<a class="headerlink" href="#equation-0d923e86-fec8-49e8-afa9-4a196321c307" title="Permalink to this equation">#</a></span>\[\begin{align}
+y_t - \phi y_{t-1} &amp;= \alpha_{1,t} + \theta_1 \alpha_{2,t} - \phi(\alpha_{1,t-1} + \theta_1 \alpha_{2,t-1}) \\
+&amp;= \alpha_{1,t} - \phi\alpha_{1,t-1} + \theta_1(\alpha_{2,t} - \phi \alpha_{2,t-1}).
+\end{align}\]</div>
+<p>The two state equations imply that</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{1,t+1} = \phi\alpha_{1,t} + \varepsilon_{t+1} \Longrightarrow \alpha_{1,t} - \phi\alpha_{1,t-1} = \varepsilon_{t}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{2,t+1} = \alpha_{1,t} \Longrightarrow \alpha_{2,t} = \alpha_{1,t-1}.\]</div>
+<p>Substituting these into (15), we get</p>
+<div class="math notranslate nohighlight">
+\[y_t - \phi y_{t-1} = \varepsilon_{t} + \theta_1\varepsilon_{t-1},\]</div>
+<p>which is the desired ARMA(1,1) model.</p>
+<p>The following examples are based on those of <a class="reference external" href="http://www.chadfulton.com/topics/arma11_cpi_inflation.html">Chad Fulton</a>, an economist at the Federal Reserve.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estimate ARMA(1,1) model with SARIMAX</span>
+<span class="n">inf_model2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">SARIMAX</span><span class="p">(</span><span class="n">inf</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">inf_results2</span> <span class="o">=</span> <span class="n">inf_model2</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">inf_results2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            3     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  2.40814D+00    |proj g|=  9.77813D-02
+
+At iterate    5    f=  2.37480D+00    |proj g|=  3.12487D-02
+
+At iterate   10    f=  2.36772D+00    |proj g|=  6.23345D-04
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    3     13     16      1     0     0   2.073D-05   2.368D+00
+  F =   2.3677097364661361     
+
+CONVERGENCE: REL_REDUCTION_OF_F_&lt;=_FACTR*EPSMCH             
+                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:               CPIAUCNS   No. Observations:                  216
+Model:               SARIMAX(1, 0, 1)   Log Likelihood                -511.425
+Date:                Mon, 04 Mar 2024   AIC                           1028.851
+Time:                        20:57:41   BIC                           1038.976
+Sample:                    04-01-1970   HQIC                          1032.941
+                         - 01-01-2024                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+ar.L1          0.9755      0.016     60.217      0.000       0.944       1.007
+ma.L1         -0.6032      0.060    -10.092      0.000      -0.720      -0.486
+sigma2         6.6169      0.330     20.044      0.000       5.970       7.264
+===================================================================================
+Ljung-Box (L1) (Q):                   4.11   Jarque-Bera (JB):               545.98
+Prob(Q):                              0.04   Prob(JB):                         0.00
+Heteroskedasticity (H):               2.07   Skew:                            -1.18
+Prob(H) (two-sided):                  0.00   Kurtosis:                        10.42
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the observation from October 2008 is quite different from all the other data. This outlier might be having a out-sized impact on our results, so we can remove its effect by letting it have its own intercept. We do this by including an additional exogenous variable in the regression using the <code class="docutils literal notranslate"><span class="pre">exog</span></code> argument; in this case the variable is a vector that is zero for every observation except the one for October 2008.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outlier</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inf</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="n">inf</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;outlier&#39;</span><span class="p">)</span>
+<span class="n">outlier</span><span class="p">[</span><span class="s1">&#39;2008-10-01&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf_model3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">SARIMAX</span><span class="p">(</span><span class="n">inf</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">exog</span><span class="o">=</span><span class="n">outlier</span><span class="p">)</span>
+<span class="n">inf_results3</span> <span class="o">=</span> <span class="n">inf_model3</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">inf_results3</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            4     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  2.30524D+00    |proj g|=  1.09615D-01
+
+At iterate    5    f=  2.27507D+00    |proj g|=  3.79952D-02
+
+At iterate   10    f=  2.26893D+00    |proj g|=  2.14936D-03
+
+At iterate   15    f=  2.26656D+00    |proj g|=  1.80225D-03
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    4     18     20      1     0     0   7.864D-06   2.267D+00
+  F =   2.2665307418477876     
+
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_&lt;=_PGTOL            
+                               SARIMAX Results                                
+==============================================================================
+Dep. Variable:               CPIAUCNS   No. Observations:                  216
+Model:               SARIMAX(1, 0, 1)   Log Likelihood                -489.571
+Date:                Mon, 04 Mar 2024   AIC                            987.141
+Time:                        20:57:49   BIC                           1000.642
+Sample:                    04-01-1970   HQIC                           992.596
+                         - 01-01-2024                                         
+Covariance Type:                  opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+outlier      -14.5473      1.696     -8.578      0.000     -17.871     -11.223
+ar.L1          0.9757      0.015     66.975      0.000       0.947       1.004
+ma.L1         -0.5581      0.060     -9.345      0.000      -0.675      -0.441
+sigma2         5.4015      0.489     11.037      0.000       4.442       6.361
+===================================================================================
+Ljung-Box (L1) (Q):                   2.45   Jarque-Bera (JB):                 2.00
+Prob(Q):                              0.12   Prob(JB):                         0.37
+Heteroskedasticity (H):               1.53   Skew:                            -0.08
+Prob(H) (two-sided):                  0.07   Kurtosis:                         3.44
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also add additional structure to the model to remove seasonality using the by specifying values for the <code class="docutils literal notranslate"><span class="pre">seasonal_order(p,d,q,s)</span></code> argument. The final <code class="docutils literal notranslate"><span class="pre">s</span></code> parameter indicates the <em>periodicity</em> of the time series; the first three parameters are analogous to the parameters to the <code class="docutils literal notranslate"><span class="pre">order</span></code> arguement, but are applied with lags defined by the periodicity.</p>
+<p>For example, since we’re working with quarterly data, it is natural to specify <code class="docutils literal notranslate"><span class="pre">s=4</span></code>. Setting <code class="docutils literal notranslate"><span class="pre">p=1</span></code> and <code class="docutils literal notranslate"><span class="pre">s=1</span></code> therefore takes 4-period differences of the data and includes an additional autoregressive term at a lag of 4.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf_model3</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">tsa</span><span class="o">.</span><span class="n">SARIMAX</span><span class="p">(</span><span class="n">inf</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">seasonal_order</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">exog</span><span class="o">=</span><span class="n">outlier</span><span class="p">)</span>
+<span class="n">inf_results3</span> <span class="o">=</span> <span class="n">inf_model3</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">inf_results3</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RUNNING THE L-BFGS-B CODE
+
+           * * *
+
+Machine precision = 2.220D-16
+ N =            6     M =           10
+
+At X0         0 variables are exactly at the bounds
+
+At iterate    0    f=  2.26680D+00    |proj g|=  1.47627D-01
+
+At iterate    5    f=  2.24409D+00    |proj g|=  3.24593D-03
+
+At iterate   10    f=  2.24282D+00    |proj g|=  2.24330D-02
+
+At iterate   15    f=  2.24052D+00    |proj g|=  1.48140D-03
+
+           * * *
+
+Tit   = total number of iterations
+Tnf   = total number of function evaluations
+Tnint = total number of segments explored during Cauchy searches
+Skip  = number of BFGS updates skipped
+Nact  = number of active bounds at final generalized Cauchy point
+Projg = norm of the final projected gradient
+F     = final function value
+
+           * * *
+
+   N    Tit     Tnf  Tnint  Skip  Nact     Projg        F
+    6     18     21      1     0     0   3.794D-06   2.241D+00
+  F =   2.2405167990716035     
+
+CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_&lt;=_PGTOL            
+                                     SARIMAX Results                                     
+=========================================================================================
+Dep. Variable:                          CPIAUCNS   No. Observations:                  216
+Model:             SARIMAX(3, 0, 0)x(1, 1, 0, 4)   Log Likelihood                -483.952
+Date:                           Mon, 04 Mar 2024   AIC                            979.903
+Time:                                   20:58:09   BIC                           1000.043
+Sample:                               04-01-1970   HQIC                           988.043
+                                    - 01-01-2024                                         
+Covariance Type:                             opg                                         
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+outlier      -11.1106      1.449     -7.670      0.000     -13.950      -8.271
+ar.L1          0.4959      0.059      8.400      0.000       0.380       0.612
+ar.L2         -0.0471      0.068     -0.697      0.486      -0.179       0.085
+ar.L3          0.1884      0.064      2.967      0.003       0.064       0.313
+ar.S.L4       -0.3854      0.059     -6.546      0.000      -0.501      -0.270
+sigma2         5.6065      0.560     10.020      0.000       4.510       6.703
+===================================================================================
+Ljung-Box (L1) (Q):                   0.47   Jarque-Bera (JB):                 0.56
+Prob(Q):                              0.49   Prob(JB):                         0.76
+Heteroskedasticity (H):               1.14   Skew:                            -0.10
+Prob(H) (two-sided):                  0.59   Kurtosis:                         3.14
+===================================================================================
+
+Warnings:
+[1] Covariance matrix calculated using the outer product of gradients (complex-step).
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> This problem is unconstrained.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf_results3</span><span class="o">.</span><span class="n">plot_diagnostics</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">9</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a9014b54218a70bca23862900117a25c61ade15efacabfebe9ad53ba7dcc34d9.png" src="_images/a9014b54218a70bca23862900117a25c61ade15efacabfebe9ad53ba7dcc34d9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inf_results3</span><span class="o">.</span><span class="n">forecast</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">exog</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-04-01    4.967205
+2024-07-01    2.598361
+2024-10-01   -0.654048
+2025-01-01    1.485415
+Freq: QS-JAN, Name: predicted_mean, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07a%20Time%20series%20analysis.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Time series models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07b%20Markov%20switching%20model.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markov Switching model</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unemployment">Unemployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-selection">Model selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals">Residuals</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oil-prices">Oil prices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#housing-starts">Housing starts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#removing-seasonality">Removing seasonality</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inflation">Inflation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  &copy; 2024 <a href="https://stoffprof.github.io">Noah Stoffman</a>. Version 0.24.01.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
